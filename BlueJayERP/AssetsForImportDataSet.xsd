@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AssetsForImportDataSet" targetNamespace="http://tempuri.org/AssetsForImportDataSet.xsd" xmlns:mstns="http://tempuri.org/AssetsForImportDataSet.xsd" xmlns="http://tempuri.org/AssetsForImportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AssetsForImportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AssetsForImportDataSet" msprop:Generator_UserDSName="AssetsForImportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="assets" msprop:Generator_TableClassName="assetsDataTable" msprop:Generator_TableVarName="tableassets" msprop:Generator_TablePropName="assets" msprop:Generator_RowDeletingName="assetsRowDeleting" msprop:Generator_RowChangingName="assetsRowChanging" msprop:Generator_RowEvHandlerName="assetsRowChangeEventHandler" msprop:Generator_RowDeletedName="assetsRowDeleted" msprop:Generator_UserTableName="assets" msprop:Generator_RowChangedName="assetsRowChanged" msprop:Generator_RowEvArgName="assetsRowChangeEvent" msprop:Generator_RowClassName="assetsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ItemID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnItemID" msprop:Generator_ColumnPropNameInRow="ItemID" msprop:Generator_ColumnPropNameInTable="ItemIDColumn" msprop:Generator_UserColumnName="ItemID" type="xs:int" />
+              <xs:element name="Item" msprop:Generator_ColumnVarNameInTable="columnItem" msprop:Generator_ColumnPropNameInRow="Item" msprop:Generator_ColumnPropNameInTable="ItemColumn" msprop:Generator_UserColumnName="Item" type="xs:string" minOccurs="0" />
+              <xs:element name="Manufacturer" msprop:Generator_ColumnVarNameInTable="columnManufacturer" msprop:Generator_ColumnPropNameInRow="Manufacturer" msprop:Generator_ColumnPropNameInTable="ManufacturerColumn" msprop:Generator_UserColumnName="Manufacturer" type="xs:string" minOccurs="0" />
+              <xs:element name="Model" msprop:Generator_ColumnVarNameInTable="columnModel" msprop:Generator_ColumnPropNameInRow="Model" msprop:Generator_ColumnPropNameInTable="ModelColumn" msprop:Generator_UserColumnName="Model" type="xs:string" minOccurs="0" />
+              <xs:element name="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_UserColumnName="SerialNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:int" minOccurs="0" />
+              <xs:element name="ItemValue" msprop:Generator_ColumnVarNameInTable="columnItemValue" msprop:Generator_ColumnPropNameInRow="ItemValue" msprop:Generator_ColumnPropNameInTable="ItemValueColumn" msprop:Generator_UserColumnName="ItemValue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Updates" msprop:Generator_ColumnVarNameInTable="columnUpdates" msprop:Generator_ColumnPropNameInRow="Updates" msprop:Generator_ColumnPropNameInTable="UpdatesColumn" msprop:Generator_UserColumnName="Updates" type="xs:string" minOccurs="0" />
+              <xs:element name="WarehouseID" msprop:Generator_ColumnVarNameInTable="columnWarehouseID" msprop:Generator_ColumnPropNameInRow="WarehouseID" msprop:Generator_ColumnPropNameInTable="WarehouseIDColumn" msprop:Generator_UserColumnName="WarehouseID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:assets" />
+      <xs:field xpath="mstns:ItemID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

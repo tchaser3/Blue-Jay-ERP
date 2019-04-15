@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeProjectTaskDataSet" targetNamespace="http://tempuri.org/EmployeeProjectTaskDataSet.xsd" xmlns:mstns="http://tempuri.org/EmployeeProjectTaskDataSet.xsd" xmlns="http://tempuri.org/EmployeeProjectTaskDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeProjectTaskDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeProjectTaskDataSet" msprop:Generator_UserDSName="EmployeeProjectTaskDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projecttask" msprop:Generator_TableClassName="projecttaskDataTable" msprop:Generator_TableVarName="tableprojecttask" msprop:Generator_RowChangedName="projecttaskRowChanged" msprop:Generator_TablePropName="projecttask" msprop:Generator_RowDeletingName="projecttaskRowDeleting" msprop:Generator_RowChangingName="projecttaskRowChanging" msprop:Generator_RowEvHandlerName="projecttaskRowChangeEventHandler" msprop:Generator_RowDeletedName="projecttaskRowDeleted" msprop:Generator_RowClassName="projecttaskRow" msprop:Generator_UserTableName="projecttask" msprop:Generator_RowEvArgName="projecttaskRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="AssignedProjectID" msprop:Generator_ColumnVarNameInTable="columnAssignedProjectID" msprop:Generator_ColumnPropNameInRow="AssignedProjectID" msprop:Generator_ColumnPropNameInTable="AssignedProjectIDColumn" msprop:Generator_UserColumnName="AssignedProjectID" type="xs:string" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_UserColumnName="ProjectName" type="xs:string" />
+              <xs:element name="HomeOffice" msprop:Generator_ColumnVarNameInTable="columnHomeOffice" msprop:Generator_ColumnPropNameInRow="HomeOffice" msprop:Generator_ColumnPropNameInTable="HomeOfficeColumn" msprop:Generator_UserColumnName="HomeOffice" type="xs:string" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="TotalFootagePieces" msprop:Generator_ColumnVarNameInTable="columnTotalFootagePieces" msprop:Generator_ColumnPropNameInRow="TotalFootagePieces" msprop:Generator_ColumnPropNameInTable="TotalFootagePiecesColumn" msprop:Generator_UserColumnName="TotalFootagePieces" type="xs:decimal" />
+              <xs:element name="TotalHours" msprop:Generator_ColumnVarNameInTable="columnTotalHours" msprop:Generator_ColumnPropNameInRow="TotalHours" msprop:Generator_ColumnPropNameInTable="TotalHoursColumn" msprop:Generator_UserColumnName="TotalHours" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:projecttask" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

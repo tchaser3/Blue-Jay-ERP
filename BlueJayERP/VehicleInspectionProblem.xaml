@@ -1,0 +1,50 @@
+﻿<Window x:Class="BlueJayERP.VehicleInspectionProblem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="VehicleInspectionProblem" Height="575" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="779" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitSave" Header="Save" Click="mitSave_Click" Height="30"></MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="82" Margin="319,61,0,0" VerticalAlignment="Top" Width="165" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Vehicle Inspection Problem" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="772"/>
+        <TextBox x:Name="txtInspectionNotes" CharacterCasing="Upper" TabIndex="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="68" Margin="140,359,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="305"/>
+        <TextBox x:Name="txtManagerNotes" CharacterCasing="Upper" TabIndex="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="68" Margin="140,479,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="305"/>
+        <Label x:Name="lblInspectionNotes" Content="Inspection Notes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="26,379,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblManagerNotes" Content="Manager Notes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="21,498,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgrWorkOrders" HorizontalAlignment="Left" Height="92" Margin="10,192,0,0" VerticalAlignment="Top" Width="772" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrWorkOrders_SelectionChanged"/>
+        <ComboBox x:Name="cboMultipleProblems" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="200,310,0,0" VerticalAlignment="Top" Width="176" Height="36" SelectionChanged="cboMultipleProblems_SelectionChanged"/>
+        <Label x:Name="lblMultipleProblem" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="58,301,0,0" VerticalAlignment="Top" Height="55" Width="137">
+            <TextBlock x:Name="tblMultipleProblems" TextWrapping="Wrap" Text="Are There Multiple Problems?" TextAlignment="Right"/>
+        </Label>
+        <ComboBox x:Name="cboSelectManager" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="200,436,0,0" VerticalAlignment="Top" Width="176" Height="36" SelectionChanged="CboSelectManager_SelectionChanged"/>
+        <Label x:Name="lblSelectManager" Content="Select Manager" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="89,436,0,0" VerticalAlignment="Top" Height="36"/>
+        <TextBox x:Name="txtFleetNotes" CharacterCasing="Upper" TabIndex="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="191" Margin="594,356,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="173"/>
+        <Label x:Name="lblFleetNotes" Content="Fleet Notes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="475,437,0,0" VerticalAlignment="Top" Width="111"/>
+        <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="591,313,0,0" VerticalAlignment="Top" Width="176" Height="36" SelectionChanged="CboSelectEmployee_SelectionChanged"/>
+        <Label x:Name="lblSelectFleet" Content="Select Fleet Employee" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="442,313,0,0" VerticalAlignment="Top" Height="36"/>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeTotalProductionDataSet" targetNamespace="http://tempuri.org/EmployeeTotalProductionDataSet.xsd" xmlns:mstns="http://tempuri.org/EmployeeTotalProductionDataSet.xsd" xmlns="http://tempuri.org/EmployeeTotalProductionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeTotalProductionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeTotalProductionDataSet" msprop:Generator_UserDSName="EmployeeTotalProductionDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="employeetotalproduction" msprop:Generator_TableClassName="employeetotalproductionDataTable" msprop:Generator_TableVarName="tableemployeetotalproduction" msprop:Generator_TablePropName="employeetotalproduction" msprop:Generator_RowDeletingName="employeetotalproductionRowDeleting" msprop:Generator_RowChangingName="employeetotalproductionRowChanging" msprop:Generator_RowEvHandlerName="employeetotalproductionRowChangeEventHandler" msprop:Generator_RowDeletedName="employeetotalproductionRowDeleted" msprop:Generator_UserTableName="employeetotalproduction" msprop:Generator_RowChangedName="employeetotalproductionRowChanged" msprop:Generator_RowEvArgName="employeetotalproductionRowChangeEvent" msprop:Generator_RowClassName="employeetotalproductionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="HomeOffice" msprop:Generator_ColumnVarNameInTable="columnHomeOffice" msprop:Generator_ColumnPropNameInRow="HomeOffice" msprop:Generator_ColumnPropNameInTable="HomeOfficeColumn" msprop:Generator_UserColumnName="HomeOffice" type="xs:string" />
+              <xs:element name="ManagerFirstName" msprop:Generator_ColumnVarNameInTable="columnManagerFirstName" msprop:Generator_ColumnPropNameInRow="ManagerFirstName" msprop:Generator_ColumnPropNameInTable="ManagerFirstNameColumn" msprop:Generator_UserColumnName="ManagerFirstName" type="xs:string" />
+              <xs:element name="ManagerLastName" msprop:Generator_ColumnVarNameInTable="columnManagerLastName" msprop:Generator_ColumnPropNameInRow="ManagerLastName" msprop:Generator_ColumnPropNameInTable="ManagerLastNameColumn" msprop:Generator_UserColumnName="ManagerLastName" type="xs:string" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="TotalFootage" msprop:Generator_ColumnVarNameInTable="columnTotalFootage" msprop:Generator_ColumnPropNameInRow="TotalFootage" msprop:Generator_ColumnPropNameInTable="TotalFootageColumn" msprop:Generator_UserColumnName="TotalFootage" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

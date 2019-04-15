@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InspectedTrailersDataSet" targetNamespace="http://tempuri.org/InspectedTrailersDataSet.xsd" xmlns:mstns="http://tempuri.org/InspectedTrailersDataSet.xsd" xmlns="http://tempuri.org/InspectedTrailersDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="InspectedTrailersDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="InspectedTrailersDataSet" msprop:Generator_UserDSName="InspectedTrailersDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="inspectedtrailers" msprop:Generator_TableClassName="inspectedtrailersDataTable" msprop:Generator_TableVarName="tableinspectedtrailers" msprop:Generator_RowChangedName="inspectedtrailersRowChanged" msprop:Generator_TablePropName="inspectedtrailers" msprop:Generator_RowDeletingName="inspectedtrailersRowDeleting" msprop:Generator_RowChangingName="inspectedtrailersRowChanging" msprop:Generator_RowEvHandlerName="inspectedtrailersRowChangeEventHandler" msprop:Generator_RowDeletedName="inspectedtrailersRowDeleted" msprop:Generator_RowClassName="inspectedtrailersRow" msprop:Generator_UserTableName="inspectedtrailers" msprop:Generator_RowEvArgName="inspectedtrailersRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InspectionDate" msprop:Generator_ColumnVarNameInTable="columnInspectionDate" msprop:Generator_ColumnPropNameInRow="InspectionDate" msprop:Generator_ColumnPropNameInTable="InspectionDateColumn" msprop:Generator_UserColumnName="InspectionDate" type="xs:dateTime" />
+              <xs:element name="TrailerNumber" msprop:Generator_ColumnVarNameInTable="columnTrailerNumber" msprop:Generator_ColumnPropNameInRow="TrailerNumber" msprop:Generator_ColumnPropNameInTable="TrailerNumberColumn" msprop:Generator_UserColumnName="TrailerNumber" type="xs:string" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="HomeOffice" msprop:Generator_ColumnVarNameInTable="columnHomeOffice" msprop:Generator_ColumnPropNameInRow="HomeOffice" msprop:Generator_ColumnPropNameInTable="HomeOfficeColumn" msprop:Generator_UserColumnName="HomeOffice" type="xs:string" />
+              <xs:element name="InspectionStatus" msprop:Generator_ColumnVarNameInTable="columnInspectionStatus" msprop:Generator_ColumnPropNameInRow="InspectionStatus" msprop:Generator_ColumnPropNameInTable="InspectionStatusColumn" msprop:Generator_UserColumnName="InspectionStatus" type="xs:string" />
+              <xs:element name="InspectionNotes" msprop:Generator_ColumnVarNameInTable="columnInspectionNotes" msprop:Generator_ColumnPropNameInRow="InspectionNotes" msprop:Generator_ColumnPropNameInTable="InspectionNotesColumn" msprop:Generator_UserColumnName="InspectionNotes" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

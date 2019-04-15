@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportedPunchesDataSet" targetNamespace="http://tempuri.org/ImportedPunchesDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportedPunchesDataSet.xsd" xmlns="http://tempuri.org/ImportedPunchesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportedPunchesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportedPunchesDataSet" msprop:Generator_UserDSName="ImportedPunchesDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="punches" msprop:Generator_TableClassName="punchesDataTable" msprop:Generator_TableVarName="tablepunches" msprop:Generator_TablePropName="punches" msprop:Generator_RowDeletingName="punchesRowDeleting" msprop:Generator_RowChangingName="punchesRowChanging" msprop:Generator_RowEvHandlerName="punchesRowChangeEventHandler" msprop:Generator_RowDeletedName="punchesRowDeleted" msprop:Generator_UserTableName="punches" msprop:Generator_RowChangedName="punchesRowChanged" msprop:Generator_RowEvArgName="punchesRowChangeEvent" msprop:Generator_RowClassName="punchesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="PayID" msprop:Generator_ColumnVarNameInTable="columnPayID" msprop:Generator_ColumnPropNameInRow="PayID" msprop:Generator_ColumnPropNameInTable="PayIDColumn" msprop:Generator_UserColumnName="PayID" type="xs:int" />
+              <xs:element name="PunchTime" msprop:Generator_ColumnVarNameInTable="columnPunchTime" msprop:Generator_ColumnPropNameInRow="PunchTime" msprop:Generator_ColumnPropNameInTable="PunchTimeColumn" msprop:Generator_UserColumnName="PunchTime" type="xs:dateTime" />
+              <xs:element name="PunchStatus" msprop:Generator_ColumnVarNameInTable="columnPunchStatus" msprop:Generator_ColumnPropNameInRow="PunchStatus" msprop:Generator_ColumnPropNameInTable="PunchStatusColumn" msprop:Generator_UserColumnName="PunchStatus" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

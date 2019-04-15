@@ -1,0 +1,271 @@
+﻿<Window x:Class="BlueJayERP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Blue Jay ERP System" Height="800" Width="1200" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#20232A" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Loaded="Grid_Loaded">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="725*"/>
+            <ColumnDefinition Width="467*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="1178" Margin="4,0,0,0" FontSize="14" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem x:Name="mitSignOut" Header="Sign Out" Click="mitSignOut_Click"></MenuItem>
+                <MenuItem x:Name="mitClose" Header="Close The Application" Click="mitClose_Click"></MenuItem>
+            </MenuItem>            
+            <MenuItem x:Name="mitAdministration" Header="Administration">
+                <MenuItem x:Name="mitEmployeeAdministration" Header="Employee Administration">
+                    <MenuItem x:Name="mitAddDepartment" Header="Add Department" Click="mitAddDepartment_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddEmployee" Header="Add Employee" Click="mitAddEmployee_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddEmployeeGroups" Header="Add Employee Groups" Click="mitAddEmployeeGroups_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddEmployeeToVehicleEmailList" Header="Add Employee To Vehicle Email List" Click="mitAddEmployeeToVehicleEmailList_Click"></MenuItem>
+                    <MenuItem x:Name="mitEditEmployee" Header="Edit Employee" Click="mitEditEmployee_Click"></MenuItem>
+                    <MenuItem x:Name="mitEmployeLaborRate" Header="Employee Labor Rate" Click="MitEmployeLaborRate_Click"></MenuItem>
+                    <MenuItem x:Name="mitImportEmployeeHours" Header="Import Employee Hours" Click="mitImportEmployeeHours_Click"></MenuItem>
+                    <MenuItem x:Name="mitImportEmployeePunches" Header="Import Employee Punches" Click="mitImportEmployeePunches_Click"></MenuItem>
+                    <MenuItem x:Name="mitTerminateEmployee" Header="Terminate Employee" Click="mitTerminateEmployee_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitInventoryAdministration" Header="Inventory Administration" >
+                    <MenuItem x:Name="mitAddPart" Header="Add Part" Click="mitAddPart_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddPartFromMasterList" Header="Add Part From Master List" Click="mitAddPartFromMasterList_Click"></MenuItem>
+                    <MenuItem x:Name="mitEditPart" Header="Edit Part" Click="mitEditPart_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitPhoneAdministration" Header="Phone Administration">
+                    <MenuItem x:Name="mitAddCellPhone" Header="Add Cell Phone" />
+                    <MenuItem x:Name="mitAddPhoneExtension" Header="Add Phone Extension" />
+                    <MenuItem x:Name="mitAssignCellPhone" Header="Assign Cell Phone" />
+                    <MenuItem x:Name="mitAssignPhoneExtension" Header="Assign Phone Extension" Click="MitAssignPhoneExtension_Click" />
+                    <MenuItem x:Name="mitEditCellPhone" Header="Edit Cell Phone" />
+                    <MenuItem x:Name="mitEditPhoneExtension" Header="Edit Phone Extension" />
+                </MenuItem>
+                <MenuItem x:Name="mitProjectAdministration" Header="Project Administration" >
+                    <MenuItem x:Name="mitAddWorkTask" Header="Add Work Task" Click="mitAddWorkTask_Click"></MenuItem>
+                    <MenuItem x:Name="mitJobType" Header="Add Job Type" Click="MitJobType_Click" />
+                    <MenuItem x:Name="mitAuditReportEmployeeAssignment" Header="Audit Report Employee Assignment" Click="mitAuditReportEmployeeAssignment_Click"></MenuItem>
+                    <MenuItem x:Name="mitProjectWorkTask" Header="Edit Project Work Task" Click="mitProjectWorkTask_Click"></MenuItem>
+                    <MenuItem x:Name="mitEditWorkTask" Header="Edit Work Task" Click="mitEditWorkTask_Click"></MenuItem>
+                    <MenuItem x:Name="mitEnterTaskHours" Header="Enter Task Hours" Click="mitEnterTaskHours_Click"></MenuItem>
+                    <MenuItem x:Name="mitImportWorkTask" Header="Import Work Task" Click="mitImportWorkTask_Click"></MenuItem>
+                    <MenuItem x:Name="mitUpdateWorkTaskProductionValue" Header="Update Work Task Production Value" Click="MitUpdateWorkTaskProductionValue_Click" />
+                    <MenuItem x:Name="mitVoidProjectLabor" Header="Void Project Labor"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitToolAdministration" Header="Tool Administration" >
+                    <MenuItem x:Name="mitCreateToolCategory" Header="Create Tool Category" Click="mitCreateToolCategory_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitTrailerAdministration" Header="Trailer Administration" >
+                    <MenuItem x:Name="mitAddTrailers" Header="Add Trailers" Click="mitAddTrailers_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddTrailerCategory" Header="Add Trailer Category" Click="mitAddTrailerCategory_Click"></MenuItem>
+                    <MenuItem x:Name="mitImportTrailers" Header="Import Trailers" Click="mitImportTrailers_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitVehicleAdministration" Header="Vehicle Administration" >
+                    <MenuItem x:Name="mitAddDOTStatus" Header="Add DOT Status" Click="mitAddDOTStatus_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddGPSStatus" Header="Add GPS Status" Click="mitAddGPSStatus_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddVehicle" Header="Add Vehicle" Click="mitAddVehicle_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddVendor" Header="Add/Import Vendor" Click="MitAddVendor_Click" />
+                    <MenuItem x:Name="mitRemoveEmployeesFromVehicles" Header="Remove Employees From Vehicles" Click="mitRemoveEmployeesFromVehicles_Click"></MenuItem>
+                    <MenuItem x:Name="mitRemoveEmployeesFromVehicleEmailList" Header="Remove Employees From Vehicle Email List" Click="mitRemoveEmployeesFromVehicleEmailList_Click"></MenuItem>
+                    <MenuItem x:Name="mitRetireVehice" Header="Retire Vehicle" Click="mitRetireVehice_Click"></MenuItem>
+                </MenuItem>  
+                <MenuItem x:Name="mitAdministrationReports" Header="Administration Reports">
+                    <MenuItem x:Name="mitProductivityDataEntryReports" Header="Productivity Data Entry" Click="mitProductivityDataEntryReports_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmployees" Header="Employees" Height="30">
+                <MenuItem Header="Employee Reports">
+                    <MenuItem x:Name="mitCompareEmployeeCrews" Header="Compare Employee Crews" Click="mitCompareEmployeeCrews_Click"></MenuItem>
+                    <MenuItem x:Name="mitEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" Click="mitEmployeePunchedVsProductionHours_Click"></MenuItem>
+                    <MenuItem x:Name="mitProductionEmployeeProductivityMeasure" Header="Production Employee Productivity  Measure" Click="MitProductionEmployeeProductivityMeasure_Click" />
+                    <MenuItem x:Name="mitEmployeeRoster" Header="Employee Roster" Click="mitEmployeeRoster_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindEmployeeHoursOverDateRange" Header="Find Employee Hours Over Date Range" Click="mitFindEmployeeHoursOverDateRange_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindEmployeeProductivityByDateRange" Header="Find Employee Productivity By Date Range" Click="mitFindEmployeeProductivityByDateRange_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindEmployeeCrewAssignment" Header="Find Employee Crew Hours" Click="mitFindEmployeeCrewAssignment_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindLaborHoursByDateRange" Header="Find Labor Hours By Date Range" Click="mitFindLaborHoursByDateRange_Click"></MenuItem>
+                    <MenuItem x:Name="mitEmployeeCrewSummary" Header="Employee Crew Summary" Click="mitEmployeeCrewSummary_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindMultipeEmployeeProduction" Header="Find Multiple Employee Production" Click="mitFindMultipeEmployeeProduction_Click"></MenuItem>
+                    <MenuItem x:Name="mitManagerProductivityPunched" Header="Manager Productivity Punched Report" Click="mitManagerProductivityPunched_Click" />
+                    <MenuItem x:Name="mitShopHoursAnalysis" Header="Shop Hours Analysis" Click="mitShopHoursAnalysis_Click"></MenuItem>
+                    <MenuItem x:Name="mitViewEmployeePunches" Header="View Employee Punches" Click="mitViewEmployeePunches_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitProjects" Header="Projects">
+                <MenuItem x:Name="mitAddProject" Header="Add Project" Click="mitAddProject_Click"></MenuItem>
+                <MenuItem x:Name="mitEditProject" Header="Edit Project" Click="mitEditProject_Click"></MenuItem>
+                <MenuItem x:Name="mitAddProjectLabor" Header="Add Project Labor" Click="mitAddProjectLabor_Click"></MenuItem>
+                <MenuItem x:Name="mitEditProjectLabor" Header="Edit Project Labor" Click="mitEditProjectLabor_Click"></MenuItem>
+                <MenuItem x:Name="mitProjectReports" Header="Project Reports">
+                    <MenuItem x:Name="mitProjectDateSearch" Header="Project Date Search" Click="mitProjectDateSearch_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindProject" Header="Find Project" Click="mitFindProject_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindProjectHours" Header="Find Project Production Summary" Click="mitFindProjectHours_Click"></MenuItem>
+                    <MenuItem x:Name="mitFindProjectEmployeeHours" Header="Find Project Employee Hours/Productivity" Click="mitFindProjectEmployeeHours_Click"></MenuItem>
+                    <MenuItem x:Name="mitProjectLaborMaterial" Header="Project Labor and Material" Click="mitProjectLaborMaterial_Click"></MenuItem>
+                    <MenuItem x:Name="mitProductivityReportForTasks" Header="Productivty Report For Tasks"></MenuItem>
+                    <MenuItem x:Name="mitFindDropBuryMDUHours" Header="Find Drop Bury MDU Hours"></MenuItem>
+                    <MenuItem x:Name="mitViewWorkTaskStatistics" Header="View Work Task Statistics" Click="mitViewWorkTaskStatistics_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitMDUDropBury" Header="MDU/Drop Bury">
+                <MenuItem x:Name="mitImportMDUDropBuryOrders" Header="Import MDU/Drop Bury Orders" Click="mitImportMDUDropBuryOrders_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitInventory" Header="Inventory">
+                <MenuItem x:Name="mitCycleCount" Header="Cycle Count" Click="mitCycleCount_Click"></MenuItem>
+                <MenuItem x:Name="mitTransferInventory" Header="Transfer Inventory" Click="mitTransferInventory_Click"></MenuItem>
+                <MenuItem x:Name="mitInventoryReports" Header="Inventory Reports">
+                    <MenuItem x:Name="mitWarehouseInventoryStats" Header="Warehouse Inventory Stats" Click="mitWarehouseInventoryStats_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitVehicles" Header="Vehicles">
+                <MenuItem x:Name="mitAddBulkToolsToVehicle" Header="Add Bulk Tools To Vehicle" Click="mitAddBulkToolsToVehicle_Click"></MenuItem>
+                <MenuItem x:Name="mitAssignVehicle" Header="Assign Vehicle" Click="mitAssignVehicle_Click"></MenuItem>
+                <MenuItem x:Name="mitEditVehicle" Header="Edit Vehicle" Click="mitEditVehicle_Click"></MenuItem>
+                <MenuItem x:Name="mitEditVehicleBulkTool" Header="Edit Vehicle Bulk Tool" Click="mitEditVehicleBulkTool_Click"></MenuItem>
+                <MenuItem x:Name="mitImportVehicles" Header="Import Vehicles" Click="mitImportVehicles_Click"></MenuItem>
+                <MenuItem x:Name="mitVehiclesInYard" Header="Vehicles In Yard" Click="mitVehiclesInYard_Click"></MenuItem>
+                <MenuItem x:Name="mitVehilcleProblem" Header="Vehicle Problems">
+                    <MenuItem x:Name="mitInvoiceVehicelProblem" Header="Invoice Vehicle Problem" Click="MitInvoiceVehicelProblem_Click" />
+                    <MenuItem x:Name="mitNeeVehicleProblem" Header="New Vehicle Problem" Click="mitNeeVehicleProblem_Click"></MenuItem>
+                    <MenuItem x:Name="mitPreventiveMaintenance" Header="Preventive Maintenenance" Click="mitPreventiveMaintenance_Click"></MenuItem>
+                    <MenuItem x:Name="mitSendVehicleToShop" Header="Send Vehicle To Shop" Click="mitSendVehicleToShop_Click"></MenuItem>
+                    <MenuItem x:Name="mitViewVehicleProblem" Header="View Vehicle Problem" Click="MitViewVehicleProblem_Click" />
+                    <MenuItem x:Name="mitUpdateVehicleProblem" Header="Update Vehicle Problem" Click="mitUpdateVehicleProblem_Click"></MenuItem>
+                    <MenuItem x:Name="mitVehicleProblemReports" Header="Vehicle Problem Report">                        
+                        <MenuItem x:Name="mitOpenVehicleProblems" Header="Open Vehicle Problems" Click="mitOpenVehicleProblems_Click"></MenuItem>
+                        <MenuItem x:Name="mitInvoicedVehicleProblems" Header="Invoiced Vehicle Problems" Click="MitInvoicedVehicleProblems_Click" />
+                        <MenuItem x:Name="mitVehiclesInShop" Header="Vehicles In Shop" Click="mitVehiclesInShop_Click"></MenuItem>
+                        <MenuItem x:Name="mitVehicleInvoicedByDateRange" Header="Vehicle Invoiced By Date Range" Click="MitVehicleInvoicedByDateRange_Click" />
+                        <MenuItem x:Name="mitVehicleProblemHistory" Header="Vehicle Problem History" Click="mitVehicleProblemHistory_Click"></MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitVehicleReports" Header="Vehicle Report">
+                    <MenuItem x:Name="mitAvailableVehicles" Header="Available Vehicles" Click="mitAvailableVehicles_Click"></MenuItem>
+                    <MenuItem x:Name="mitDOTAuditReport" Header="DOT Audit Report" Click="mitDOTAuditReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitHistoricalVehicleException" Header="Historical Vehicle Exception Report" Click="mitHistoricalVehicleException_Click"></MenuItem>
+                    <MenuItem x:Name="mitVehicleExceptionReport" Header="Vehicle Exception Report" Click="mitVehicleExceptionReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitVehicleHistoryReport" Header="Vehicle History Report" Click="mitVehicleHistoryReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitVehicleInYardReport" Header="Vehicle In Yard Report" Click="mitVehicleInYardReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitVehicleRoster" Header="Vehicle Roster" Click="mitVehicleRoster_Click"></MenuItem>                    
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitInspections" Header="Inspections" Click="mitInspections_Click">
+                <MenuItem x:Name="mitDailyTrailerInspection" Header="Daily Trailer Inspection" Click="mitDailyTrailerInspection_Click"></MenuItem>
+                <MenuItem x:Name="mitDailyVehicleInspection" Header="Daily Vehicle Inspection" Click="mitDailyVehicleInspection_Click"></MenuItem>
+                <MenuItem x:Name="mitManagerWeeklyDataEntry" Header="Manager/Weekly Data Entry" Click="mitManagerWeeklyDataEntry_Click"></MenuItem>
+                <MenuItem x:Name="mitInspectionReports" Header="Inspection Reports">
+                    <MenuItem x:Name="mitDailyTrailerInspectionReport" Header="Daily Trailer Inspection Report" Click="mitDailyTrailerInspectionReport_Click" />
+                    <MenuItem x:Name="mitDailyVehicleInspectionReport" Header="Daily Vehicle Inspection Report" Click="mitDailyVehicleInspectionReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitManagerWeeklyInspectionReport" Header="Manager/Weekly Inspection Report" Click="mitManagerWeeklyInspectionReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitManagerWeeklyVehicleCountReport" Header="Manager Weekly Vehicle Count Report" Click="MitManagerWeeklyVehicleCountReport_Click" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTools" Header="Tools">
+                <MenuItem x:Name="mitBulkToolSignIn" Header="Bulk Tool Sign In" Click="mitBulkToolSignIn_Click" />
+                <MenuItem x:Name="mitBulkToolSignOut" Header="Bulk Tool Sign Out" Click="mitBulkToolSignOut_Click" />
+                <MenuItem x:Name="mitToolSignOut" Header="Tool Sign Out" Click="mitToolSignOut_Click"></MenuItem>
+                <MenuItem x:Name="mitToolSignIn" Header="Tool Sign In" Click="mitToolSignIn_Click"></MenuItem>
+                <MenuItem x:Name="mitToolHistory" Header="Tool History" Click="mitToolHistory_Click"></MenuItem>
+                <MenuItem x:Name="mitToolAvailability" Header="Tool Availability" Click="mitToolAvailability_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateTool" Header="Create Tool" Click="mitCreateTool_Click"></MenuItem>
+                <MenuItem x:Name="mitEditTool" Header="Edit Tool" Click="mitEditTool_Click"></MenuItem>
+                <MenuItem x:Name="mitVehicleToolAssignment" Header="Vehicle Tool Assignment" Click="mitVehicleToolAssignment_Click"></MenuItem>
+                <MenuItem x:Name="mitToolProblemMenu" Header="Tool Problem Menu">
+                    <MenuItem x:Name="mitBrokenToolReport" Header="Broken Tool Report" Click="mitBrokenToolReport_Click"></MenuItem>
+                    <MenuItem x:Name="mitOpenToolProblems" Header="Open Tool Problems" Click="mitOpenToolProblems_Click"></MenuItem>
+                    <MenuItem x:Name="mitReportToolProblem" Header="Report Tool Problem" Click="mitReportToolProblem_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="mitToolReports" Header="Tool Reports">
+                    <MenuItem x:Name="mitCurrentToolLocation" Header="Current Tool Location" Click="mitCurrentToolLocation_Click"></MenuItem>
+                    <MenuItem x:Name="mitToolsAssignedToEmploye" Header="Tools Assigned To Employee" Click="mitToolsAssignedToEmploye_Click"></MenuItem>
+                    <MenuItem x:Name="mitToolsAssignedToDeactivatedEmployees" Header="Tools Assigned To Deactivated Employees" Click="mitToolsAssignedToDeactivatedEmployees_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTrailers" Header="Trailers">
+                <MenuItem x:Name="mitAssignTrailer" Header="Assign Trailer" Click="mitAssignTrailer_Click"></MenuItem>
+                <MenuItem x:Name="mitEditTrailer" Header="Edit Trailer" Click="mitEditTrailer_Click"></MenuItem>
+                <MenuItem x:Name="mitTrailersInYard" Header="Trailers In Yard" Click="mitTrailersInYard_Click"></MenuItem>
+                <MenuItem x:Name="mitTrailerReports" Header="Trailer Reports">
+                    <MenuItem x:Name="mitTrailerRoster" Header="Trailer Roster" Click="mitTrailerRoster_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitAssets" Header="Assets">
+
+            </MenuItem>
+            <MenuItem x:Name="mitInformationTechnology" Header="Information Technology">
+                <MenuItem x:Name="mitPhoneList" Header="Phone List" Click="MitPhoneList_Click" />
+                <MenuItem x:Name="mitAddITAsset" Header="Add IT Asset" Click="MitAddITAsset_Click" />
+                <MenuItem x:Name="mitImportITAssets" Header="Import IT Assets" Click="MitImportITAssets_Click" />
+                <MenuItem x:Name="mitChangeITAssetLocation" Header="Change IT Asset Location" Click="MitChangeITAssetLocation_Click" />
+                <MenuItem x:Name="mitRetireITAsset" Header="Retire IT Asset" Click="MitRetireITAsset_Click" />
+                <MenuItem x:Name="mitSignOutPhone" Header="Sign Out Phone"></MenuItem>
+                <MenuItem x:Name="mitSignInPhone" Header="Sign In Phone"></MenuItem>
+                <MenuItem x:Name="mitSignOutLaptop" Header="Sign Out Laptop"></MenuItem>
+                <MenuItem x:Name="mitSignInLaptop" Header="Sign In Laptop"></MenuItem>
+                <MenuItem x:Name="mitReportITProblem" Header="Report IT Problem" Click="mitReportITProblem_Click"></MenuItem>
+                <MenuItem x:Name="mitReportBug" Header="Report Bug"></MenuItem>
+                <MenuItem x:Name="mitEventLogTracker" Header="Event Log"></MenuItem>
+                <MenuItem x:Name="mitITReports" Header="IT Reports">
+                    <MenuItem x:Name="mitCurrentITAssets" Header="Current IT Assets" Click="MitCurrentITAssets_Click" />
+                    <MenuItem x:Name="mitRetiredITAssets" Header="Retired IT Assets" Click="MitRetiredITAssets_Click" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="270" Margin="367,249,0,0" VerticalAlignment="Top" Width="466" Source="logo.png" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SelectedProblemUpdatesDataSet" targetNamespace="http://tempuri.org/SelectedProblemUpdatesDataSet.xsd" xmlns:mstns="http://tempuri.org/SelectedProblemUpdatesDataSet.xsd" xmlns="http://tempuri.org/SelectedProblemUpdatesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SelectedProblemUpdatesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SelectedProblemUpdatesDataSet" msprop:Generator_UserDSName="SelectedProblemUpdatesDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="selectedproblemupdates" msprop:Generator_TableClassName="selectedproblemupdatesDataTable" msprop:Generator_TableVarName="tableselectedproblemupdates" msprop:Generator_TablePropName="selectedproblemupdates" msprop:Generator_RowDeletingName="selectedproblemupdatesRowDeleting" msprop:Generator_RowChangingName="selectedproblemupdatesRowChanging" msprop:Generator_RowEvHandlerName="selectedproblemupdatesRowChangeEventHandler" msprop:Generator_RowDeletedName="selectedproblemupdatesRowDeleted" msprop:Generator_UserTableName="selectedproblemupdates" msprop:Generator_RowChangedName="selectedproblemupdatesRowChanged" msprop:Generator_RowEvArgName="selectedproblemupdatesRowChangeEvent" msprop:Generator_RowClassName="selectedproblemupdatesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="Updates" msprop:Generator_ColumnVarNameInTable="columnUpdates" msprop:Generator_ColumnPropNameInRow="Updates" msprop:Generator_ColumnPropNameInTable="UpdatesColumn" msprop:Generator_UserColumnName="Updates" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

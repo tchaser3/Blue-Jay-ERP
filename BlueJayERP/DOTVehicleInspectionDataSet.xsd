@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DOTVehicleInspectionDataSet" targetNamespace="http://tempuri.org/DOTVehicleInspectionDataSet.xsd" xmlns:mstns="http://tempuri.org/DOTVehicleInspectionDataSet.xsd" xmlns="http://tempuri.org/DOTVehicleInspectionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DOTVehicleInspectionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DOTVehicleInspectionDataSet" msprop:Generator_UserDSName="DOTVehicleInspectionDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="inspectionresults" msprop:Generator_TableClassName="inspectionresultsDataTable" msprop:Generator_TableVarName="tableinspectionresults" msprop:Generator_RowChangedName="inspectionresultsRowChanged" msprop:Generator_TablePropName="inspectionresults" msprop:Generator_RowDeletingName="inspectionresultsRowDeleting" msprop:Generator_RowChangingName="inspectionresultsRowChanging" msprop:Generator_RowEvHandlerName="inspectionresultsRowChangeEventHandler" msprop:Generator_RowDeletedName="inspectionresultsRowDeleted" msprop:Generator_RowClassName="inspectionresultsRow" msprop:Generator_UserTableName="inspectionresults" msprop:Generator_RowEvArgName="inspectionresultsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="InspectionStatus" msprop:Generator_ColumnVarNameInTable="columnInspectionStatus" msprop:Generator_ColumnPropNameInRow="InspectionStatus" msprop:Generator_ColumnPropNameInTable="InspectionStatusColumn" msprop:Generator_UserColumnName="InspectionStatus" type="xs:string" />
+              <xs:element name="VehicleProblem" msprop:Generator_ColumnVarNameInTable="columnVehicleProblem" msprop:Generator_ColumnPropNameInRow="VehicleProblem" msprop:Generator_ColumnPropNameInTable="VehicleProblemColumn" msprop:Generator_UserColumnName="VehicleProblem" type="xs:string" />
+              <xs:element name="InspectionNotes" msprop:Generator_ColumnVarNameInTable="columnInspectionNotes" msprop:Generator_ColumnPropNameInRow="InspectionNotes" msprop:Generator_ColumnPropNameInTable="InspectionNotesColumn" msprop:Generator_UserColumnName="InspectionNotes" type="xs:string" />
+              <xs:element name="OdometerReading" msprop:Generator_ColumnVarNameInTable="columnOdometerReading" msprop:Generator_ColumnPropNameInRow="OdometerReading" msprop:Generator_ColumnPropNameInTable="OdometerReadingColumn" msprop:Generator_UserColumnName="OdometerReading" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:inspectionresults" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

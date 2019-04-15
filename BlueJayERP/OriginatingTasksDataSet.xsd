@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OriginatingTasksDataSet" targetNamespace="http://tempuri.org/OriginatingTasksDataSet.xsd" xmlns:mstns="http://tempuri.org/OriginatingTasksDataSet.xsd" xmlns="http://tempuri.org/OriginatingTasksDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OriginatingTasksDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OriginatingTasksDataSet" msprop:Generator_UserDSName="OriginatingTasksDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tasks" msprop:Generator_TableClassName="tasksDataTable" msprop:Generator_TableVarName="tabletasks" msprop:Generator_RowChangedName="tasksRowChanged" msprop:Generator_TablePropName="tasks" msprop:Generator_RowDeletingName="tasksRowDeleting" msprop:Generator_RowChangingName="tasksRowChanging" msprop:Generator_RowEvHandlerName="tasksRowChangeEventHandler" msprop:Generator_RowDeletedName="tasksRowDeleted" msprop:Generator_RowClassName="tasksRow" msprop:Generator_UserTableName="tasks" msprop:Generator_RowEvArgName="tasksRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TaskID" msprop:Generator_ColumnVarNameInTable="columnTaskID" msprop:Generator_ColumnPropNameInRow="TaskID" msprop:Generator_ColumnPropNameInTable="TaskIDColumn" msprop:Generator_UserColumnName="TaskID" type="xs:int" />
+              <xs:element name="AssignedDate" msprop:Generator_ColumnVarNameInTable="columnAssignedDate" msprop:Generator_ColumnPropNameInRow="AssignedDate" msprop:Generator_ColumnPropNameInTable="AssignedDateColumn" msprop:Generator_UserColumnName="AssignedDate" type="xs:dateTime" />
+              <xs:element name="Task" msprop:Generator_ColumnVarNameInTable="columnTask" msprop:Generator_ColumnPropNameInRow="Task" msprop:Generator_ColumnPropNameInTable="TaskColumn" msprop:Generator_UserColumnName="Task" type="xs:string" />
+              <xs:element name="TaskComplete" msprop:Generator_ColumnVarNameInTable="columnTaskComplete" msprop:Generator_ColumnPropNameInRow="TaskComplete" msprop:Generator_ColumnPropNameInTable="TaskCompleteColumn" msprop:Generator_UserColumnName="TaskComplete" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tasks" />
+      <xs:field xpath="mstns:TaskID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

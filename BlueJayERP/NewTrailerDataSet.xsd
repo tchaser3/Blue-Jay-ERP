@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewTrailerDataSet" targetNamespace="http://tempuri.org/NewTrailerDataSet.xsd" xmlns:mstns="http://tempuri.org/NewTrailerDataSet.xsd" xmlns="http://tempuri.org/NewTrailerDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewTrailerDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewTrailerDataSet" msprop:Generator_UserDSName="NewTrailerDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="newtrailers" msprop:Generator_TableClassName="newtrailersDataTable" msprop:Generator_TableVarName="tablenewtrailers" msprop:Generator_RowChangedName="newtrailersRowChanged" msprop:Generator_TablePropName="newtrailers" msprop:Generator_RowDeletingName="newtrailersRowDeleting" msprop:Generator_RowChangingName="newtrailersRowChanging" msprop:Generator_RowEvHandlerName="newtrailersRowChangeEventHandler" msprop:Generator_RowDeletedName="newtrailersRowDeleted" msprop:Generator_RowClassName="newtrailersRow" msprop:Generator_UserTableName="newtrailers" msprop:Generator_RowEvArgName="newtrailersRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TrailerNumber" msprop:Generator_ColumnVarNameInTable="columnTrailerNumber" msprop:Generator_ColumnPropNameInRow="TrailerNumber" msprop:Generator_ColumnPropNameInTable="TrailerNumberColumn" msprop:Generator_UserColumnName="TrailerNumber" type="xs:string" />
+              <xs:element name="TrailerDescription" msprop:Generator_ColumnVarNameInTable="columnTrailerDescription" msprop:Generator_ColumnPropNameInRow="TrailerDescription" msprop:Generator_ColumnPropNameInTable="TrailerDescriptionColumn" msprop:Generator_UserColumnName="TrailerDescription" type="xs:string" />
+              <xs:element name="CategoryID" msprop:Generator_ColumnVarNameInTable="columnCategoryID" msprop:Generator_ColumnPropNameInRow="CategoryID" msprop:Generator_ColumnPropNameInTable="CategoryIDColumn" msprop:Generator_UserColumnName="CategoryID" type="xs:int" />
+              <xs:element name="TrailerCategory" msprop:Generator_ColumnVarNameInTable="columnTrailerCategory" msprop:Generator_ColumnPropNameInRow="TrailerCategory" msprop:Generator_ColumnPropNameInTable="TrailerCategoryColumn" msprop:Generator_UserColumnName="TrailerCategory" type="xs:string" />
+              <xs:element name="LicensePlate" msprop:Generator_ColumnVarNameInTable="columnLicensePlate" msprop:Generator_ColumnPropNameInRow="LicensePlate" msprop:Generator_ColumnPropNameInTable="LicensePlateColumn" msprop:Generator_UserColumnName="LicensePlate" type="xs:string" />
+              <xs:element name="VINNumber" msprop:Generator_ColumnVarNameInTable="columnVINNumber" msprop:Generator_ColumnPropNameInRow="VINNumber" msprop:Generator_ColumnPropNameInTable="VINNumberColumn" msprop:Generator_UserColumnName="VINNumber" type="xs:string" />
+              <xs:element name="LocationID" msprop:Generator_ColumnVarNameInTable="columnLocationID" msprop:Generator_ColumnPropNameInRow="LocationID" msprop:Generator_ColumnPropNameInTable="LocationIDColumn" msprop:Generator_UserColumnName="LocationID" type="xs:int" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:newtrailers" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

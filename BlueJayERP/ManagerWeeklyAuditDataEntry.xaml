@@ -1,0 +1,54 @@
+﻿<Window x:Class="BlueJayERP.ManagerWeeklyAuditDataEntry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="ManagerWeeklyAuditDataEntry" Height="525" Width="450" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="429" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitProcess" Header="Process" Click="mitProcess_Click"></MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="149,59,0,0" VerticalAlignment="Top" Width="142" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Enter Weekly/Manager Vehicle Inspection" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="422"/>
+        <TextBox x:Name="txtEnterBJCNumber" TabIndex="0" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="31" Margin="229,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" TextChanged="txtEnterBJCNumber_TextChanged"/>
+        <Label x:Name="lblEnterBJCNumber" Content="Enter Vehicle Number" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,188,0,0" RenderTransformOrigin="0.145,0"/>
+        <TextBox x:Name="txtEnterLastName" TabIndex="1" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="31" Margin="229,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" TextChanged="txtEnterLastName_TextChanged"/>
+        <Label x:Name="lblEnterLastName" Content="Enter Last Name" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,229,0,0" RenderTransformOrigin="0.145,0"/>
+        <ComboBox x:Name="cboEmployee" TabIndex="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" Margin="229,274,0,0" VerticalAlignment="Top" Width="150" Height="29" SelectionChanged="cboEmployee_SelectionChanged"/>
+        <Label x:Name="lblSelectEmployee" Content="Select Employee" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,275,0,0" RenderTransformOrigin="0.145,0"/>
+        <TextBox x:Name="txtOdometerReading" TabIndex="3" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="31" Margin="229,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <Label x:Name="lblOdometerReading" Content="Odometer Reading" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="97,323,0,0" RenderTransformOrigin="0.145,0"/>
+        <RadioButton x:Name="rdoPassed" TabIndex="5" Content="Passed" FontSize="14" HorizontalAlignment="Left" Margin="67,456,0,0" VerticalAlignment="Top" Checked="rdoPassed_Checked"/>
+        <RadioButton x:Name="rdoPassedServiceRequired" TabIndex="6" Content="Passed Service Required" FontSize="14" HorizontalAlignment="Left" Margin="143,457,0,0" VerticalAlignment="Top" Checked="rdoPassedServiceRequired_Checked"/>
+        <RadioButton x:Name="rdoFailed" TabIndex="7" Content="Failed" FontSize="14" HorizontalAlignment="Left" Margin="324,457,0,0" VerticalAlignment="Top" Checked="rdoFailed_Checked"/>
+        <ComboBox x:Name="cboBodyDamageReported" TabIndex="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="229,369,0,0" VerticalAlignment="Top" Width="150" Height="29" SelectionChanged="cboBodyDamageReported_SelectionChanged"/>
+        <Label x:Name="lblBodyDamageReported" Content="Body Damage Reported" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,369,0,0" RenderTransformOrigin="0.145,0"/>
+        <ComboBox x:Name="cboVehicleCleanliness" TabIndex="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="229,413,0,0" VerticalAlignment="Top" Width="150" Height="29" SelectionChanged="cboVehicleCleanliness_SelectionChanged" />
+        <Label x:Name="lblVehicleCleanliness" Content="Vehicle Cleanliness Reported" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,413,0,0" RenderTransformOrigin="0.145,0"/>
+    </Grid>
+</Window>

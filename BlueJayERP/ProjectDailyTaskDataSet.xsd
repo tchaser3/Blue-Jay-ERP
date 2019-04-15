@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectDailyTaskDataSet" targetNamespace="http://tempuri.org/ProjectDailyTaskDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectDailyTaskDataSet.xsd" xmlns="http://tempuri.org/ProjectDailyTaskDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectDailyTaskDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProjectDailyTaskDataSet" msprop:Generator_UserDSName="ProjectDailyTaskDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projecttask" msprop:Generator_TableClassName="projecttaskDataTable" msprop:Generator_TableVarName="tableprojecttask" msprop:Generator_TablePropName="projecttask" msprop:Generator_RowDeletingName="projecttaskRowDeleting" msprop:Generator_RowChangingName="projecttaskRowChanging" msprop:Generator_RowEvHandlerName="projecttaskRowChangeEventHandler" msprop:Generator_RowDeletedName="projecttaskRowDeleted" msprop:Generator_UserTableName="projecttask" msprop:Generator_RowChangedName="projecttaskRowChanged" msprop:Generator_RowEvArgName="projecttaskRowChangeEvent" msprop:Generator_RowClassName="projecttaskRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="Crew" msprop:Generator_ColumnVarNameInTable="columnCrew" msprop:Generator_ColumnPropNameInRow="Crew" msprop:Generator_ColumnPropNameInTable="CrewColumn" msprop:Generator_UserColumnName="Crew" type="xs:string" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="Footage" msprop:Generator_ColumnVarNameInTable="columnFootage" msprop:Generator_ColumnPropNameInRow="Footage" msprop:Generator_ColumnPropNameInTable="FootageColumn" msprop:Generator_UserColumnName="Footage" type="xs:decimal" />
+              <xs:element name="Hours" msprop:Generator_ColumnVarNameInTable="columnHours" msprop:Generator_ColumnPropNameInRow="Hours" msprop:Generator_ColumnPropNameInTable="HoursColumn" msprop:Generator_UserColumnName="Hours" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:projecttask" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

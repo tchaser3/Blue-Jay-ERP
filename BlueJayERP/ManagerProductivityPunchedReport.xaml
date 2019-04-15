@@ -1,0 +1,72 @@
+﻿<Window x:Class="BlueJayERP.ManagerProductivityPunchedReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="ManagerProductivityPunchedReport" Height="800" Width="1000" IsVisibleChanged="Window_IsVisibleChanged">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.Resources>
+            <Style TargetType="DataGridCell">
+                <Style.Triggers>
+                    <Trigger Property="DataGridCell.IsSelected" Value="True">
+                        <Setter Property="Background" Value="#FF0000" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="979" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitProcessPayPeriod" Header="Process Pay Period" Click="mitProcessPayPeriod_Click" />
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="431,63,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Manager Productivity Punched Report" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="972"/>
+        <DataGrid x:Name="dgrResults" IsReadOnly="True" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" HorizontalAlignment="Left" Height="216" Margin="519,197,0,0" VerticalAlignment="Top" Width="436">
+            <DataGrid.Columns>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="txtEnterPayPeriod" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="34" Margin="236,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169"/>
+        <Label x:Name="lblEnterPayPeriod" Content="Enter Pay Period" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="101,285,0,0" VerticalAlignment="Top" Height="34" Width="130"/>
+        <WindowsFormsHost x:Name="host" Margin="10,427,10,10">
+            <winformchart:Chart x:Name="MyWinformChart" Dock="Fill" >
+                <winformchart:Chart.Series>
+                    <winformchart:Series Name="ZeroToFive" ChartType="Column"/>
+                    <winformchart:Series Name="SixToTen" ChartType="Column"/>
+                    <winformchart:Series Name="Above10" ChartType="Column"/>
+                </winformchart:Chart.Series>
+                <winformchart:Chart.ChartAreas>
+                    <winformchart:ChartArea/>
+                </winformchart:Chart.ChartAreas>
+            </winformchart:Chart>
+        </WindowsFormsHost>
+        <TextBox x:Name="txtCompanyPercentage" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="34" Margin="236,324,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169"/>
+        <Label x:Name="lblCompanyPercentage" Content="Company Percentage" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="63,324,0,0" VerticalAlignment="Top" Height="34" Width="168"/>
+
+    </Grid>
+</Window>

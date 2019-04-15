@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DailyVehicleInspectionReportDataSet" targetNamespace="http://tempuri.org/DailyVehicleInspectionReportDataSet.xsd" xmlns:mstns="http://tempuri.org/DailyVehicleInspectionReportDataSet.xsd" xmlns="http://tempuri.org/DailyVehicleInspectionReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DailyVehicleInspectionReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DailyVehicleInspectionReportDataSet" msprop:Generator_UserDSName="DailyVehicleInspectionReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dailyinspection" msprop:Generator_TableClassName="dailyinspectionDataTable" msprop:Generator_TableVarName="tabledailyinspection" msprop:Generator_RowChangedName="dailyinspectionRowChanged" msprop:Generator_TablePropName="dailyinspection" msprop:Generator_RowDeletingName="dailyinspectionRowDeleting" msprop:Generator_RowChangingName="dailyinspectionRowChanging" msprop:Generator_RowEvHandlerName="dailyinspectionRowChangeEventHandler" msprop:Generator_RowDeletedName="dailyinspectionRowDeleted" msprop:Generator_RowClassName="dailyinspectionRow" msprop:Generator_UserTableName="dailyinspection" msprop:Generator_RowEvArgName="dailyinspectionRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InspectionID" msprop:Generator_ColumnVarNameInTable="columnInspectionID" msprop:Generator_ColumnPropNameInRow="InspectionID" msprop:Generator_ColumnPropNameInTable="InspectionIDColumn" msprop:Generator_UserColumnName="InspectionID" type="xs:int" />
+              <xs:element name="VehicleID" msprop:Generator_ColumnVarNameInTable="columnVehicleID" msprop:Generator_ColumnPropNameInRow="VehicleID" msprop:Generator_ColumnPropNameInTable="VehicleIDColumn" msprop:Generator_UserColumnName="VehicleID" type="xs:int" minOccurs="0" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" />
+              <xs:element name="InspectionDate" msprop:Generator_ColumnVarNameInTable="columnInspectionDate" msprop:Generator_ColumnPropNameInRow="InspectionDate" msprop:Generator_ColumnPropNameInTable="InspectionDateColumn" msprop:Generator_UserColumnName="InspectionDate" type="xs:dateTime" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="OdometerReading" msprop:Generator_ColumnVarNameInTable="columnOdometerReading" msprop:Generator_ColumnPropNameInRow="OdometerReading" msprop:Generator_ColumnPropNameInTable="OdometerReadingColumn" msprop:Generator_UserColumnName="OdometerReading" type="xs:int" />
+              <xs:element name="InspectionStatus" msprop:Generator_ColumnVarNameInTable="columnInspectionStatus" msprop:Generator_ColumnPropNameInRow="InspectionStatus" msprop:Generator_ColumnPropNameInTable="InspectionStatusColumn" msprop:Generator_UserColumnName="InspectionStatus" type="xs:string" />
+              <xs:element name="InspectionNotes" msprop:Generator_ColumnVarNameInTable="columnInspectionNotes" msprop:Generator_ColumnPropNameInRow="InspectionNotes" msprop:Generator_ColumnPropNameInTable="InspectionNotesColumn" msprop:Generator_UserColumnName="InspectionNotes" type="xs:string" />
+              <xs:element name="HomeOffice" msprop:Generator_ColumnVarNameInTable="columnHomeOffice" msprop:Generator_ColumnPropNameInRow="HomeOffice" msprop:Generator_ColumnPropNameInTable="HomeOfficeColumn" msprop:Generator_UserColumnName="HomeOffice" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dailyinspection" />
+      <xs:field xpath="mstns:InspectionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

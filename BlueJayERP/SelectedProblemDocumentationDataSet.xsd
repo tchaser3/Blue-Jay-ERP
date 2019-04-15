@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SelectedProblemDocumentationDataSet" targetNamespace="http://tempuri.org/SelectedProblemDocumentationDataSet.xsd" xmlns:mstns="http://tempuri.org/SelectedProblemDocumentationDataSet.xsd" xmlns="http://tempuri.org/SelectedProblemDocumentationDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SelectedProblemDocumentationDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SelectedProblemDocumentationDataSet" msprop:Generator_UserDSName="SelectedProblemDocumentationDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="problemdocumentation" msprop:Generator_TableClassName="problemdocumentationDataTable" msprop:Generator_TableVarName="tableproblemdocumentation" msprop:Generator_TablePropName="problemdocumentation" msprop:Generator_RowDeletingName="problemdocumentationRowDeleting" msprop:Generator_RowChangingName="problemdocumentationRowChanging" msprop:Generator_RowEvHandlerName="problemdocumentationRowChangeEventHandler" msprop:Generator_RowDeletedName="problemdocumentationRowDeleted" msprop:Generator_UserTableName="problemdocumentation" msprop:Generator_RowChangedName="problemdocumentationRowChanged" msprop:Generator_RowEvArgName="problemdocumentationRowChangeEvent" msprop:Generator_RowClassName="problemdocumentationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="DocumentType" msprop:Generator_ColumnVarNameInTable="columnDocumentType" msprop:Generator_ColumnPropNameInRow="DocumentType" msprop:Generator_ColumnPropNameInTable="DocumentTypeColumn" msprop:Generator_UserColumnName="DocumentType" type="xs:string" />
+              <xs:element name="DocumentPath" msprop:Generator_ColumnVarNameInTable="columnDocumentPath" msprop:Generator_ColumnPropNameInRow="DocumentPath" msprop:Generator_ColumnPropNameInTable="DocumentPathColumn" msprop:Generator_UserColumnName="DocumentPath" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

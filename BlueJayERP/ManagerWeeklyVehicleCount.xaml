@@ -1,0 +1,76 @@
+﻿<Window x:Class="BlueJayERP.ManagerWeeklyVehicleCount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="ManagerWeeklyVehicleCount" Height="800" Width="1000" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.Resources>
+            <Style TargetType="DataGridCell">
+                <Style.Triggers>
+                    <Trigger Property="DataGridCell.IsSelected" Value="True">
+                        <Setter Property="Background" Value="#FF0000" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="979" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExportToExcel" Header="Export To Excel" Click="MitExportToExcel_Click" />
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="434,57,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Manager/Weekly Vehicle Inspection Count" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="972"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="375" Margin="10,182,407,310">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="375" Height="50">
+                <Label x:Name="lblStartDate" Content="Start Date" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Height="40" Width="150"/>
+                <TextBox x:Name="txtStartDate"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" Height="40" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="375" Height="50">
+                <Label x:Name="lblEndDate" Content="End Date" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Height="40" Width="150"/>
+                <TextBox x:Name="txtEndDate"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" Height="40" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="375" Height="100">
+                <Button x:Name="btnGenerateReport" Content="Generate Report" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Height="55" Width="150" Margin="150,1,1,1" Click="BtnGenerateReport_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="375" Margin="407,182,10,310">
+            <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Height="190" Width="365" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+        </StackPanel>        
+            <WindowsFormsHost x:Name="host" Margin="10,437,10,10">
+                <winformchart:Chart x:Name="MyWinformChart" Dock="Fill" >
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="VehicleCount" ChartType="Column"/>
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea/>
+                    </winformchart:Chart.ChartAreas>
+                </winformchart:Chart>
+            </WindowsFormsHost>        
+    </Grid>
+</Window>

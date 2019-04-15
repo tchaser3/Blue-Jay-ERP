@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CompareCrewTasksDataSet" targetNamespace="http://tempuri.org/CompareCrewTasksDataSet.xsd" xmlns:mstns="http://tempuri.org/CompareCrewTasksDataSet.xsd" xmlns="http://tempuri.org/CompareCrewTasksDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CompareCrewTasksDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CompareCrewTasksDataSet" msprop:Generator_UserDSName="CompareCrewTasksDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="worktasks" msprop:Generator_TableClassName="worktasksDataTable" msprop:Generator_TableVarName="tableworktasks" msprop:Generator_TablePropName="worktasks" msprop:Generator_RowDeletingName="worktasksRowDeleting" msprop:Generator_RowChangingName="worktasksRowChanging" msprop:Generator_RowEvHandlerName="worktasksRowChangeEventHandler" msprop:Generator_RowDeletedName="worktasksRowDeleted" msprop:Generator_UserTableName="worktasks" msprop:Generator_RowChangedName="worktasksRowChanged" msprop:Generator_RowEvArgName="worktasksRowChangeEvent" msprop:Generator_RowClassName="worktasksRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="WorkTaskID" msprop:Generator_ColumnVarNameInTable="columnWorkTaskID" msprop:Generator_ColumnPropNameInRow="WorkTaskID" msprop:Generator_ColumnPropNameInTable="WorkTaskIDColumn" msprop:Generator_UserColumnName="WorkTaskID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:worktasks" />
+      <xs:field xpath="mstns:WorkTaskID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

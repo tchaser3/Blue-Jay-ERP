@@ -1,0 +1,53 @@
+﻿<Window x:Class="BlueJayERP.NewVehicleProblem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="NewVehicleProblem" Height="700" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="779" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitResetForm" Header="Reset Form" Click="mitResetForm_Click"></MenuItem>
+            <MenuItem x:Name="mitProcessProblem" Header="Process Problem" Click="mitProcessProblem_Click"></MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="329,65,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="New Vehicle Problem" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="772"/>
+        <TextBox x:Name="txtEnterVehicleNumber" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" CharacterCasing="Upper" HorizontalAlignment="Left" Height="38" Margin="389,193,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" TextChanged="txtEnterVehicleNumber_TextChanged"/>
+        <Label x:Name="lblEnterVehicleNumber" Content="Enter Vehicle Numbers" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="232,193,0,0" VerticalAlignment="Top" Height="38" Width="152"/>
+        <DataGrid x:Name="dgrOpenProblems" IsReadOnly="True" HorizontalAlignment="Left" Height="169" Margin="10,279,0,0" VerticalAlignment="Top" Width="772" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrOpenProblems_SelectionChanged"/>
+        <Label x:Name="lblOpenProblems" Content="Open Problems For Vehicle" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Height="38" Width="772"/>
+        <TextBox x:Name="txtProblem" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="78" Margin="130,465,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175"/>
+        <TextBox x:Name="txtAddedNotes" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="78" Margin="464,467,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="318"/>
+        <Label x:Name="lblVehicleProblem" Content="Problem" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="10,485,0,0" VerticalAlignment="Top" Width="115" Height="38"/>
+        <Label x:Name="lblProblemNotes" Content="Problem Notes" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="344,485,0,0" VerticalAlignment="Top" Width="115" Height="38"/>
+        <Label x:Name="lblOutForReport" Content="Out For Repair" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="49,585,0,0" VerticalAlignment="Top" Width="115" Height="32"/>
+        <RadioButton x:Name="rdoYes" Content="Yes" FontSize="14" HorizontalAlignment="Left" Margin="190,595,0,0" VerticalAlignment="Top" Checked="rdoYes_Checked" Height="15"/>
+        <RadioButton x:Name="rdoNo" Content="No" FontSize="14" HorizontalAlignment="Left" Margin="267,595,0,0" VerticalAlignment="Top" Checked="rdoNo_Checked" Height="15"/>
+        <Label x:Name="lblSelectVendor" Content="Select Vendor" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="344,583,0,0" VerticalAlignment="Top" Width="115" Height="38"/>
+        <ComboBox x:Name="cboSelectVendor" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="487,583,0,0" VerticalAlignment="Top" Width="206" Height="38" SelectionChanged="cboSelectVendor_SelectionChanged"/>
+    </Grid>
+</Window>

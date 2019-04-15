@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OpenVehicleProblemsDataSet" targetNamespace="http://tempuri.org/OpenVehicleProblemsDataSet.xsd" xmlns:mstns="http://tempuri.org/OpenVehicleProblemsDataSet.xsd" xmlns="http://tempuri.org/OpenVehicleProblemsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OpenVehicleProblemsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OpenVehicleProblemsDataSet" msprop:Generator_UserDSName="OpenVehicleProblemsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="openvehicleproblem" msprop:Generator_TableClassName="openvehicleproblemDataTable" msprop:Generator_TableVarName="tableopenvehicleproblem" msprop:Generator_RowChangedName="openvehicleproblemRowChanged" msprop:Generator_TablePropName="openvehicleproblem" msprop:Generator_RowDeletingName="openvehicleproblemRowDeleting" msprop:Generator_RowChangingName="openvehicleproblemRowChanging" msprop:Generator_RowEvHandlerName="openvehicleproblemRowChangeEventHandler" msprop:Generator_RowDeletedName="openvehicleproblemRowDeleted" msprop:Generator_RowClassName="openvehicleproblemRow" msprop:Generator_UserTableName="openvehicleproblem" msprop:Generator_RowEvArgName="openvehicleproblemRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProblemID" msprop:Generator_ColumnVarNameInTable="columnProblemID" msprop:Generator_ColumnPropNameInRow="ProblemID" msprop:Generator_ColumnPropNameInTable="ProblemIDColumn" msprop:Generator_UserColumnName="ProblemID" type="xs:int" />
+              <xs:element name="ProblemDate" msprop:Generator_ColumnVarNameInTable="columnProblemDate" msprop:Generator_ColumnPropNameInRow="ProblemDate" msprop:Generator_ColumnPropNameInTable="ProblemDateColumn" msprop:Generator_UserColumnName="ProblemDate" type="xs:dateTime" />
+              <xs:element name="Problem" msprop:Generator_ColumnVarNameInTable="columnProblem" msprop:Generator_ColumnPropNameInRow="Problem" msprop:Generator_ColumnPropNameInTable="ProblemColumn" msprop:Generator_UserColumnName="Problem" type="xs:string" />
+              <xs:element name="Vendor" msprop:Generator_ColumnVarNameInTable="columnVendor" msprop:Generator_ColumnPropNameInRow="Vendor" msprop:Generator_ColumnPropNameInTable="VendorColumn" msprop:Generator_UserColumnName="Vendor" type="xs:string" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" />
+              <xs:element name="Selected" msprop:Generator_ColumnVarNameInTable="columnSelected" msprop:Generator_ColumnPropNameInRow="Selected" msprop:Generator_ColumnPropNameInTable="SelectedColumn" msprop:Generator_UserColumnName="Selected" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:openvehicleproblem" />
+      <xs:field xpath="mstns:ProblemID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

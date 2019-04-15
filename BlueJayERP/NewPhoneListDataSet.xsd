@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewPhoneListDataSet" targetNamespace="http://tempuri.org/NewPhoneListDataSet.xsd" xmlns:mstns="http://tempuri.org/NewPhoneListDataSet.xsd" xmlns="http://tempuri.org/NewPhoneListDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewPhoneListDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewPhoneListDataSet" msprop:Generator_UserDSName="NewPhoneListDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="phonelist" msprop:Generator_TableClassName="phonelistDataTable" msprop:Generator_TableVarName="tablephonelist" msprop:Generator_TablePropName="phonelist" msprop:Generator_RowDeletingName="phonelistRowDeleting" msprop:Generator_RowChangingName="phonelistRowChanging" msprop:Generator_RowEvHandlerName="phonelistRowChangeEventHandler" msprop:Generator_RowDeletedName="phonelistRowDeleted" msprop:Generator_UserTableName="phonelist" msprop:Generator_RowChangedName="phonelistRowChanged" msprop:Generator_RowEvArgName="phonelistRowChangeEvent" msprop:Generator_RowClassName="phonelistRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Extension" msprop:Generator_ColumnVarNameInTable="columnExtension" msprop:Generator_ColumnPropNameInRow="Extension" msprop:Generator_ColumnPropNameInTable="ExtensionColumn" msprop:Generator_UserColumnName="Extension" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="DIDNumber" msprop:Generator_ColumnVarNameInTable="columnDIDNumber" msprop:Generator_ColumnPropNameInRow="DIDNumber" msprop:Generator_ColumnPropNameInTable="DIDNumberColumn" msprop:Generator_UserColumnName="DIDNumber" type="xs:string" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:phonelist" />
+      <xs:field xpath="mstns:Extension" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
