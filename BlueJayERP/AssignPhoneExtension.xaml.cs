@@ -38,6 +38,7 @@ namespace BlueJayERP
 
         //setting up the data
         FindPhoneByExtensionDataSet TheFindPhoneByExtensionDataSet = new FindPhoneByExtensionDataSet();
+        ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
 
         public AssignPhoneExtension()
         {
@@ -103,6 +104,7 @@ namespace BlueJayERP
             txtEnterExtension.Text = "";
             txtEnterLastName.Text = "";
             cboSelectEmployee.Items.Clear();
+            mitProcess.IsEnabled = false;
         }
 
         private void TxtEnterExtension_TextChanged(object sender, TextChangedEventArgs e)
@@ -159,11 +161,79 @@ namespace BlueJayERP
 
             try
             {
+                strLastName = txtEnterLastName.Text;
+                intLength = strLastName.Length;
+                if(intLength > 2)
+                {
+                    TheComboEmployeeDataSet = TheEmployeeClass.FillEmployeeComboBox(strLastName);
 
+                    intNumberOfRecords = TheComboEmployeeDataSet.employees.Rows.Count - 1;
+                    cboSelectEmployee.Items.Clear();
+                    cboSelectEmployee.Items.Add("Select Employee");
+
+                    if(intNumberOfRecords == -1)
+                    {
+                        TheMessagesClass.ErrorMessage("Employee Not Found");
+                        return;
+                    }
+
+                    for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                    {
+                        cboSelectEmployee.Items.Add(TheComboEmployeeDataSet.employees[intCounter].FullName);
+                    }
+
+                    cboSelectEmployee.SelectedIndex = 0;
+                }
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "")
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Assign Phone Extension // Last Name Text Box Change Event " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void CboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            intSelectedIndex = cboSelectEmployee.SelectedIndex - 1;
+
+            if(intSelectedIndex > -1)
+            {
+                MainWindow.gintEmployeeID = TheComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+            }
+
+            mitProcess.IsEnabled = true;
+        }
+
+        private void MitProcess_Click(object sender, RoutedEventArgs e)
+        {
+            //setting up the variables
+            bool blnFatalError = false;
+
+            try
+            {
+                if(txtEnterExtension.Text =="")
+                {
+                    TheMessagesClass.ErrorMessage("The Extension Was Not Entered");
+                    return;
+                }
+
+                blnFatalError = ThePhoneClass.UpdateEmployeePhone(MainWindow.gintTransactionID, MainWindow.gintEmployeeID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Extension has been Updated");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Assign Phone Extension // Process Menu Item " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
     }

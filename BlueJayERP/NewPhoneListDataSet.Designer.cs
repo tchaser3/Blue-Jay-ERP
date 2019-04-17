@@ -287,6 +287,8 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnDIDNumber;
             
+            private global::System.Data.DataColumn columnCellPhone;
+            
             private global::System.Data.DataColumn columnLocation;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -356,6 +358,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CellPhoneColumn {
+                get {
+                    return this.columnCellPhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn LocationColumn {
                 get {
                     return this.columnLocation;
@@ -399,13 +409,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public phonelistRow AddphonelistRow(int Extension, string FirstName, string LastName, string DIDNumber, string Location) {
+            public phonelistRow AddphonelistRow(int Extension, string FirstName, string LastName, string DIDNumber, string CellPhone, string Location) {
                 phonelistRow rowphonelistRow = ((phonelistRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Extension,
                         FirstName,
                         LastName,
                         DIDNumber,
+                        CellPhone,
                         Location};
                 rowphonelistRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowphonelistRow);
@@ -440,6 +451,7 @@ namespace BlueJayERP {
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
                 this.columnDIDNumber = base.Columns["DIDNumber"];
+                this.columnCellPhone = base.Columns["CellPhone"];
                 this.columnLocation = base.Columns["Location"];
             }
             
@@ -454,6 +466,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnLastName);
                 this.columnDIDNumber = new global::System.Data.DataColumn("DIDNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDIDNumber);
+                this.columnCellPhone = new global::System.Data.DataColumn("CellPhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCellPhone);
                 this.columnLocation = new global::System.Data.DataColumn("Location", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLocation);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -463,6 +477,7 @@ namespace BlueJayERP {
                 this.columnFirstName.AllowDBNull = false;
                 this.columnLastName.AllowDBNull = false;
                 this.columnDIDNumber.AllowDBNull = false;
+                this.columnCellPhone.AllowDBNull = false;
                 this.columnLocation.AllowDBNull = false;
             }
             
@@ -645,6 +660,17 @@ namespace BlueJayERP {
                 }
                 set {
                     this[this.tablephonelist.DIDNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CellPhone {
+                get {
+                    return ((string)(this[this.tablephonelist.CellPhoneColumn]));
+                }
+                set {
+                    this[this.tablephonelist.CellPhoneColumn] = value;
                 }
             }
             

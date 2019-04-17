@@ -18,6 +18,7 @@
         <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
         <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="422" FontSize="14" Margin="10,24,0,0">
             <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitProcess" Header="Process" Click="MitProcess_Click" />
                 <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
                 <MenuItem x:Name="mitClose" Header="Close Application" Click="mitClose_Click"></MenuItem>
             </MenuItem>
@@ -38,7 +39,7 @@
         <Label x:Name="lblEnterExtension" Content="Enter Extension" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="42,198,0,0" VerticalAlignment="Top" Height="40" Width="151"/>
         <TextBox x:Name="txtEnterLastName" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="40" Margin="198,249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" TextChanged="TxtEnterLastName_TextChanged"/>
         <Label x:Name="lblEnterLastName" Content="Enter Last Name" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="42,249,0,0" VerticalAlignment="Top" Height="40" Width="151"/>
-        <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="198,307,0,0" VerticalAlignment="Top" Width="198" Height="40"/>
+        <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="198,307,0,0" VerticalAlignment="Top" Width="198" Height="40" SelectionChanged="CboSelectEmployee_SelectionChanged"/>
         <Label x:Name="lblSelectEmployee" Content="Select Employee" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="42,307,0,0" VerticalAlignment="Top" Height="40" Width="151"/>
 
     </Grid>

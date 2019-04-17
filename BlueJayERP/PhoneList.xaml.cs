@@ -120,6 +120,7 @@ namespace BlueJayERP
             int intCounter;
             int intNumberOfRecords;
             int intWarehouseID;
+            string strPhoneNumber = "";
 
             try
             {
@@ -132,6 +133,14 @@ namespace BlueJayERP
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     intWarehouseID = TheFindSortedPhoneListByExtensionsDataSet.FindSortedPhoneListByExtension[intCounter].WarehouseID;
+                    if(TheFindSortedPhoneListByExtensionsDataSet.FindSortedPhoneListByExtension[intCounter].IsPhoneNumberNull() == true)
+                    {
+                        strPhoneNumber = "";
+                    }
+                    else
+                    {
+                        strPhoneNumber = TheFindSortedPhoneListByExtensionsDataSet.FindSortedPhoneListByExtension[intCounter].PhoneNumber;
+                    }
 
                     TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intWarehouseID);
 
@@ -142,6 +151,7 @@ namespace BlueJayERP
                     NewPhone.FirstName = TheFindSortedPhoneListByExtensionsDataSet.FindSortedPhoneListByExtension[intCounter].FirstName;
                     NewPhone.LastName = TheFindSortedPhoneListByExtensionsDataSet.FindSortedPhoneListByExtension[intCounter].LastName;
                     NewPhone.Location = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName;
+                    NewPhone.CellPhone = strPhoneNumber;
 
                     TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
                 }
@@ -242,6 +252,7 @@ namespace BlueJayERP
             int intCounter;
             int intNumberOfRecords;
             int intWarehouseID;
+            string strPhoneNumber;
 
             try
             {
@@ -256,6 +267,17 @@ namespace BlueJayERP
 
                     TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intWarehouseID);
 
+                    if(TheFindSortedExtensionsByLastNameDataSet.FindSortedExtensionsByLastName[intCounter].IsPhoneNumberNull() == true)
+                    {
+                        strPhoneNumber = "";
+                    }
+                    else
+                    {
+                        strPhoneNumber = TheFindSortedExtensionsByLastNameDataSet.FindSortedExtensionsByLastName[intCounter].PhoneNumber;
+                    }
+
+                    
+
                     NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                     NewPhone.DIDNumber = TheFindSortedExtensionsByLastNameDataSet.FindSortedExtensionsByLastName[intCounter].DirectNumber;
@@ -263,6 +285,7 @@ namespace BlueJayERP
                     NewPhone.FirstName = TheFindSortedExtensionsByLastNameDataSet.FindSortedExtensionsByLastName[intCounter].FirstName;
                     NewPhone.LastName = TheFindSortedExtensionsByLastNameDataSet.FindSortedExtensionsByLastName[intCounter].LastName;
                     NewPhone.Location = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName;
+                    NewPhone.CellPhone = strPhoneNumber;
 
                     TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
                 }
@@ -291,6 +314,7 @@ namespace BlueJayERP
             string strWarehouse;
             int intCounter;
             int intNumberOfRecords;
+            string strPhoneNumber;
 
             intSelectedIndex = cboSelectLocation.SelectedIndex - 1;
 
@@ -310,6 +334,15 @@ namespace BlueJayERP
                     {
                         for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                         {
+                            if(TheFindPhoneExtensionByLocationDataSet.FindPhoneExtensionsByLocation[intCounter].IsPhoneNumberNull() == true)
+                            {
+                                strPhoneNumber = "";
+                            }
+                            else
+                            {
+                                strPhoneNumber = TheFindPhoneExtensionByLocationDataSet.FindPhoneExtensionsByLocation[intCounter].PhoneNumber;
+                            }
+
                             NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                             NewPhone.DIDNumber = TheFindPhoneExtensionByLocationDataSet.FindPhoneExtensionsByLocation[intCounter].DirectNumber;
@@ -317,6 +350,7 @@ namespace BlueJayERP
                             NewPhone.FirstName = TheFindPhoneExtensionByLocationDataSet.FindPhoneExtensionsByLocation[intCounter].FirstName;
                             NewPhone.LastName = TheFindPhoneExtensionByLocationDataSet.FindPhoneExtensionsByLocation[intCounter].LastName;
                             NewPhone.Location = strWarehouse;
+                            NewPhone.CellPhone = strPhoneNumber;
 
                             TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
                         }
@@ -343,6 +377,7 @@ namespace BlueJayERP
             string strLastName;
             int intExtension;
             int intWarehouseID;
+            string strPhoneNumber;
 
             try
             {
@@ -374,6 +409,15 @@ namespace BlueJayERP
                             {
                                 for(intSecondCounter = 0; intSecondCounter <= intRecordsReturned; intSecondCounter++)
                                 {
+                                    if(TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].IsPhoneNumberNull() == true)
+                                    {
+                                        strPhoneNumber = "";
+                                    }
+                                    else
+                                    {
+                                        strPhoneNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].PhoneNumber;
+                                    }
+
                                     NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                                     NewPhone.DIDNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].DirectNumber;
@@ -381,6 +425,7 @@ namespace BlueJayERP
                                     NewPhone.FirstName = strFirstName;
                                     NewPhone.LastName = strLastName;
                                     NewPhone.Location = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].AssignedOffice;
+                                    NewPhone.CellPhone = strPhoneNumber;
 
                                     TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
 
@@ -410,6 +455,15 @@ namespace BlueJayERP
 
                         TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intWarehouseID);
 
+                        if(TheFindPhoneByExtensionDataSet.FindPhoneByExtension[0].IsPhoneNumberNull() == true)
+                        {
+                            strPhoneNumber = "";
+                        }
+                        else
+                        {
+                            strPhoneNumber = TheFindPhoneByExtensionDataSet.FindPhoneByExtension[0].PhoneNumber;
+                        }
+
                         NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                         NewPhone.DIDNumber = TheFindPhoneByExtensionDataSet.FindPhoneByExtension[0].DirectNumber;
@@ -417,6 +471,7 @@ namespace BlueJayERP
                         NewPhone.FirstName = TheFindPhoneByExtensionDataSet.FindPhoneByExtension[0].FirstName;
                         NewPhone.LastName = TheFindPhoneByExtensionDataSet.FindPhoneByExtension[0].LastName;
                         NewPhone.Location = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName;
+                        NewPhone.CellPhone = strPhoneNumber;
 
                         TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
                     }
@@ -445,12 +500,22 @@ namespace BlueJayERP
                                 {
                                     for (intSecondCounter = 0; intSecondCounter <= intRecordsReturned; intSecondCounter++)
                                     {
+                                        if (TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].IsPhoneNumberNull() == true)
+                                        {
+                                            strPhoneNumber = "";
+                                        }
+                                        else
+                                        {
+                                            strPhoneNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].PhoneNumber;
+                                        }
+
                                         NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                                         NewPhone.DIDNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].DirectNumber;
                                         NewPhone.Extension = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].Extension;
                                         NewPhone.FirstName = strFirstName;
                                         NewPhone.LastName = strLastName;
+                                        NewPhone.CellPhone = strPhoneNumber;
                                         NewPhone.Location = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].AssignedOffice;
 
                                         TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
@@ -486,12 +551,22 @@ namespace BlueJayERP
                             {
                                 for (intSecondCounter = 0; intSecondCounter <= intRecordsReturned; intSecondCounter++)
                                 {
+                                    if (TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].IsPhoneNumberNull() == true)
+                                    {
+                                        strPhoneNumber = "";
+                                    }
+                                    else
+                                    {
+                                        strPhoneNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].PhoneNumber;
+                                    }
+
                                     NewPhoneListDataSet.phonelistRow NewPhone = TheNewPhoneListDataSet.phonelist.NewphonelistRow();
 
                                     NewPhone.DIDNumber = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].DirectNumber;
                                     NewPhone.Extension = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].Extension;
                                     NewPhone.FirstName = strFirstName;
                                     NewPhone.LastName = strLastName;
+                                    NewPhone.CellPhone = strPhoneNumber;
                                     NewPhone.Location = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[intSecondCounter].AssignedOffice;
 
                                     TheNewPhoneListDataSet.phonelist.Rows.Add(NewPhone);
