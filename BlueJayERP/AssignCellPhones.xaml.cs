@@ -21,6 +21,7 @@ using DataValidationDLL;
 using PhonesDLL;
 using NewEventLogDLL;
 using NewEmployeeDLL;
+using CellPhoneHistoryDLL;
 
 namespace BlueJayERP
 {
@@ -35,6 +36,7 @@ namespace BlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        CellPhoneHistoryClass TheCellPhoneHistoryClass = new CellPhoneHistoryClass();
 
         //setting up the data
         FindCellPhoneByLastFourDataSet TheFindCellPhoneByLastFourDataSet = new FindCellPhoneByLastFourDataSet();
@@ -99,7 +101,9 @@ namespace BlueJayERP
             txtCellPhoneNumber.Text = "";
             txtEnterLastFour.Text = "";
             txtEnterLastName.Text =  "";
+            txtCurrentAssignment.Text = "";
             cboSelectEmployee.Items.Clear();
+            mitProcess.IsEnabled = false;
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -109,7 +113,30 @@ namespace BlueJayERP
 
         private void MitProcess_Click(object sender, RoutedEventArgs e)
         {
+            bool blnFatalError = false;
 
+            try
+            {
+                blnFatalError = ThePhoneClass.UpdateCellPhoneUser(MainWindow.gintPhoneID, MainWindow.gintEmployeeID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheCellPhoneHistoryClass.InsertCellPhoneHistory(MainWindow.gintEmployeeID, MainWindow.gintPhoneID, "CHANGED PHONE USER");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("Cell Phone Has Been Assigned");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Assign Cell Phones // Proces Menu Item " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
 
         private void TxtEnterLastFour_TextChanged(object sender, TextChangedEventArgs e)
@@ -178,6 +205,23 @@ namespace BlueJayERP
 
                 cboSelectEmployee.SelectedIndex = 0;
             }
+        }
+
+        private void CboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            intSelectedIndex = cboSelectEmployee.SelectedIndex - 1;
+
+            mitProcess.IsEnabled = false;
+
+            if (intSelectedIndex > -1)
+            {
+                MainWindow.gintEmployeeID = TheComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+
+                mitProcess.IsEnabled = true;
+            }               
+
         }
     }
 }

@@ -56,6 +56,9 @@
     <Reference Include="BulkToolsDLL">
       <HintPath>..\..\Blue Jay Class Library\BulkToolsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="CellPhoneHistoryDLL">
+      <HintPath>..\..\Blue Jay Class Library\CellPhoneHistoryDLL.dll</HintPath>
+    </Reference>
     <Reference Include="CharterInventoryDLL">
       <HintPath>..\..\Blue Jay Class Library\CharterInventoryDLL.dll</HintPath>
     </Reference>
