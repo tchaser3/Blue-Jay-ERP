@@ -366,6 +366,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssetsForImportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AssignCellPhones.xaml.cs">
+      <DependentUpon>AssignCellPhones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AssignEmployeesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1183,6 +1186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ApplicationHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AssignCellPhones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -116,6 +116,7 @@ namespace BlueJayERP
         public static string gstrInspectionProblem;
         public static bool gblnExistingTrailerProblem;
         public static int gintItemID;
+        public static int gintPhoneID;
         
         //setting up windows
         public static AddEmployee AddNewEmployee = new AddEmployee();
@@ -239,6 +240,7 @@ namespace BlueJayERP
         public static UpdateWorkTaskProductivityValue UpdateWorkTaskProductivityValueWindow = new UpdateWorkTaskProductivityValue();
         public static PhoneList PhoneListWindow = new PhoneList();
         public static AssignPhoneExtension AssignPhoneExtensionWindow = new AssignPhoneExtension();
+        public static AssignCellPhones AssignCellPhonesWindow = new AssignCellPhones();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -431,6 +433,7 @@ namespace BlueJayERP
             UpdateWorkTaskProductivityValueWindow.Visibility = Visibility.Hidden;
             PhoneListWindow.Visibility = Visibility.Hidden;
             AssignPhoneExtensionWindow.Visibility = Visibility.Hidden;
+            AssignCellPhonesWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -1302,6 +1305,11 @@ namespace BlueJayERP
         private void MitAssignPhoneExtension_Click(object sender, RoutedEventArgs e)
         {
             AssignPhoneExtensionWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitAssignCellPhone_Click(object sender, RoutedEventArgs e)
+        {
+            AssignCellPhonesWindow.Visibility = Visibility.Visible;
         }
     }
 }

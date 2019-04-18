@@ -1,0 +1,49 @@
+﻿<Window x:Class="BlueJayERP.AssignCellPhones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="AssignCellPhones" Height="475" Width="450" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="422" FontSize="14" Margin="10,24,0,0">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitProcess" Header="Process" Click="MitProcess_Click" />
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitClose" Header="Close Application" Click="mitClose_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="83" VerticalAlignment="Top" Width="140" Margin="151,59,0,0" Stretch="Fill" Source="logo.png" RenderTransformOrigin="-0.193,0.518"/>
+        <Label x:Name="lblTitle" Content="Assign Cell Phone" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="422"/>
+        <TextBox x:Name="txtEnterLastFour" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Left" Height="38" Margin="234,202,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" TextChanged="TxtEnterLastFour_TextChanged"/>
+        <Label x:Name="lblEnterLastFour" Content="Enter Last Four Numbers" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,202,0,0" VerticalAlignment="Top" Height="38" Width="184"/>
+        <TextBox x:Name="txtCellPhoneNumber" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Left" Height="38" Margin="234,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163"/>
+        <Label x:Name="lblCellPhoneNumber" Content="Cell Phone Number" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,253,0,0" VerticalAlignment="Top" Height="38" Width="184"/>
+        <TextBox x:Name="txtEnterLastName" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Left" Height="38" Margin="234,359,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" TextChanged="TxtEnterLastName_TextChanged"/>
+        <Label x:Name="lblEnterLastName" Content="Enter Last Name" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,359,0,0" VerticalAlignment="Top" Height="38" Width="184"/>
+        <ComboBox x:Name="cboSelectEmployee" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" HorizontalAlignment="Left" Margin="234,412,0,0" VerticalAlignment="Top" Width="163" Height="38"/>
+        <Label x:Name="lblSelectEmployee" Content="Select Employee" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,412,0,0" VerticalAlignment="Top" Height="38" Width="184"/>
+        <TextBox x:Name="txtCurrentAssignment" IsReadOnly="True" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Left" Height="38" Margin="234,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163"/>
+        <Label x:Name="lblCurrentAssignment" Content="Current Assignment" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,305,0,0" VerticalAlignment="Top" Height="38" Width="184"/>
+    </Grid>
+</Window>

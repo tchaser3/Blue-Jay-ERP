@@ -81,7 +81,7 @@
                 <MenuItem x:Name="mitPhoneAdministration" Header="Phone Administration">
                     <MenuItem x:Name="mitAddCellPhone" Header="Add Cell Phone" />
                     <MenuItem x:Name="mitAddPhoneExtension" Header="Add Phone Extension" />
-                    <MenuItem x:Name="mitAssignCellPhone" Header="Assign Cell Phone" />
+                    <MenuItem x:Name="mitAssignCellPhone" Header="Assign Cell Phone" Click="MitAssignCellPhone_Click" />
                     <MenuItem x:Name="mitAssignPhoneExtension" Header="Assign Phone Extension" Click="MitAssignPhoneExtension_Click" />
                     <MenuItem x:Name="mitEditCellPhone" Header="Edit Cell Phone" />
                     <MenuItem x:Name="mitEditPhoneExtension" Header="Edit Phone Extension" />
