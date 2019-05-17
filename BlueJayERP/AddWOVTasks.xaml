@@ -1,0 +1,48 @@
+﻿<Window x:Class="BlueJayERP.AddWOVTasks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:BlueJayERP"
+        mc:Ignorable="d"
+        Title="AddWOVTasks" Height="450" Width="400" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="379" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="132,65,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Add WOV Tasks" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="372"/>
+        <Label x:Name="lblSelectOffice" TabIndex="0" Content="Select Office" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Width="145" Height="36"/>
+        <ComboBox x:Name="cboSelectOffice" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" IsReadOnly="True" HorizontalAlignment="Left" Margin="160,182,0,0" VerticalAlignment="Top" Width="187" Height="36" SelectionChanged="CboSelectOffice_SelectionChanged"/>
+        <Label x:Name="lblTaskDescription" Content="Task Description" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Width="145" Height="36"/>
+        <TextBox x:Name="txtTaskDescription" TabIndex="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Left" Height="71" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Margin="160,232,0,0"/>
+        <Label x:Name="lblTaskPrice" Content="Task Price" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="145" Height="36"/>
+        <TextBox x:Name="txtTaskPrice" TabIndex="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" Margin="160,315,0,0"/>
+        <Button x:Name="btnProcess" Content="Process" HorizontalAlignment="Left" Margin="160,369,0,0" VerticalAlignment="Top" Width="150" Height="55" FontSize="18" Click="BtnProcess_Click"/>
+
+    </Grid>
+</Window>

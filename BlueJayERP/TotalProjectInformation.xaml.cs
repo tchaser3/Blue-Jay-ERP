@@ -53,12 +53,9 @@ namespace BlueJayERP
         FindProjectWorkTaskDataSet TheFindProjectWorkTaskDataSet = new FindProjectWorkTaskDataSet();
         CompleteProjectInfoDataSet TheCompleteProjectInfoDataSet = new CompleteProjectInfoDataSet();
         FindWorkTaskByWorkTaskDataSet TheFindWorkTaskByWorkTaskDataSet = new FindWorkTaskByWorkTaskDataSet();
-        FindSpecificProjectWorkTaskDataSet TheFindSpecificProjectWorkTaskDataSet = new FindSpecificProjectWorkTaskDataSet();
-       
+        FindSpecificProjectWorkTaskDataSet TheFindSpecificProjectWorkTaskDataSet = new FindSpecificProjectWorkTaskDataSet();       
 
-        decimal gdecTotalHours;
-
-        ProjectMaterial ProjectMaterialWindow = new ProjectMaterial();
+        decimal gdecTotalHours;       
 
         public TotalProjectInformation()
         {
@@ -82,7 +79,7 @@ namespace BlueJayERP
 
         private void mitExit_Click(object sender, RoutedEventArgs e)
         {
-            ProjectMaterialWindow.Close();
+            MainWindow.ProjectMaterialWindow.Visibility = Visibility.Hidden;
             Visibility = Visibility.Hidden;
         }
 
@@ -110,7 +107,7 @@ namespace BlueJayERP
             {
                 strProjectID = txtEnterProjectID.Text;
                 TheCompleteProjectInfoDataSet.projectinfo.Rows.Clear();
-                ProjectMaterialWindow.Visibility = Visibility.Hidden;
+                MainWindow.ProjectMaterialWindow.Visibility = Visibility.Hidden;
 
                 gdecTotalHours = 0;
 
@@ -203,7 +200,7 @@ namespace BlueJayERP
                 dgrResults.ItemsSource = TheCompleteProjectInfoDataSet.projectinfo;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
 
-                ProjectMaterialWindow.Visibility = Visibility.Visible;
+                MainWindow.ProjectMaterialWindow.Visibility = Visibility.Visible;
             }
             catch (Exception Ex)
             {
@@ -419,6 +416,24 @@ namespace BlueJayERP
         private void mitAssignTask_Click(object sender, RoutedEventArgs e)
         {
             TheMessagesClass.AddTask();
+        }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ResetControls();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResetControls();
+        }
+        private void ResetControls()
+        {
+            TheCompleteProjectInfoDataSet.projectinfo.Rows.Clear();
+            dgrResults.ItemsSource = TheCompleteProjectInfoDataSet.projectinfo;
+
+            txtEnterProjectID.Text = "";
+            txtTotalHours.Text = "";
         }
     }
 }

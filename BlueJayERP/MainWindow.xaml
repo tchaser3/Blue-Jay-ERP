@@ -62,6 +62,12 @@
                 <MenuItem x:Name="mitClose" Header="Close The Application" Click="mitClose_Click"></MenuItem>
             </MenuItem>            
             <MenuItem x:Name="mitAdministration" Header="Administration">
+                <MenuItem x:Name="mitDesignAdministration" Header="Design Administration">
+                    <MenuItem x:Name="mitAddWOVBillingCodes" Header="Add WOV Billing Codes" Click="MitAddWOVBillingCodes_Click" />
+                    <MenuItem x:Name="mitEditWOVBillingCodes" Header="Edit WOV Billing Codes" Click="MitEditWOVBillingCodes_Click" />
+                    <MenuItem x:Name="mitAddWOVTasks" Header="Add WOV Tasks" Click="MitAddWOVTasks_Click" />
+                    <MenuItem x:Name="mitEditWOVTasks" Header="Edit WOV Tasks" Click="MitEditWOVTasks_Click" />
+                </MenuItem>
                 <MenuItem x:Name="mitEmployeeAdministration" Header="Employee Administration">
                     <MenuItem x:Name="mitAddDepartment" Header="Add Department" Click="mitAddDepartment_Click"></MenuItem>
                     <MenuItem x:Name="mitAddEmployee" Header="Add Employee" Click="mitAddEmployee_Click"></MenuItem>

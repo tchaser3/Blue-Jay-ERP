@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueJayERP"
         mc:Ignorable="d"
-        Title="VehicleRoster" Height="800" Width="1200" Loaded="Window_Loaded">
+        Title="VehicleRoster" Height="800" Width="1200" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

@@ -54,19 +54,20 @@ namespace BlueJayERP
         {
             TheMessagesClass.CloseTheProgram();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void ResetControls()
         {
             int intCounter;
             int intNumberOfRecords;
 
             try
             {
+                TheActiveVehicleDataSet.activevehicles.Rows.Clear();
+
                 TheFindActiveVehicleMainDataSet = TheVehicleMainClass.FindActiveVehicleMain();
 
                 intNumberOfRecords = TheFindActiveVehicleMainDataSet.FindActiveVehicleMain.Rows.Count - 1;
 
-                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     ActiveVehicleDataSet.activevehiclesRow NewVehicleRow = TheActiveVehicleDataSet.activevehicles.NewactivevehiclesRow();
 
@@ -80,6 +81,7 @@ namespace BlueJayERP
                     NewVehicleRow.VehicleModel = TheFindActiveVehicleMainDataSet.FindActiveVehicleMain[intCounter].VehicleModel;
                     NewVehicleRow.VehicleNumber = TheFindActiveVehicleMainDataSet.FindActiveVehicleMain[intCounter].VehicleNumber;
                     NewVehicleRow.VehicleYear = TheFindActiveVehicleMainDataSet.FindActiveVehicleMain[intCounter].VehicleYear;
+                    NewVehicleRow.VINNumber = TheFindActiveVehicleMainDataSet.FindActiveVehicleMain[intCounter].VINNumber;
 
                     TheActiveVehicleDataSet.activevehicles.Rows.Add(NewVehicleRow);
                 }
@@ -93,15 +95,19 @@ namespace BlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResetControls();
+        }
 
         private void mitHelpSite_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("file://bjc/shares/Documents/WAREHOUSE/WhseTrac%20Manual/index.html");
+            TheMessagesClass.LaunchHelpSite();
         }
 
         private void mitCreateHelpDeskTicket_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://bluejay.on.spiceworks.com/portal/tickets");
+            TheMessagesClass.LaunchHelpDeskTickets();
         }
 
         private void mitPrint_Click(object sender, RoutedEventArgs e)
@@ -158,6 +164,7 @@ namespace BlueJayERP
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("Vehicle Year"))));
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("Vehicle Make"))));
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("Vehicle Model"))));
+                    newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("Licnse Plate"))));
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("Licnse Plate"))));
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("DOT Status"))));
                     newTableRow.Cells.Add(new TableCell(new Paragraph(new Run("IMEI"))));
@@ -303,6 +310,11 @@ namespace BlueJayERP
         private void mitAssignTask_Click(object sender, RoutedEventArgs e)
         {
             TheMessagesClass.AddTask();
+        }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ResetControls();
         }
     }
 }

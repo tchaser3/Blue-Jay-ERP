@@ -266,7 +266,7 @@ namespace BlueJayERP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadMaterialDataSet();
+            ResetControls();
         }
         private void LoadMaterialDataSet()
         {
@@ -374,7 +374,7 @@ namespace BlueJayERP
 
         private void Grid_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            LoadMaterialDataSet();
+            
         }
 
         private void mitEmail_Click(object sender, RoutedEventArgs e)
@@ -395,6 +395,16 @@ namespace BlueJayERP
         private void mitAssignTask_Click(object sender, RoutedEventArgs e)
         {
             TheMessagesClass.AddTask();
+        }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ResetControls();
+        }
+        private void ResetControls()
+        {
+            LoadMaterialDataSet();
+            
         }
     }
 }

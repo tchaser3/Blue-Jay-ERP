@@ -299,6 +299,9 @@
     <Reference Include="WorkTypeDLL">
       <HintPath>..\..\Blue Jay Class Library\WorkTypeDLL.dll</HintPath>
     </Reference>
+    <Reference Include="WOVInvoicingDLL">
+      <HintPath>..\..\Blue Jay Class Library\WOVInvoicingDLL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -360,6 +363,12 @@
     </Compile>
     <Compile Include="AddWorkTask.xaml.cs">
       <DependentUpon>AddWorkTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWOVBillingCodes.xaml.cs">
+      <DependentUpon>AddWOVBillingCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWOVTasks.xaml.cs">
+      <DependentUpon>AddWOVTasks.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationHelp.xaml.cs">
       <DependentUpon>ApplicationHelp.xaml</DependentUpon>
@@ -561,6 +570,12 @@
     </Compile>
     <Compile Include="EditWorkTask.xaml.cs">
       <DependentUpon>EditWorkTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditWOVBillingCodes.xaml.cs">
+      <DependentUpon>EditWOVBillingCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditWOVTask.xaml.cs">
+      <DependentUpon>EditWOVTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmailEmployees.xaml.cs">
       <DependentUpon>EmailEmployees.xaml</DependentUpon>
@@ -1188,6 +1203,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddWOVBillingCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWOVTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ApplicationHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1337,6 +1360,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditWorkTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWOVBillingCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWOVTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

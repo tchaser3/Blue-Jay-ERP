@@ -241,6 +241,11 @@ namespace BlueJayERP
         public static PhoneList PhoneListWindow = new PhoneList();
         public static AssignPhoneExtension AssignPhoneExtensionWindow = new AssignPhoneExtension();
         public static AssignCellPhones AssignCellPhonesWindow = new AssignCellPhones();
+        public static ProjectMaterial ProjectMaterialWindow = new ProjectMaterial();
+        public static AddWOVBillingCodes AddWOVBillingCodesWindow = new AddWOVBillingCodes();
+        public static EditWOVBillingCodes EditWOVBillingCodesWindow = new EditWOVBillingCodes();
+        public static AddWOVTasks AddWOVTasksWindow = new AddWOVTasks();
+        public static EditWOVTask EditWOVTaskWindow = new EditWOVTask();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -434,6 +439,11 @@ namespace BlueJayERP
             PhoneListWindow.Visibility = Visibility.Hidden;
             AssignPhoneExtensionWindow.Visibility = Visibility.Hidden;
             AssignCellPhonesWindow.Visibility = Visibility.Hidden;
+            ProjectMaterialWindow.Visibility = Visibility.Hidden;
+            AddWOVBillingCodesWindow.Visibility = Visibility.Hidden;
+            EditWOVBillingCodesWindow.Visibility = Visibility.Hidden;
+            AddWOVTasksWindow.Visibility = Visibility.Hidden;
+            EditWOVTaskWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -1310,6 +1320,26 @@ namespace BlueJayERP
         private void MitAssignCellPhone_Click(object sender, RoutedEventArgs e)
         {
             AssignCellPhonesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitAddWOVBillingCodes_Click(object sender, RoutedEventArgs e)
+        {
+            AddWOVBillingCodesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitEditWOVBillingCodes_Click(object sender, RoutedEventArgs e)
+        {
+            EditWOVBillingCodesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitAddWOVTasks_Click(object sender, RoutedEventArgs e)
+        {
+            AddWOVTasksWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitEditWOVTasks_Click(object sender, RoutedEventArgs e)
+        {
+            EditWOVTaskWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -289,6 +289,8 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnLicensePlate;
             
+            private global::System.Data.DataColumn columnVINNumber;
+            
             private global::System.Data.DataColumn columnDOTStatus;
             
             private global::System.Data.DataColumn columnIMEI;
@@ -374,6 +376,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn VINNumberColumn {
+                get {
+                    return this.columnVINNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn DOTStatusColumn {
                 get {
                     return this.columnDOTStatus;
@@ -449,7 +459,7 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public activevehiclesRow AddactivevehiclesRow(string VehicleNumber, int VehicleYear, string VehicleMake, string VehicleModel, string LicensePlate, string DOTStatus, string IMEI, string FirstName, string LastName, string AssignedOffice) {
+            public activevehiclesRow AddactivevehiclesRow(string VehicleNumber, int VehicleYear, string VehicleMake, string VehicleModel, string LicensePlate, string VINNumber, string DOTStatus, string IMEI, string FirstName, string LastName, string AssignedOffice) {
                 activevehiclesRow rowactivevehiclesRow = ((activevehiclesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         VehicleNumber,
@@ -457,6 +467,7 @@ namespace BlueJayERP {
                         VehicleMake,
                         VehicleModel,
                         LicensePlate,
+                        VINNumber,
                         DOTStatus,
                         IMEI,
                         FirstName,
@@ -489,6 +500,7 @@ namespace BlueJayERP {
                 this.columnVehicleMake = base.Columns["VehicleMake"];
                 this.columnVehicleModel = base.Columns["VehicleModel"];
                 this.columnLicensePlate = base.Columns["LicensePlate"];
+                this.columnVINNumber = base.Columns["VINNumber"];
                 this.columnDOTStatus = base.Columns["DOTStatus"];
                 this.columnIMEI = base.Columns["IMEI"];
                 this.columnFirstName = base.Columns["FirstName"];
@@ -509,6 +521,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnVehicleModel);
                 this.columnLicensePlate = new global::System.Data.DataColumn("LicensePlate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLicensePlate);
+                this.columnVINNumber = new global::System.Data.DataColumn("VINNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVINNumber);
                 this.columnDOTStatus = new global::System.Data.DataColumn("DOTStatus", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDOTStatus);
                 this.columnIMEI = new global::System.Data.DataColumn("IMEI", typeof(string), null, global::System.Data.MappingType.Element);
@@ -525,6 +539,7 @@ namespace BlueJayERP {
                 this.columnVehicleModel.AutoIncrementSeed = -1;
                 this.columnVehicleModel.AutoIncrementStep = -1;
                 this.columnVehicleModel.AllowDBNull = false;
+                this.columnVINNumber.AllowDBNull = false;
                 this.columnDOTStatus.AllowDBNull = false;
                 this.columnIMEI.AllowDBNull = false;
                 this.columnFirstName.AllowDBNull = false;
@@ -727,6 +742,17 @@ namespace BlueJayERP {
                 }
                 set {
                     this[this.tableactivevehicles.LicensePlateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string VINNumber {
+                get {
+                    return ((string)(this[this.tableactivevehicles.VINNumberColumn]));
+                }
+                set {
+                    this[this.tableactivevehicles.VINNumberColumn] = value;
                 }
             }
             

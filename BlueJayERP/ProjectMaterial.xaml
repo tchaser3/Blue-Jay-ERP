@@ -7,7 +7,7 @@
         WindowStyle="None"
         xmlns:local="clr-namespace:BlueJayERP"
         mc:Ignorable="d"
-        Title="ProjectMaterial" Height="700" Width="1000" Loaded="Window_Loaded">
+        Title="ProjectMaterial" Height="700" Width="1000" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
     <Grid IsVisibleChanged="Grid_IsVisibleChanged">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
