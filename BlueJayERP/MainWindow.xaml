@@ -93,6 +93,8 @@
                     <MenuItem x:Name="mitEditPhoneExtension" Header="Edit Phone Extension" />
                 </MenuItem>
                 <MenuItem x:Name="mitProjectAdministration" Header="Project Administration" >
+                    <MenuItem x:Name="mitAddTechPayItem" Header="Add Tech Pay Item" Click="MitAddTechPayItem_Click" />
+                    <MenuItem x:Name="mitEditTechpayItemPrice" Header="Edit Tech Pay Item Price" />
                     <MenuItem x:Name="mitAddWorkTask" Header="Add Work Task" Click="mitAddWorkTask_Click"></MenuItem>
                     <MenuItem x:Name="mitJobType" Header="Add Job Type" Click="MitJobType_Click" />
                     <MenuItem x:Name="mitAuditReportEmployeeAssignment" Header="Audit Report Employee Assignment" Click="mitAuditReportEmployeeAssignment_Click"></MenuItem>

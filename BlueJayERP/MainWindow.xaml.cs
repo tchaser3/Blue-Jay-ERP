@@ -246,6 +246,7 @@ namespace BlueJayERP
         public static EditWOVBillingCodes EditWOVBillingCodesWindow = new EditWOVBillingCodes();
         public static AddWOVTasks AddWOVTasksWindow = new AddWOVTasks();
         public static EditWOVTask EditWOVTaskWindow = new EditWOVTask();
+        public static AddTechPayItem AddTechPayItemWindow = new AddTechPayItem();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -444,6 +445,7 @@ namespace BlueJayERP
             EditWOVBillingCodesWindow.Visibility = Visibility.Hidden;
             AddWOVTasksWindow.Visibility = Visibility.Hidden;
             EditWOVTaskWindow.Visibility = Visibility.Hidden;
+            AddTechPayItemWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -1340,6 +1342,11 @@ namespace BlueJayERP
         private void MitEditWOVTasks_Click(object sender, RoutedEventArgs e)
         {
             EditWOVTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitAddTechPayItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddTechPayItemWindow.Visibility = Visibility.Visible;
         }
     }
 }

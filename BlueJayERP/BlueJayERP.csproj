@@ -349,6 +349,9 @@
     <Compile Include="AddProjectLabor.xaml.cs">
       <DependentUpon>AddProjectLabor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTechPayItem.xaml.cs">
+      <DependentUpon>AddTechPayItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddTrailerCategory.xaml.cs">
       <DependentUpon>AddTrailerCategory.xaml</DependentUpon>
     </Compile>
@@ -1180,6 +1183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProjectLabor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTechPayItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
