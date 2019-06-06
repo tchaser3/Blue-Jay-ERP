@@ -187,6 +187,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TechPayDLL">
+      <HintPath>..\..\Blue Jay Class Library\TechPayDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ToolCategoryDLL">
       <HintPath>..\..\Blue Jay Class Library\ToolCategoryDLL.dll</HintPath>
     </Reference>

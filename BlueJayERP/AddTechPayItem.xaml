@@ -4,9 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlueJayERP"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         mc:Ignorable="d"
-        Title="AddTechPayItem" Height="450" Width="800">
+        Title="AddTechPayItem" Height="450" Width="400" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="379" Margin="3,22,0,0" FontSize="14">
+            <MenuItem x:Name="mitFile" Header="File" Height="30">
+                <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
+                <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitTasks" Header="Tasks">
+                <MenuItem x:Name="mitAssignTask" Header="Assign Tasks" Click="mitAssignTask_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOpenTasks" Header="My Open Tasks" Click="mitMyOpenTasks_Click"></MenuItem>
+                <MenuItem x:Name="mitMyOriginatingTasks" Header="My Originating Tasks" Click="mitMyOriginatingTasks_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mitEmail" Header="Send Email Message" Click="mitEmail_Click"></MenuItem>
+
+            <MenuItem x:Name="mitHelp" Header="Help">
+                <MenuItem x:Name="mitHelpSite" Header="Help Site" Click="mitHelpSite_Click"></MenuItem>
+                <MenuItem x:Name="mitCreateHelpDeskTicket" Header="Create Help Desk Ticket" Click="mitCreateHelpDeskTicket_Click"></MenuItem>
+            </MenuItem>
+
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="74" Margin="130,64,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
+        <Label x:Name="lblTitle" Content="Add Tech Pay Item" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="372"/>
+        <Label x:Name="lblTechPayCode" Content="Tech Pay Code" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="31,182,0,0" VerticalAlignment="Top" Width="118" Height="39"/>
+        <TextBox x:Name="txtTechPayCode" TabIndex="0" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="39" Margin="154,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+        <Label x:Name="lblJobDescription" Content="Job Description" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="31,245,0,0" VerticalAlignment="Top" Width="118" Height="39"/>
+        <TextBox x:Name="txtJobDescription" TabIndex="1" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="78" Margin="154,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <Label x:Name="lblTechPayPrice" Content="Tech Pay Price" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="31,309,0,0" VerticalAlignment="Top" Width="118" Height="39"/>
+        <TextBox x:Name="txtTechPayPrice" TabIndex="2" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Height="39" Margin="154,309,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+        <Button x:Name="btnProcess" TabIndex="3" Content="Process" HorizontalAlignment="Left" Margin="154,355,0,0" VerticalAlignment="Top" Width="150" Height="55" FontSize="20" Click="BtnProcess_Click"/>
+
     </Grid>
 </Window>

@@ -52,6 +52,7 @@ namespace BlueJayERP
 
         //setting up the data sets
         FindPartByPartNumberDataSet TheFindPartByPartNumberDataSet = new FindPartByPartNumberDataSet();
+        FindPartByJDEPartNumberDataSet TheFindPartByJDEPartNumberDataSet = new FindPartByJDEPartNumberDataSet();
         FindCharterWarehouseInventoryForPartDataSet TheFindCharterWarehouseInventoryForPartDataSet = new FindCharterWarehouseInventoryForPartDataSet();
         FindWarehouseInventoryPartDataSet TheFindWarehouseInventoryPartDataSet = new FindWarehouseInventoryPartDataSet();
         
@@ -226,8 +227,20 @@ namespace BlueJayERP
 
                 if(intRecordsReturned == 0)
                 {
-                    TheMessagesClass.InformationMessage("Part Number Was Not Found");
-                    return;
+                    TheFindPartByJDEPartNumberDataSet = ThePartNumberClass.FindPartByJDEPartNumber(MainWindow.gstrPartNumber);
+
+                    intRecordsReturned = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber.Rows.Count;
+
+                    if(intRecordsReturned == 0)
+                    {
+                        TheMessagesClass.InformationMessage("Part Number Was Not Found");
+                        return;
+                    }
+                    else
+                    {
+                        MainWindow.gintPartID = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber[0].PartID;
+                    }
+                    
                 }
                 else
                 {
@@ -309,50 +322,38 @@ namespace BlueJayERP
 
             try
             {
-                if (gblnReceiveJHInventory == true)
+                
+                TheFindWarehouseInventoryPartDataSet = TheInventoryClass.FindWarehouseInventoryPart(MainWindow.gintPartID, gintReceivingWarehouseID);
+
+                intRecordsReturned = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart.Rows.Count;
+
+                if (intRecordsReturned == 0)
                 {
-                    TheFindWarehouseInventoryPartDataSet = TheInventoryClass.FindWarehouseInventoryPart(MainWindow.gintPartID, gintReceivingWarehouseID);
+                    blnFatalError = TheInventoryClass.InsertInventoryPart(MainWindow.gintPartID, gintQuantity, gintReceivingWarehouseID);
 
-                    intRecordsReturned = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart.Rows.Count;
-
-                    if (intRecordsReturned == 0)
-                    {
-                        blnFatalError = TheInventoryClass.InsertInventoryPart(MainWindow.gintPartID, gintQuantity, gintReceivingWarehouseID);
-
-                        if(blnFatalError == true)
-                            throw new Exception();
-                    }
-                    else
-                    {
-                        intTransactionID = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].TransactionID;
-                        intQuantity = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity;
-
-                        intQuantity += gintQuantity;
-
-                        blnFatalError = TheInventoryClass.UpdateInventoryPart(intTransactionID, intQuantity);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
-
-                    if(gblnSendJHInventory == true)
-                    {
-                        gintSendingQuantity -= gintQuantity;
-                        blnFatalError = TheInventoryClass.UpdateInventoryPart(gintSendingTransactionID, gintSendingQuantity);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
-                    else if(gblnSendJHInventory == false)
-                    {
-                        gintSendingQuantity -= gintQuantity;
-                        blnFatalError = TheCharterInventoryClass.UpdateCharterInventory(gintSendingTransactionID, gintSendingQuantity);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
+                    if(blnFatalError == true)
+                        throw new Exception();
                 }
-                else if (gblnReceiveJHInventory == false)
+                else
+                {
+                    intTransactionID = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].TransactionID;
+                    intQuantity = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity;
+
+                    intQuantity += gintQuantity;
+
+                   blnFatalError = TheInventoryClass.UpdateInventoryPart(intTransactionID, intQuantity);
+
+                   if (blnFatalError == true)
+                        throw new Exception();
+                }
+                
+                gintSendingQuantity -= gintQuantity;
+                blnFatalError = TheInventoryClass.UpdateInventoryPart(gintSendingTransactionID, gintSendingQuantity);
+
+                if (blnFatalError == true)
+                    throw new Exception();   
+                
+                if (gblnReceiveJHInventory == false)
                 {
                     TheFindCharterWarehouseInventoryForPartDataSet = TheCharterInventoryClass.FindCharterWarehouseInventoryForPart(MainWindow.gintPartID, gintReceivingWarehouseID);
 
@@ -377,23 +378,13 @@ namespace BlueJayERP
                         if (blnFatalError == true)
                             throw new Exception();
                     }
+                    
+                    gintSendingQuantity -= gintQuantity;
+                    blnFatalError = TheCharterInventoryClass.UpdateCharterInventory(gintSendingTransactionID, gintSendingQuantity);
 
-                    if (gblnSendJHInventory == true)
-                    {
-                        gintSendingQuantity -= gintQuantity;
-                        blnFatalError = TheInventoryClass.UpdateInventoryPart(gintSendingTransactionID, gintSendingQuantity);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
-                    else if (gblnSendJHInventory == false)
-                    {
-                        gintSendingQuantity -= gintQuantity;
-                        blnFatalError = TheCharterInventoryClass.UpdateCharterInventory(gintSendingTransactionID, gintSendingQuantity);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
+                    if (blnFatalError == true)
+                        throw new Exception();
+                    
                 }
 
                 TheMessagesClass.InformationMessage("The Part Has Been Transferred");
@@ -405,8 +396,6 @@ namespace BlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
-
-            
         }
         private void ResetForm()
         {
