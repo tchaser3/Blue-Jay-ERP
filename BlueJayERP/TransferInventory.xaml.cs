@@ -188,6 +188,7 @@ namespace BlueJayERP
             bool blnFatalError = false;
             int intSelectedIndex;
             int intRecordsReturned;
+            string strPartDescription;
 
             try
             {
@@ -239,61 +240,37 @@ namespace BlueJayERP
                     else
                     {
                         MainWindow.gintPartID = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber[0].PartID;
+                        strPartDescription = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber[0].PartDescription;
                     }
                     
                 }
                 else
                 {
                     MainWindow.gintPartID = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartID;
+                    strPartDescription = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartDescription;
                 }
 
-                if(gblnSendJHInventory == true)
+                TheFindWarehouseInventoryPartDataSet = TheInventoryClass.FindWarehouseInventoryPart(MainWindow.gintPartID, gintSendingWarehouseID);
+
+                intRecordsReturned = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart.Rows.Count;
+
+                if(intRecordsReturned == 0)
                 {
-                    TheFindWarehouseInventoryPartDataSet = TheInventoryClass.FindWarehouseInventoryPart(MainWindow.gintPartID, gintSendingWarehouseID);
-
-                    intRecordsReturned = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart.Rows.Count;
-
-                    if(intRecordsReturned == 0)
-                    {
-                        TheMessagesClass.InformationMessage("The Part in this Warehouse Does Not Exist");
-                        return;
-                    }
-                    else if(gintQuantity > TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity)
-                    {
-                        TheMessagesClass.ErrorMessage("Quantity Transfered Cannot Be Greater that Warehouse Quantity");
-                        return;
-                    }
-                    else
-                    {
-                        txtPartDescription.Text = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartDescription;
-                        gintSendingTransactionID = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].TransactionID;
-                        gintSendingQuantity = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity;
-                    }
+                    TheMessagesClass.InformationMessage("The Part in this Warehouse Does Not Exist");
+                    return;
                 }
-
-                if (gblnSendJHInventory == false)
+                else if(gintQuantity > TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity)
                 {
-                    TheFindCharterWarehouseInventoryForPartDataSet = TheCharterInventoryClass.FindCharterWarehouseInventoryForPart(MainWindow.gintPartID, gintSendingWarehouseID);
-
-                    intRecordsReturned = TheFindCharterWarehouseInventoryForPartDataSet.FindCharterWarehouseInventoryForPart.Rows.Count;
-
-                    if (intRecordsReturned == 0)
-                    {
-                        TheMessagesClass.InformationMessage("The Part in this Warehouse Does Not Exist");
-                        return;
-                    }
-                    else if(gintQuantity > TheFindCharterWarehouseInventoryForPartDataSet.FindCharterWarehouseInventoryForPart[0].Quantity)
-                    {
-                        TheMessagesClass.ErrorMessage("Quantity Transfered Cannot Be Greater that Warehouse Quantity");
-                        return;
-                    }
-                    else
-                    {
-                        txtPartDescription.Text = TheFindCharterWarehouseInventoryForPartDataSet.FindCharterWarehouseInventoryForPart[0].PartDescription;
-                        gintSendingTransactionID = TheFindCharterWarehouseInventoryForPartDataSet.FindCharterWarehouseInventoryForPart[0].TransactionID;
-                        gintSendingQuantity = TheFindCharterWarehouseInventoryForPartDataSet.FindCharterWarehouseInventoryForPart[0].Quantity;
-                    }
+                    TheMessagesClass.ErrorMessage("Quantity Transfered Cannot Be Greater that Warehouse Quantity");
+                    return;
                 }
+                else
+                {
+                    txtPartDescription.Text = strPartDescription;
+                    gintSendingTransactionID = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].TransactionID;
+                    gintSendingQuantity = TheFindWarehouseInventoryPartDataSet.FindWarehouseInventoryPart[0].Quantity;
+                }
+                
 
                 cboReceivingWarehouse.IsEnabled = true;
             }
