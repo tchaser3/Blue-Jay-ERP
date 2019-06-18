@@ -117,6 +117,7 @@
                     <MenuItem x:Name="mitAddDOTStatus" Header="Add DOT Status" Click="mitAddDOTStatus_Click"></MenuItem>
                     <MenuItem x:Name="mitAddGPSStatus" Header="Add GPS Status" Click="mitAddGPSStatus_Click"></MenuItem>
                     <MenuItem x:Name="mitAddVehicle" Header="Add Vehicle" Click="mitAddVehicle_Click"></MenuItem>
+                    <MenuItem x:Name="mitAddVehicleToEmployeeTable" Header="Add Vehicle To Employee Table" Click="MitAddVehicleToEmployeeTable_Click"  />
                     <MenuItem x:Name="mitAddVendor" Header="Add/Import Vendor" Click="MitAddVendor_Click" />
                     <MenuItem x:Name="mitRemoveEmployeesFromVehicles" Header="Remove Employees From Vehicles" Click="mitRemoveEmployeesFromVehicles_Click"></MenuItem>
                     <MenuItem x:Name="mitRemoveEmployeesFromVehicleEmailList" Header="Remove Employees From Vehicle Email List" Click="mitRemoveEmployeesFromVehicleEmailList_Click"></MenuItem>
@@ -170,6 +171,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="mitVehicles" Header="Vehicles">
+                <MenuItem x:Name="mitAddNewVehicle" Header="Add New Vehicle" Click="MitAddNewVehicle_Click" />
                 <MenuItem x:Name="mitAddBulkToolsToVehicle" Header="Add Bulk Tools To Vehicle" Click="mitAddBulkToolsToVehicle_Click"></MenuItem>
                 <MenuItem x:Name="mitAssignVehicle" Header="Assign Vehicle" Click="mitAssignVehicle_Click"></MenuItem>
                 <MenuItem x:Name="mitEditVehicle" Header="Edit Vehicle" Click="mitEditVehicle_Click"></MenuItem>

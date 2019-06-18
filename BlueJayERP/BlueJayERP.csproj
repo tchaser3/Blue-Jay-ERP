@@ -367,6 +367,9 @@
     <Compile Include="AddVehicleBulkTools.xaml.cs">
       <DependentUpon>AddVehicleBulkTools.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddVehicleToEmployeeTable.xaml.cs">
+      <DependentUpon>AddVehicleToEmployeeTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWorkTask.xaml.cs">
       <DependentUpon>AddWorkTask.xaml</DependentUpon>
     </Compile>
@@ -1206,6 +1209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddVehicleBulkTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddVehicleToEmployeeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
