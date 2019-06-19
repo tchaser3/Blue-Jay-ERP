@@ -161,10 +161,29 @@ namespace BlueJayERP
         {
             int intCounter;
             int intNumberOfRecords;
+            bool blnFatalError = false;
+            string strVehicleNumber;
+            string strAssignedOffice;
+            int intEmployeeID;
 
             try
             {
+                intNumberOfRecords = TheImportVehiclesDataSet.importvehicles.Rows.Count - 1;
 
+                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    strVehicleNumber = TheImportVehiclesDataSet.importvehicles[intCounter].VehicleNumber;
+                    strAssignedOffice = TheImportVehiclesDataSet.importvehicles[intCounter].AssignedOffice;
+
+                    intEmployeeID = TheEmployeeClass.CreateEmployeeID();
+
+                    blnFatalError = TheEmployeeClass.InsertEmployee(intEmployeeID, "VEHICLE", strVehicleNumber, "2166612828", true, "VEHICLES", strAssignedOffice, "VEHICLES", "", "NON-EXEMPT", "WAREHOUSE", 1535, -1);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+
+                TheMessagesClass.InformationMessage("Process Complete");
             }
             catch (Exception Ex)
             {
