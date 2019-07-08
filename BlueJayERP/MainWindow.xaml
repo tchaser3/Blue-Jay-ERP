@@ -91,6 +91,7 @@
                     <MenuItem x:Name="mitAssignPhoneExtension" Header="Assign Phone Extension" Click="MitAssignPhoneExtension_Click" />
                     <MenuItem x:Name="mitEditCellPhone" Header="Edit Cell Phone" />
                     <MenuItem x:Name="mitEditPhoneExtension" Header="Edit Phone Extension" />
+                    <MenuItem x:Name="mitOpenCellPhoneReport" Header="Open Cell Phone Report" Click="MitOpenCellPhoneReport_Click" />
                 </MenuItem>
                 <MenuItem x:Name="mitProjectAdministration" Header="Project Administration" >
                     <MenuItem x:Name="mitAddTechPayItem" Header="Add Tech Pay Item" Click="MitAddTechPayItem_Click" />

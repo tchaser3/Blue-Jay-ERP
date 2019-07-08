@@ -26,6 +26,7 @@ using DataValidationDLL;
 using VehicleStatusDLL;
 using WeeklyVehicleCleanliness;
 using VehiclesInShopDLL;
+using VehicleProblemsDLL;
 
 namespace BlueJayERP
 {
@@ -46,12 +47,14 @@ namespace BlueJayERP
         VehicleStatusClass TheVehicleStatusClass = new VehicleStatusClass();
         WeeklyVehicleCleanlinessClass TheWeeklyVehicleCleanlinessClass = new WeeklyVehicleCleanlinessClass();
         VehiclesInShopClass TheVehiclesInShopClass = new VehiclesInShopClass();
+        VehicleProblemClass TheVehicleProblemClass = new VehicleProblemClass();
         
 
         //setting up the data
         FindWeeklyVehicleInspectionIDDataSet TheFindWeeklyVehicleInspectionIDDataSet = new FindWeeklyVehicleInspectionIDDataSet();
         FindActiveVehicleMainByVehicleNumberDataSet TheFindVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
+        FindOpenVehicleProblemsByVehicleIDDataSet TheFindOpenVehicleProblemsbyVehicleIDDataSet = new FindOpenVehicleProblemsByVehicleIDDataSet();
 
         bool gblnVehicleCleanliness;
 
@@ -351,6 +354,18 @@ namespace BlueJayERP
 
                     VehicleInspectionProblem VehicleInspectionProblem = new VehicleInspectionProblem();
                     VehicleInspectionProblem.ShowDialog();
+                }
+                else if(rdoPassed.IsChecked == true)
+                {
+                    TheFindOpenVehicleProblemsbyVehicleIDDataSet = TheVehicleProblemClass.FindOpenVehicleProblemsbyVehicleID(MainWindow.gintVehicleID);
+
+                    intRecordsReturned = TheFindOpenVehicleProblemsbyVehicleIDDataSet.FindOpenVehicleProblemsByVehicleID.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        TheMessagesClass.ErrorMessage("There Are Open Problems with this Vehicle and\nYou Are Reporting No Problems, Please Correct");
+                        return;
+                    }
                 }
 
                 if (rdoFailed.IsChecked == true)

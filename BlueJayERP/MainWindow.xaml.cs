@@ -248,6 +248,7 @@ namespace BlueJayERP
         public static EditWOVTask EditWOVTaskWindow = new EditWOVTask();
         public static AddTechPayItem AddTechPayItemWindow = new AddTechPayItem();
         public static AddVehicleToEmployeeTable AddVehicleToEmployeeTableWindow = new AddVehicleToEmployeeTable();
+        public static OpenCellPhoneReport OpenCellPhoneReportWindow = new OpenCellPhoneReport();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -448,6 +449,7 @@ namespace BlueJayERP
             EditWOVTaskWindow.Visibility = Visibility.Hidden;
             AddTechPayItemWindow.Visibility = Visibility.Hidden;
             AddVehicleToEmployeeTableWindow.Visibility = Visibility.Hidden;
+            OpenCellPhoneReportWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -1359,6 +1361,11 @@ namespace BlueJayERP
         private void MitAddVehicleToEmployeeTable_Click(object sender, RoutedEventArgs e)
         {
             AddVehicleToEmployeeTableWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitOpenCellPhoneReport_Click(object sender, RoutedEventArgs e)
+        {
+            OpenCellPhoneReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

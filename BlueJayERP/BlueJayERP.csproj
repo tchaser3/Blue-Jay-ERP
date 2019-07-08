@@ -832,6 +832,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OldWorkTasksDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OpenCellPhoneReport.xaml.cs">
+      <DependentUpon>OpenCellPhoneReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenToolProblems.xaml.cs">
       <DependentUpon>OpenToolProblems.xaml</DependentUpon>
     </Compile>
@@ -1549,6 +1552,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewVehicleProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenCellPhoneReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
