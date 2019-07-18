@@ -134,6 +134,7 @@
                     <MenuItem x:Name="mitEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" Click="mitEmployeePunchedVsProductionHours_Click"></MenuItem>
                     <MenuItem x:Name="mitProductionEmployeeProductivityMeasure" Header="Production Employee Productivity  Measure" Click="MitProductionEmployeeProductivityMeasure_Click" />
                     <MenuItem x:Name="mitEmployeeRoster" Header="Employee Roster" Click="mitEmployeeRoster_Click"></MenuItem>
+                    <MenuItem x:Name="mitDesignEmployeeProductivity" Header="Design Employee Productivity" Click="MitDesignEmployeeProductivity_Click" />
                     <MenuItem x:Name="mitFindEmployeeHoursOverDateRange" Header="Find Employee Hours Over Date Range" Click="mitFindEmployeeHoursOverDateRange_Click"></MenuItem>
                     <MenuItem x:Name="mitFindEmployeeProductivityByDateRange" Header="Find Employee Productivity By Date Range" Click="mitFindEmployeeProductivityByDateRange_Click"></MenuItem>
                     <MenuItem x:Name="mitFindEmployeeCrewAssignment" Header="Find Employee Crew Hours" Click="mitFindEmployeeCrewAssignment_Click"></MenuItem>
@@ -150,6 +151,9 @@
                 <MenuItem x:Name="mitEditProject" Header="Edit Project" Click="mitEditProject_Click"></MenuItem>
                 <MenuItem x:Name="mitAddProjectLabor" Header="Add Project Labor" Click="mitAddProjectLabor_Click"></MenuItem>
                 <MenuItem x:Name="mitEditProjectLabor" Header="Edit Project Labor" Click="mitEditProjectLabor_Click"></MenuItem>
+                <MenuItem x:Name="mitDesignInvoicing" Header="Design Invoicing">
+                    <MenuItem x:Name="mitDesignProjectInvoicing" Header="Design Project Invoicing" Click="MitDesignProjectInvoicing_Click" />
+                </MenuItem>
                 <MenuItem x:Name="mitProjectReports" Header="Project Reports">
                     <MenuItem x:Name="mitProjectDateSearch" Header="Project Date Search" Click="mitProjectDateSearch_Click"></MenuItem>
                     <MenuItem x:Name="mitFindProject" Header="Find Project" Click="mitFindProject_Click"></MenuItem>

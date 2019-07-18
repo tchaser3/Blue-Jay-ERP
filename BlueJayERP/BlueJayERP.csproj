@@ -77,6 +77,15 @@
     <Reference Include="DepartmentDLL">
       <HintPath>..\..\Blue Jay Class Library\DepartmentDLL.dll</HintPath>
     </Reference>
+    <Reference Include="DesignPermitsDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignPermitsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="DesignProductivityDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignProductivityDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="DesignProjectsDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignProjectsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="DropBuryMDUDLL">
       <HintPath>..\..\Blue Jay Class Library\DropBuryMDUDLL.dll</HintPath>
     </Reference>
@@ -527,6 +536,22 @@
     </Compile>
     <Compile Include="DeactivateEmployeesTools.xaml.cs">
       <DependentUpon>DeactivateEmployeesTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignEmployeeProductivity.xaml.cs">
+      <DependentUpon>DesignEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignProductivityReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesignProjectInvoicing.xaml.cs">
+      <DependentUpon>DesignProjectInvoicing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignProjectsNeedingInvoiceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignProjectsNeedingInvoiceDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DOTAuditDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1327,6 +1352,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DesignEmployeeProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DesignProjectInvoicing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DOTAuditReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2001,6 +2034,28 @@
     </None>
     <None Include="DailyVehicleInspectionReportDataSet.xss">
       <DependentUpon>DailyVehicleInspectionReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProductivityReportDataSet.xsc">
+      <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProductivityReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignProductivityReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignProductivityReportDataSet.xss">
+      <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProjectsNeedingInvoiceDataSet.xsc">
+      <DependentUpon>DesignProjectsNeedingInvoiceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProjectsNeedingInvoiceDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignProjectsNeedingInvoiceDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignProjectsNeedingInvoiceDataSet.xss">
+      <DependentUpon>DesignProjectsNeedingInvoiceDataSet.xsd</DependentUpon>
     </None>
     <None Include="DOTAuditDataSet.xsc">
       <DependentUpon>DOTAuditDataSet.xsd</DependentUpon>

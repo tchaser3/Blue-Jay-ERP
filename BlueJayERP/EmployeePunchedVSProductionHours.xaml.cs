@@ -25,6 +25,7 @@ using DateSearchDLL;
 using DataValidationDLL;
 using Microsoft.Win32;
 using EmployeeDateEntryDLL;
+using DesignProductivityDLL;
 
 namespace BlueJayERP
 {
@@ -42,6 +43,7 @@ namespace BlueJayERP
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        DesignProductivityClass TheDesignProductivityClass = new DesignProductivityClass();
 
         //setting up the data
         EmployeeProductionPunchDataSet TheEmployeeProductionPunchDataSet = new EmployeeProductionPunchDataSet();
@@ -49,6 +51,7 @@ namespace BlueJayERP
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
         FindEmployeeProductionHoursOverPayPeriodDataSet TheFindEmployeeProductionHoursOverPayPeriodDataSet = new FindEmployeeProductionHoursOverPayPeriodDataSet();
         FindEmployeePunchedHoursDataSet TheFindEmployeePunchedHoursDataSet = new FindEmployeePunchedHoursDataSet();
+        FindDesignTotalEmployeeProductivityHoursDataSet TheFindDesignTotalEmployeeProductivityHoursDataSet = new FindDesignTotalEmployeeProductivityHoursDataSet();
 
         //setting global date variables
 
@@ -177,7 +180,18 @@ namespace BlueJayERP
 
                     if(intRecordReturned == 0)
                     {
-                        decProductiveHours = 0;
+                        TheFindDesignTotalEmployeeProductivityHoursDataSet = TheDesignProductivityClass.FindDesignTotalEmployeeProductivityHours(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
+
+                        intRecordReturned = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours.Rows.Count;
+
+                        if (intRecordReturned == 0)
+                        {
+                           decProductiveHours = 0;
+                        }
+                        else
+                        {
+                            decProductiveHours = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours[0].TotalHours;
+                        }
                     }
                     else
                     {
