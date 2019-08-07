@@ -22,6 +22,8 @@ using DataValidationDLL;
 using WOVInvoicingDLL;
 using DesignPermitsDLL;
 using DesignProjectsDLL;
+using NewEmployeeDLL;
+using TechPayDLL;
 
 namespace BlueJayERP
 {
@@ -37,15 +39,24 @@ namespace BlueJayERP
         WOVInvoicingClass TheWOVInvoicingClass = new WOVInvoicingClass();
         DesignPermitsClass TheDesignPermitsClass = new DesignPermitsClass();
         DesignProjectsClass TheDesignProjectsClass = new DesignProjectsClass();
+        DesignProjectsClass TheProjectsClass = new DesignProjectsClass();
+        EmployeeClass TheEmployeeClass = new EmployeeClass();
+        TechPayClass TheTechPayClass = new TechPayClass();
 
         //setting up the data
         FindDesignProjectsReadyForInvoicingDataSet TheFindDesignProjectsReadyForInvoicingDataSet = new FindDesignProjectsReadyForInvoicingDataSet();
         FindPermitsByProjectIDDataSet TheFindPermitByProjectIDDataSet = new FindPermitsByProjectIDDataSet();
         DesignProjectsNeedingInvoiceDataSet TheDesignProjectsNeedingInvoiceDataSet = new DesignProjectsNeedingInvoiceDataSet();
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsByAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
+        FindDesignProjectsForInvoicingByOfficeBillingCodeDataSet ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet = new FindDesignProjectsForInvoicingByOfficeBillingCodeDataSet();
+        FindSortedWOVBillingCodesDataSet TheFindSortedWOVBillingCodesDataSet = new FindSortedWOVBillingCodesDataSet();
+        FindProjectTechPayItemsTotalsByProjectIDDataSet TheFindProjectTechPayItemsTotalsByProjectIDDataSet = new FindProjectTechPayItemsTotalsByProjectIDDataSet();
+        FindDesignPermitCostsDataSet TheFindDesignPermitCostsDataSet = new FindDesignPermitCostsDataSet();
 
         int gintCounter;
         int gintNumberOfRecords;
+        int gintReportCounter;
+        int gintReportNumberOfRecords;
 
         public DesignProjectInvoicing()
         {
@@ -114,6 +125,7 @@ namespace BlueJayERP
             int intSecondCounter;
             int intProjectID;
             bool blnItemFound;
+            string strAssignedProjectID;
 
             try
             {
@@ -131,7 +143,11 @@ namespace BlueJayERP
                     for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                     {
                         blnItemFound = false;
-                        intProjectID = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].ProjectID;
+                        strAssignedProjectID = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].AssignedProjectID;
+
+                        TheFindDesignProjectsByAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strAssignedProjectID);
+
+                        intProjectID = TheFindDesignProjectsByAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].ProjectID;
 
                         if(gintCounter > 0)
                         {
@@ -173,28 +189,229 @@ namespace BlueJayERP
 
         private void MitProcess_Click(object sender, RoutedEventArgs e)
         {
-            int intCounter;
-            int intNumberOfRecords;
-            bool blnNeedsToBeProcessed;
+            int intOfficeCounter;
+            int intOfficeNumberOfRecords;
+            int intBillingCounter;
+            int intBillingNumberOfRecords;
+            int intOfficeID;
+            int intBillingID;
+            int intProjectCounter;
+            int intProjectNumberOfRecords;
+            bool blnProjectSelected;
             int intProjectID;
-            bool blnPoleStick;
-            string strAssignedProjectID;
-            string strProjectName;
-            string strAddress;
+            int intPayCounter;
+            int intPayNumberOfRecords;
+            bool blnItemFound;
+            int intReportCounter;
+            int intPermitCounter;
+            int intPermitNumberOfRecords;
+            int intRecordsReturned;
 
             try
             {
-                intNumberOfRecords = TheDesignProjectsNeedingInvoiceDataSet.designprojects.Rows.Count;
+                MainWindow.TheFindWarehousesDataSet = TheEmployeeClass.FindWarehouses();
+                TheFindSortedWOVBillingCodesDataSet = TheWOVInvoicingClass.FindSortedWOVBillingCodes();
 
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                intOfficeNumberOfRecords = MainWindow.TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+                intBillingNumberOfRecords = TheFindSortedWOVBillingCodesDataSet.FindSortedWOVBillingCodes.Rows.Count - 1;
+
+                //Office Loop
+                for(intOfficeCounter = 0; intOfficeCounter <= intOfficeNumberOfRecords; intOfficeCounter++)
                 {
-                    blnNeedsToBeProcessed = TheDesignProjectsNeedingInvoiceDataSet.designprojects[intCounter].ProcessProject;
+                    //loading office variables
+                    intOfficeID = MainWindow.TheFindWarehousesDataSet.FindWarehouses[intOfficeCounter].EmployeeID;
 
-                    if(blnNeedsToBeProcessed == true)
+                    //second loop
+                    for(intBillingCounter = 0; intBillingCounter <= intBillingNumberOfRecords; intBillingCounter++)
                     {
-                        strAssignedProjectID = TheDesignProjectsNeedingInvoiceDataSet.designprojects[intCounter].AssignedProjectID;
+                        intBillingID = TheFindSortedWOVBillingCodesDataSet.FindSortedWOVBillingCodes[intBillingCounter].BillingID;
+                        MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing.Rows.Clear();
 
-                        
+                        ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet = TheWOVInvoicingClass.FindDesignProjectsForInvoicingByOfficeBillingCode(intOfficeID, intBillingID);
+                        gintReportCounter = 0;
+                        gintReportNumberOfRecords = 0;
+
+                        intProjectNumberOfRecords = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode.Rows.Count - 1;
+
+                        if (intProjectNumberOfRecords > -1)
+                        {
+                            for (intProjectCounter = 0; intProjectCounter <= intProjectNumberOfRecords; intProjectCounter++)
+                            {
+                                intProjectID = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].ProjectID;
+                               
+                                blnProjectSelected = ProjectSelected(intProjectID);
+                                
+                                if(blnProjectSelected == true)
+                                {
+                                    TheFindProjectTechPayItemsTotalsByProjectIDDataSet = TheTechPayClass.FindProjectTechPayItemsTotalsByProjectID(intProjectID);
+                                    
+                                    intPayNumberOfRecords = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID.Rows.Count - 1;
+
+                                    if(intPayNumberOfRecords > -1)
+                                    {
+                                        for (intPayCounter = 0; intPayCounter <= intPayNumberOfRecords; intPayCounter++)
+                                        {
+                                            blnItemFound = false;
+
+                                            if(gintReportCounter > 0)
+                                            {
+                                                for (intReportCounter = 0; intReportCounter <= gintReportNumberOfRecords; intReportCounter++)
+                                                {
+                                                    if (intProjectID == MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].ProjectID)
+                                                    {
+                                                        if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV1")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].WOV1 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV2")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].WOV2 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV3")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].WOV3 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MCO5")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].MCO5 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].P1 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP2")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].P2 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+                                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UG")
+                                                        {
+                                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intReportCounter].UG = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                        }
+
+                                                        blnItemFound = true;
+
+                                                    }
+                                                }
+                                            }
+
+                                            if (blnItemFound == false)
+                                            {
+                                                DesignProjectInvoicingReportDataSet.designprojectinvoicingRow NewProjectRow = MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing.NewdesignprojectinvoicingRow();
+
+                                                NewProjectRow.BusinessAddress = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].ProjectAddress;
+                                                NewProjectRow.BusinessName = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].ProjectName;
+                                                NewProjectRow.DateOfWork = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].DateReceived;
+                                                NewProjectRow.DockID = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].AssignedProjectID;
+                                                NewProjectRow.PermitCost = 0;
+                                                NewProjectRow.PermitPrice = 0;
+                                                NewProjectRow.PermitType = "";
+                                                NewProjectRow.ProjectID = ThefindDesignProjectsForInvoicingByOfficeBillingCodeDataSet.FindDesignProjectsForInvoicingByOfficeBillingCode[intProjectCounter].ProjectID;
+                                                NewProjectRow.TotalAmount = 0;
+
+
+                                                if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV1")
+                                                {
+                                                    NewProjectRow.WOV1 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = 0;
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV2")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = 0;
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV3")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = 0;
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MCO5")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = 0;
+
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = 0;
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP2")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                    NewProjectRow.UG = 0;
+                                                }
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UG")
+                                                {
+                                                    NewProjectRow.WOV1 = 0;
+                                                    NewProjectRow.WOV2 = 0;
+                                                    NewProjectRow.WOV3 = 0;
+                                                    NewProjectRow.MCO5 = 0;
+                                                    NewProjectRow.P1 = 0;
+                                                    NewProjectRow.P2 = 0;
+                                                    NewProjectRow.UG = TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TotalQuantity;
+                                                }
+
+                                                MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing.Rows.Add(NewProjectRow);
+                                                gintReportNumberOfRecords = gintReportCounter;
+                                                gintReportCounter++;
+                                            }
+
+                                        }
+                                    }
+
+                                    //counter to find permit costs
+                                    intPermitNumberOfRecords = MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing.Rows.Count - 1;
+
+                                    for(intPermitCounter = 0; intPermitCounter <= intPermitNumberOfRecords; intPermitCounter++)
+                                    {
+                                        intProjectID = MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intPermitCounter].ProjectID;
+
+                                        TheFindDesignPermitCostsDataSet = TheDesignPermitsClass.FindDesignPermitCosts(intProjectID);
+
+                                        intRecordsReturned = TheFindDesignPermitCostsDataSet.FindDesignPermitCosts.Rows.Count;
+
+                                        if(intRecordsReturned > 0)
+                                        {
+                                            MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing[intPermitCounter].PermitCost = TheFindDesignPermitCostsDataSet.FindDesignPermitCosts[0].TotalCost;
+                                        }
+                                    }
+
+                                    ProcessDesignInvoice ProcessDesignInvoice = new ProcessDesignInvoice();
+                                    ProcessDesignInvoice.ShowDialog();
+                                }
+                                
+                            }
+                        }
                     }
                 }
             }
@@ -205,21 +422,47 @@ namespace BlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+        private bool ProjectSelected(int intProjectID)
+        {
+            bool blnProjectSelected = false;
+            int intCounter;
+            int intNumberOfRecords;
 
+            intNumberOfRecords = TheDesignProjectsNeedingInvoiceDataSet.designprojects.Rows.Count - 1;
+
+            for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+            {
+                if (intProjectID == TheDesignProjectsNeedingInvoiceDataSet.designprojects[intCounter].ProjectID)
+                {
+                    blnProjectSelected = TheDesignProjectsNeedingInvoiceDataSet.designprojects[intCounter].ProcessProject;
+                }
+            }
+
+            return blnProjectSelected;
+        }
         private void DgrResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int intSelectedIndex;
             bool blnProcessProject;
-
+            
             intSelectedIndex = dgrResults.SelectedIndex;
 
             if(intSelectedIndex > -1)
             {
                 blnProcessProject = !TheDesignProjectsNeedingInvoiceDataSet.designprojects[intSelectedIndex].ProcessProject;
+                MainWindow.gstrAssignedProjectID = TheDesignProjectsNeedingInvoiceDataSet.designprojects[intSelectedIndex].AssignedProjectID;
 
                 TheDesignProjectsNeedingInvoiceDataSet.designprojects[intSelectedIndex].ProcessProject = blnProcessProject;
 
                 dgrResults.ItemsSource = TheDesignProjectsNeedingInvoiceDataSet.designprojects;
+
+                TheFindDesignProjectsByAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(MainWindow.gstrAssignedProjectID);
+
+                if(TheFindDesignProjectsByAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].IsBillingIDNull() == true)
+                {
+                    AddBillingCodeToProject AddBillingCodeToProject = new AddBillingCodeToProject();
+                    AddBillingCodeToProject.ShowDialog();
+                }
             }
         }
     }

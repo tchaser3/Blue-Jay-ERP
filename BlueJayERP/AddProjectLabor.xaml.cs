@@ -62,6 +62,7 @@ namespace BlueJayERP
         FindWorkTaskStatsByTaskIDDataSet TheFindWorkTaskStatsByTaskIDDataSet = new FindWorkTaskStatsByTaskIDDataSet();
         FindProductivityDataEntryByDateDataSet TheFindProductivityDataEntryByDateDataSet = new FindProductivityDataEntryByDateDataSet();
         FindEmployeeHoursOverDateRangeDataSet TheFindEmployeeHoursOverADateRangeDataSet = new FindEmployeeHoursOverDateRangeDataSet();
+        FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
 
         //setting global variables
         bool gblnProjectFound;
@@ -277,6 +278,17 @@ namespace BlueJayERP
                     MainWindow.gstrFirstName = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].FirstName;
                     MainWindow.gstrLastName = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].LastName;
                     MainWindow.gintEmployeeID = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].EmployeeID;
+
+                    TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(MainWindow.gintEmployeeID);
+                    
+                    if(TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmployeeType == "CONTRACTOR")
+                    {
+                        TheMessagesClass.ErrorMessage("You Have Selected a Contractor, Please Select Again");
+                        cboSelectEmployee.SelectedIndex = 0;
+                        txtEnterLastLame.Focus();
+                        return;
+                    }
+
                     btnAddEmployee.IsEnabled = true;
 
                     if(gblnCrewIDSet == false)

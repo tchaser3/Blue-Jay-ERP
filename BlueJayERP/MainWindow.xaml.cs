@@ -70,6 +70,7 @@ namespace BlueJayERP
         public static FindAssignedTasksByAssignedEmployeeIDDataSet TheFindAssignedTasksByAssignedEmployeeIDDataSet = new FindAssignedTasksByAssignedEmployeeIDDataSet();
         public static FindSortedEmployeeManagersDataSet TheFindSortedEmployeeManagersDataSet = new FindSortedEmployeeManagersDataSet();
         public static FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
+        public static DesignProjectInvoicingReportDataSet TheDesignProjectInvoicingReportDataSet = new DesignProjectInvoicingReportDataSet();
 
         //setting up variables
         public static bool gblnKeepNewEmployee;

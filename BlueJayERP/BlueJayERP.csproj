@@ -325,6 +325,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AddBillingCodeToProject.xaml.cs">
+      <DependentUpon>AddBillingCodeToProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDepartment.xaml.cs">
       <DependentUpon>AddDepartment.xaml</DependentUpon>
     </Compile>
@@ -547,6 +550,11 @@
     </Compile>
     <Compile Include="DesignProjectInvoicing.xaml.cs">
       <DependentUpon>DesignProjectInvoicing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignProjectInvoicingReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DesignProjectsNeedingInvoiceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -895,6 +903,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProblemNotesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProcessDesignInvoice.xaml.cs">
+      <DependentUpon>ProcessDesignInvoice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductionEmployeeProductivityMeasure.xaml.cs">
       <DependentUpon>ProductionEmployeeProductivityMeasure.xaml</DependentUpon>
     </Compile>
@@ -1172,6 +1183,10 @@
       <DependentUpon>WarehouseInventoryStats.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddBillingCodeToProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDepartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1612,6 +1627,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProcessDesignInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProductionEmployeeProductivityMeasure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2045,6 +2064,17 @@
     </None>
     <None Include="DesignProductivityReportDataSet.xss">
       <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProjectInvoicingReportDataSet.xsc">
+      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProjectInvoicingReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignProjectInvoicingReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignProjectInvoicingReportDataSet.xss">
+      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="DesignProjectsNeedingInvoiceDataSet.xsc">
       <DependentUpon>DesignProjectsNeedingInvoiceDataSet.xsd</DependentUpon>
