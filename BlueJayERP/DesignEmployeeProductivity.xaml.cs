@@ -242,7 +242,6 @@ namespace BlueJayERP
             int intLength;
             int intCounter;
             int intNumberOfRecords;
-            int intOfficeID;
 
 
             try

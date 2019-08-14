@@ -86,6 +86,9 @@
     <Reference Include="DesignProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\DesignProjectsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="DesignProjectUpdateDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignProjectUpdateDLL.dll</HintPath>
+    </Reference>
     <Reference Include="DropBuryMDUDLL">
       <HintPath>..\..\Blue Jay Class Library\DropBuryMDUDLL.dll</HintPath>
     </Reference>
@@ -462,6 +465,14 @@
     <Compile Include="ChangeITAssetLocation.xaml.cs">
       <DependentUpon>ChangeITAssetLocation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClevelandDesignProjectInvoicingDataSet.cs">
+      <DependentUpon>ClevelandDesignProjectInvoicingDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClevelandDesignProjectInvoicingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClevelandDesignProjectInvoicingDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CompareCrewEmployeesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -550,11 +561,6 @@
     </Compile>
     <Compile Include="DesignProjectInvoicing.xaml.cs">
       <DependentUpon>DesignProjectInvoicing.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DesignProjectInvoicingReportDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DesignProjectsNeedingInvoiceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1181,6 +1187,11 @@
     </Compile>
     <Compile Include="WarehouseInventoryStats.xaml.cs">
       <DependentUpon>WarehouseInventoryStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WisconsinDesignProjectInvoicingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WisconsinDesignProjectInvoicingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddBillingCodeToProject.xaml">
@@ -1955,6 +1966,17 @@
     <None Include="CancelledOrdersDataSet.xss">
       <DependentUpon>CancelledOrdersDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ClevelandDesignProjectInvoicingDataSet.xsc">
+      <DependentUpon>ClevelandDesignProjectInvoicingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ClevelandDesignProjectInvoicingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ClevelandDesignProjectInvoicingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ClevelandDesignProjectInvoicingDataSet.xss">
+      <DependentUpon>ClevelandDesignProjectInvoicingDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CompareCrewEmployeesDataSet.xsc">
       <DependentUpon>CompareCrewEmployeesDataSet.xsd</DependentUpon>
     </None>
@@ -2064,17 +2086,6 @@
     </None>
     <None Include="DesignProductivityReportDataSet.xss">
       <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DesignProjectInvoicingReportDataSet.xsc">
-      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DesignProjectInvoicingReportDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DesignProjectInvoicingReportDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DesignProjectInvoicingReportDataSet.xss">
-      <DependentUpon>DesignProjectInvoicingReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="DesignProjectsNeedingInvoiceDataSet.xsc">
       <DependentUpon>DesignProjectsNeedingInvoiceDataSet.xsd</DependentUpon>
@@ -2640,6 +2651,17 @@
     </None>
     <None Include="ViewToolHistoryDataSet.xss">
       <DependentUpon>ViewToolHistoryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WisconsinDesignProjectInvoicingDataSet.xsc">
+      <DependentUpon>WisconsinDesignProjectInvoicingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WisconsinDesignProjectInvoicingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WisconsinDesignProjectInvoicingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WisconsinDesignProjectInvoicingDataSet.xss">
+      <DependentUpon>WisconsinDesignProjectInvoicingDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

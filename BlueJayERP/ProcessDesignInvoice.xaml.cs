@@ -17,6 +17,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NewEventLogDLL;
+using NewEmployeeDLL;
+using WOVInvoicingDLL;
 
 namespace BlueJayERP
 {
@@ -26,6 +29,12 @@ namespace BlueJayERP
     public partial class ProcessDesignInvoice : Window
     {
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
+        EventLogClass TheEventLogClass = new EventLogClass();
+        EmployeeClass TheEmployeeClass = new EmployeeClass();
+        WOVInvoicingClass TheWOVInvoicingClass = new WOVInvoicingClass();
+
+        FindWOVBillingCodesByBillingIDDataSet TheFindWOVBillingCodesByBillingIDDataSet = new FindWOVBillingCodesByBillingIDDataSet();
+        FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
 
         public ProcessDesignInvoice()
         {
@@ -74,7 +83,58 @@ namespace BlueJayERP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dgrResults.ItemsSource = MainWindow.TheDesignProjectInvoicingReportDataSet.designprojectinvoicing;
+            //setting local variables
+            int intCounter;
+            int intNumberOfRecords;
+            decimal decInvoiceTotal = 0;
+
+            try
+            {
+                TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(MainWindow.gintWarehouseID);
+
+                txtBillingLocation.Text = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].FirstName;
+
+                if (txtBillingLocation.Text == "CLEVELAND")
+                {
+                    dgrResults.ItemsSource = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice;
+
+                    intNumberOfRecords = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice.Rows.Count - 1;
+
+                    for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                    {
+                        decInvoiceTotal += MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].TotalProjectCharge;
+                    }
+                }
+                else if (txtBillingLocation.Text == "MILWAUKEE")
+                {
+                    dgrResults.ItemsSource = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice;
+
+                    intNumberOfRecords = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice.Rows.Count - 1;
+
+                    for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                    {
+                        decInvoiceTotal += MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].ProjectTotal;
+                    }
+                }
+
+                TheFindWOVBillingCodesByBillingIDDataSet = TheWOVInvoicingClass.FindWOVBillingCodesByBillingID(MainWindow.gintBillingID);
+
+                txtBillingType.Text = TheFindWOVBillingCodesByBillingIDDataSet.FindWOVBillingCodesByBillingID[0].BillingCode;
+                txtInvoicedAmount.Text = Convert.ToString(decInvoiceTotal);
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Process Design Invoice // Window Loaded " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+
+            
+        }
+
+        private void MitProcessInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

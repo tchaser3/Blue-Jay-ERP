@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WisconsinDesignProjectInvoicingDataSet" targetNamespace="http://tempuri.org/WisconsinDesignProjectInvoicingDataSet.xsd" xmlns:mstns="http://tempuri.org/WisconsinDesignProjectInvoicingDataSet.xsd" xmlns="http://tempuri.org/WisconsinDesignProjectInvoicingDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WisconsinDesignProjectInvoicingDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="WisconsinDesignProjectInvoicingDataSet" msprop:Generator_UserDSName="WisconsinDesignProjectInvoicingDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="wisconsindesigninvoice" msprop:Generator_TableClassName="wisconsindesigninvoiceDataTable" msprop:Generator_TableVarName="tablewisconsindesigninvoice" msprop:Generator_RowChangedName="wisconsindesigninvoiceRowChanged" msprop:Generator_TablePropName="wisconsindesigninvoice" msprop:Generator_RowDeletingName="wisconsindesigninvoiceRowDeleting" msprop:Generator_RowChangingName="wisconsindesigninvoiceRowChanging" msprop:Generator_RowEvHandlerName="wisconsindesigninvoiceRowChangeEventHandler" msprop:Generator_RowDeletedName="wisconsindesigninvoiceRowDeleted" msprop:Generator_RowClassName="wisconsindesigninvoiceRow" msprop:Generator_UserTableName="wisconsindesigninvoice" msprop:Generator_RowEvArgName="wisconsindesigninvoiceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="BusinessName" msprop:Generator_ColumnVarNameInTable="columnBusinessName" msprop:Generator_ColumnPropNameInRow="BusinessName" msprop:Generator_ColumnPropNameInTable="BusinessNameColumn" msprop:Generator_UserColumnName="BusinessName" type="xs:string" />
+              <xs:element name="BusinessAddress" msprop:Generator_ColumnVarNameInTable="columnBusinessAddress" msprop:Generator_ColumnPropNameInRow="BusinessAddress" msprop:Generator_ColumnPropNameInTable="BusinessAddressColumn" msprop:Generator_UserColumnName="BusinessAddress" type="xs:string" />
+              <xs:element name="DockID" msprop:Generator_ColumnVarNameInTable="columnDockID" msprop:Generator_ColumnPropNameInRow="DockID" msprop:Generator_ColumnPropNameInTable="DockIDColumn" msprop:Generator_UserColumnName="DockID" type="xs:string" />
+              <xs:element name="WOV1" msprop:Generator_ColumnVarNameInTable="columnWOV1" msprop:Generator_ColumnPropNameInRow="WOV1" msprop:Generator_ColumnPropNameInTable="WOV1Column" msprop:Generator_UserColumnName="WOV1" type="xs:decimal" />
+              <xs:element name="WOV2" msprop:Generator_ColumnVarNameInTable="columnWOV2" msprop:Generator_ColumnPropNameInRow="WOV2" msprop:Generator_ColumnPropNameInTable="WOV2Column" msprop:Generator_UserColumnName="WOV2" type="xs:decimal" />
+              <xs:element name="MC05" msprop:Generator_ColumnVarNameInTable="columnMC05" msprop:Generator_ColumnPropNameInRow="MC05" msprop:Generator_ColumnPropNameInTable="MC05Column" msprop:Generator_UserColumnName="MC05" type="xs:decimal" />
+              <xs:element name="PP1" msprop:Generator_ColumnVarNameInTable="columnPP1" msprop:Generator_ColumnPropNameInRow="PP1" msprop:Generator_ColumnPropNameInTable="PP1Column" msprop:Generator_UserColumnName="PP1" type="xs:decimal" />
+              <xs:element name="PP2" msprop:Generator_ColumnVarNameInTable="columnPP2" msprop:Generator_ColumnPropNameInRow="PP2" msprop:Generator_ColumnPropNameInTable="PP2Column" msprop:Generator_UserColumnName="PP2" type="xs:decimal" />
+              <xs:element name="UF" msprop:Generator_ColumnVarNameInTable="columnUF" msprop:Generator_ColumnPropNameInRow="UF" msprop:Generator_ColumnPropNameInTable="UFColumn" msprop:Generator_UserColumnName="UF" type="xs:decimal" />
+              <xs:element name="HA" msprop:Generator_ColumnVarNameInTable="columnHA" msprop:Generator_ColumnPropNameInRow="HA" msprop:Generator_ColumnPropNameInTable="HAColumn" msprop:Generator_UserColumnName="HA" type="xs:decimal" />
+              <xs:element name="PermitType" msprop:Generator_ColumnVarNameInTable="columnPermitType" msprop:Generator_ColumnPropNameInRow="PermitType" msprop:Generator_ColumnPropNameInTable="PermitTypeColumn" msprop:Generator_UserColumnName="PermitType" type="xs:string" />
+              <xs:element name="PermitCost" msprop:Generator_ColumnVarNameInTable="columnPermitCost" msprop:Generator_ColumnPropNameInRow="PermitCost" msprop:Generator_ColumnPropNameInTable="PermitCostColumn" msprop:Generator_UserColumnName="PermitCost" type="xs:decimal" />
+              <xs:element name="ProjectTotal" msprop:Generator_ColumnVarNameInTable="columnProjectTotal" msprop:Generator_ColumnPropNameInRow="ProjectTotal" msprop:Generator_ColumnPropNameInTable="ProjectTotalColumn" msprop:Generator_UserColumnName="ProjectTotal" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:wisconsindesigninvoice" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

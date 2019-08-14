@@ -70,7 +70,8 @@ namespace BlueJayERP
         public static FindAssignedTasksByAssignedEmployeeIDDataSet TheFindAssignedTasksByAssignedEmployeeIDDataSet = new FindAssignedTasksByAssignedEmployeeIDDataSet();
         public static FindSortedEmployeeManagersDataSet TheFindSortedEmployeeManagersDataSet = new FindSortedEmployeeManagersDataSet();
         public static FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
-        public static DesignProjectInvoicingReportDataSet TheDesignProjectInvoicingReportDataSet = new DesignProjectInvoicingReportDataSet();
+        public static ClevelandDesignProjectInvoicingDataSet TheClevelandDesignProjectInvoicingDataSet = new ClevelandDesignProjectInvoicingDataSet();
+        public static WisconsinDesignProjectInvoicingDataSet TheWisconsinDesignProjectInvoicingDataSet = new WisconsinDesignProjectInvoicingDataSet();
 
         //setting up variables
         public static bool gblnKeepNewEmployee;
@@ -118,6 +119,7 @@ namespace BlueJayERP
         public static bool gblnExistingTrailerProblem;
         public static int gintItemID;
         public static int gintPhoneID;
+        public static int gintBillingID;
         
         //setting up windows
         public static AddEmployee AddNewEmployee = new AddEmployee();
