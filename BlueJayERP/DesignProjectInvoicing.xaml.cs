@@ -269,6 +269,8 @@ namespace BlueJayERP
                         }
                     }
                 }
+
+                ResetControls();
             }
             catch (Exception Ex)
             {
@@ -321,7 +323,7 @@ namespace BlueJayERP
                             {
                                 if (MainWindow.gstrAssignedProjectID == MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].DockID)
                                 {
-                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].ProjectTotal = decTotalCost;
+                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].PermitCost = decTotalCost;
                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].ProjectTotal += decTotalCost;
                                 }
                             }
@@ -724,7 +726,7 @@ namespace BlueJayERP
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].PP2 += Convert.ToDecimal(intTotalQuantity);
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
                                                 }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "FE01")
+                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UF")
                                                 {
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].UF += Convert.ToDecimal(intTotalQuantity);
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
@@ -976,6 +978,7 @@ namespace BlueJayERP
                 NewBillingRow.DockID = "";
                 NewBillingRow.ProjectTotal = 0;
                 NewBillingRow.PermitType = "";
+                NewBillingRow.PermitCost = 0;
 
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
