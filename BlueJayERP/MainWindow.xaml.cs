@@ -254,6 +254,7 @@ namespace BlueJayERP
         public static OpenCellPhoneReport OpenCellPhoneReportWindow = new OpenCellPhoneReport();
         public static DesignEmployeeProductivity DesignEmployeeProductivityWindow = new DesignEmployeeProductivity();
         public static DesignProjectInvoicing DesignProjectInvoicingWindow = new DesignProjectInvoicing();
+        public static EmployeeHoursPunched EmployeeHoursPunchedWindow = new EmployeeHoursPunched();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -457,6 +458,7 @@ namespace BlueJayERP
             OpenCellPhoneReportWindow.Visibility = Visibility.Hidden;
             DesignEmployeeProductivityWindow.Visibility = Visibility.Hidden;
             DesignProjectInvoicingWindow.Visibility = Visibility.Hidden;
+            EmployeeHoursPunchedWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -491,6 +493,7 @@ namespace BlueJayERP
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitDesignEmployeeProductivity.Visibility = Visibility.Hidden;
                 mitDesignInvoicing.Visibility = Visibility.Hidden;
+
             }
             else if(TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "WAREHOUSE")
             {
@@ -1388,6 +1391,11 @@ namespace BlueJayERP
         private void MitDesignProjectInvoicing_Click(object sender, RoutedEventArgs e)
         {
             DesignProjectInvoicingWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitEmployeeHoursPunched_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeHoursPunchedWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -142,6 +142,7 @@
                     <MenuItem x:Name="mitEmployeeCrewSummary" Header="Employee Crew Summary" Click="mitEmployeeCrewSummary_Click"></MenuItem>
                     <MenuItem x:Name="mitFindMultipeEmployeeProduction" Header="Find Multiple Employee Production" Click="mitFindMultipeEmployeeProduction_Click"></MenuItem>
                     <MenuItem x:Name="mitManagerProductivityPunched" Header="Manager Productivity Punched Report" Click="mitManagerProductivityPunched_Click" />
+                    <MenuItem x:Name="mitEmployeeHoursPunched" Header="Employee Hours Punched" Click="MitEmployeeHoursPunched_Click" />
                     <MenuItem x:Name="mitShopHoursAnalysis" Header="Shop Hours Analysis" Click="mitShopHoursAnalysis_Click"></MenuItem>
                     <MenuItem x:Name="mitViewEmployeePunches" Header="View Employee Punches" Click="mitViewEmployeePunches_Click"></MenuItem>
                 </MenuItem>
