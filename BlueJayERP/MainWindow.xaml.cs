@@ -255,6 +255,7 @@ namespace BlueJayERP
         public static DesignEmployeeProductivity DesignEmployeeProductivityWindow = new DesignEmployeeProductivity();
         public static DesignProjectInvoicing DesignProjectInvoicingWindow = new DesignProjectInvoicing();
         public static EmployeeHoursPunched EmployeeHoursPunchedWindow = new EmployeeHoursPunched();
+        public static ViewWorkTaskFootages ViewWorkTaskFootagesWindow = new ViewWorkTaskFootages();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -459,6 +460,7 @@ namespace BlueJayERP
             DesignEmployeeProductivityWindow.Visibility = Visibility.Hidden;
             DesignProjectInvoicingWindow.Visibility = Visibility.Hidden;
             EmployeeHoursPunchedWindow.Visibility = Visibility.Hidden;
+            ViewWorkTaskFootagesWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -493,6 +495,7 @@ namespace BlueJayERP
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitDesignEmployeeProductivity.Visibility = Visibility.Hidden;
                 mitDesignInvoicing.Visibility = Visibility.Hidden;
+                mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
 
             }
             else if(TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "WAREHOUSE")
@@ -509,6 +512,7 @@ namespace BlueJayERP
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitDesignEmployeeProductivity.Visibility = Visibility.Hidden;
                 mitDesignInvoicing.Visibility = Visibility.Hidden;
+                mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
             }
             else if(TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "MANAGERS")
             {
@@ -599,6 +603,7 @@ namespace BlueJayERP
                 mitImportITAssets.Visibility = Visibility.Hidden;
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 DesignEmployeeProductivityWindow.Visibility = Visibility.Hidden;
+                mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
             }
         }
         private void ResetMenu()
@@ -653,6 +658,7 @@ namespace BlueJayERP
             mitManagerProductivityPunched.Visibility = Visibility.Visible;
             mitImportITAssets.Visibility = Visibility.Visible;
             mitChangeITAssetLocation.Visibility = Visibility.Visible;
+            mitViewWorkTaskFootages.Visibility = Visibility.Visible;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1396,6 +1402,16 @@ namespace BlueJayERP
         private void MitEmployeeHoursPunched_Click(object sender, RoutedEventArgs e)
         {
             EmployeeHoursPunchedWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MitSignOutLaptop_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MitViewWorkTaskFootages_Click(object sender, RoutedEventArgs e)
+        {
+            ViewWorkTaskFootagesWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -163,6 +163,7 @@
                     <MenuItem x:Name="mitProjectLaborMaterial" Header="Project Labor and Material" Click="mitProjectLaborMaterial_Click"></MenuItem>
                     <MenuItem x:Name="mitProductivityReportForTasks" Header="Productivty Report For Tasks"></MenuItem>
                     <MenuItem x:Name="mitFindDropBuryMDUHours" Header="Find Drop Bury MDU Hours"></MenuItem>
+                    <MenuItem x:Name="mitViewWorkTaskFootages" Header="View Work Task Footages" Click="MitViewWorkTaskFootages_Click" />
                     <MenuItem x:Name="mitViewWorkTaskStatistics" Header="View Work Task Statistics" Click="mitViewWorkTaskStatistics_Click"></MenuItem>
                 </MenuItem>
             </MenuItem>
@@ -260,7 +261,7 @@
                 <MenuItem x:Name="mitRetireITAsset" Header="Retire IT Asset" Click="MitRetireITAsset_Click" />
                 <MenuItem x:Name="mitSignOutPhone" Header="Sign Out Phone"></MenuItem>
                 <MenuItem x:Name="mitSignInPhone" Header="Sign In Phone"></MenuItem>
-                <MenuItem x:Name="mitSignOutLaptop" Header="Sign Out Laptop"></MenuItem>
+                <MenuItem x:Name="mitSignOutLaptop" Header="Sign Out Laptop" Click="MitSignOutLaptop_Click"></MenuItem>
                 <MenuItem x:Name="mitSignInLaptop" Header="Sign In Laptop"></MenuItem>
                 <MenuItem x:Name="mitReportITProblem" Header="Report IT Problem" Click="mitReportITProblem_Click"></MenuItem>
                 <MenuItem x:Name="mitReportBug" Header="Report Bug"></MenuItem>

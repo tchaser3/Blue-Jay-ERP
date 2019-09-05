@@ -101,6 +101,9 @@
     <Reference Include="DesignProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\DesignProjectsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="DesignProjectSurveyorDLL">
+      <HintPath>..\..\Blue Jay Class Library\DesignProjectSurveyorDLL.dll</HintPath>
+    </Reference>
     <Reference Include="DesignProjectUpdateDLL">
       <HintPath>..\..\Blue Jay Class Library\DesignProjectUpdateDLL.dll</HintPath>
     </Reference>
@@ -979,6 +982,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectMaterialReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectTaskTotalsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectTaskTotalsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ProjectWorkCompletedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1200,6 +1208,9 @@
     </Compile>
     <Compile Include="ViewVehicleProblem.xaml.cs">
       <DependentUpon>ViewVehicleProblem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewWorkTaskFootages.xaml.cs">
+      <DependentUpon>ViewWorkTaskFootages.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewWorkTaskStatistics.xaml.cs">
       <DependentUpon>ViewWorkTaskStatistics.xaml</DependentUpon>
@@ -1885,6 +1896,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewWorkTaskFootages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewWorkTaskStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2516,6 +2531,17 @@
     </None>
     <None Include="ProjectMaterialReportDataSet.xss">
       <DependentUpon>ProjectMaterialReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectTaskTotalsDataSet.xsc">
+      <DependentUpon>ProjectTaskTotalsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectTaskTotalsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectTaskTotalsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectTaskTotalsDataSet.xss">
+      <DependentUpon>ProjectTaskTotalsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectWorkCompletedDataSet.xsc">
       <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>

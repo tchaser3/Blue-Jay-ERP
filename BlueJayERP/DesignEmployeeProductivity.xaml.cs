@@ -22,6 +22,7 @@ using NewEmployeeDLL;
 using DesignProductivityDLL;
 using DataValidationDLL;
 using Microsoft.Win32;
+using DesignProjectSurveyorDLL;
 
 namespace BlueJayERP
 {
@@ -36,6 +37,7 @@ namespace BlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DesignProductivityClass TheDesignProductivityClass = new DesignProductivityClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        DesignProjectsSurveyorClass TheDesignProjectsSurveyorClass = new DesignProjectsSurveyorClass();
 
         //setting up the data
         FindDesignDepartmentProductivityByDateRangeDataSet TheFindDesignDepartmentProductivityByDateRangeDataSet = new FindDesignDepartmentProductivityByDateRangeDataSet();
@@ -43,6 +45,8 @@ namespace BlueJayERP
         FindDesignTotalDepartmentProductivityDataSet TheFindDesignTotalDepartmentProductivityDataSet = new FindDesignTotalDepartmentProductivityDataSet();
         FindDesignTotalEmployeeProductivityHoursDataSet TheFindDesignTotalEmployeeProductivityHoursDataSet = new FindDesignTotalEmployeeProductivityHoursDataSet();
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
+        FindDesignEmployeeWOVCountDataSet TheFindDesignEmployeeWOVCountDataSet = new FindDesignEmployeeWOVCountDataSet();
+        FindDesignDepartmentWOVCountDataSet TheFindDesignDepartmentWOVCountDataSet = new FindDesignDepartmentWOVCountDataSet();
 
         //setting global Variables
         string gstrReportType;
@@ -124,6 +128,8 @@ namespace BlueJayERP
             cboSelectReportType.Items.Add("Design Department Productivity");
             cboSelectReportType.Items.Add("Design Employee Productivity");
             cboSelectReportType.Items.Add("Design Department Total Productivity");
+            cboSelectReportType.Items.Add("Employee WOV Report");
+            cboSelectReportType.Items.Add("Department WOV Report");
             cboSelectReportType.SelectedIndex = 0;
             txtStartDate.Text = "";
             txtEndDate.Text = "";
@@ -159,7 +165,22 @@ namespace BlueJayERP
                 lblSelectEmployee.Visibility = Visibility.Hidden;
                 cboSelectEmployee.Visibility = Visibility.Hidden;
             }
-            
+            else if (cboSelectReportType.SelectedIndex == 4)
+            {
+                gstrReportType = "WOV";
+                lblEnterLastName.Visibility = Visibility.Visible;
+                txtEnterLastName.Visibility = Visibility.Visible;
+                lblSelectEmployee.Visibility = Visibility.Visible;
+                cboSelectEmployee.Visibility = Visibility.Visible;
+            }
+            else if (cboSelectReportType.SelectedIndex == 5)
+            {
+                gstrReportType = "DEPARTMENTWOV";
+                lblEnterLastName.Visibility = Visibility.Hidden;
+                txtEnterLastName.Visibility = Visibility.Hidden;
+                lblSelectEmployee.Visibility = Visibility.Hidden;
+                cboSelectEmployee.Visibility = Visibility.Hidden;
+            }
         }
 
         private void MitGenerateReport_Click(object sender, RoutedEventArgs e)
@@ -194,7 +215,7 @@ namespace BlueJayERP
                 {
                     gdatEndDate = Convert.ToDateTime(strValueForValidation);
                 }
-                if(gstrReportType == "EMPLOYEE")
+                if ((gstrReportType == "EMPLOYEE") || (gstrReportType == "WOV"))
                 {
                     if(cboSelectEmployee.SelectedIndex < 1)
                     {
@@ -225,6 +246,18 @@ namespace BlueJayERP
                     TheFindDesignTotalDepartmentProductivityDataSet = TheDesignProductivityClass.FindDesignTotalDepartmentProductivity(gdatStartDate, gdatEndDate);
 
                     dgrResults.ItemsSource = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity;
+                }
+                else if(gstrReportType == "WOV")
+                {
+                    TheFindDesignEmployeeWOVCountDataSet = TheDesignProjectsSurveyorClass.FindDesignEmployeeWOVCount(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
+
+                    dgrResults.ItemsSource = TheFindDesignEmployeeWOVCountDataSet.FindDesignEmployeeWOVCount;
+                }
+                else if (gstrReportType == "DEPARTMENTWOV")
+                {
+                    TheFindDesignDepartmentWOVCountDataSet = TheDesignProjectsSurveyorClass.FindDesignDepartmentWOVCount(gdatStartDate, gdatEndDate);
+
+                    dgrResults.ItemsSource = TheFindDesignDepartmentWOVCountDataSet.FindDesignDepartmentWOVCount;
                 }
 
             }
@@ -311,6 +344,156 @@ namespace BlueJayERP
             else if (gstrReportType == "TOTAL")
             {
                 ExportTotalToExcel();
+            }
+            else if (gstrReportType == "WOV")
+            {
+                ExportWOVToExcel();
+            }
+            else if (gstrReportType == "DEPARTMENTWOV")
+            {
+                ExportDepartmentWOVToExcel();
+            }
+        }
+        private void ExportDepartmentWOVToExcel()
+        {
+            int intRowCounter;
+            int intRowNumberOfRecords;
+            int intColumnCounter;
+            int intColumnNumberOfRecords;
+
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+
+                worksheet = workbook.ActiveSheet;
+
+                worksheet.Name = "OpenOrders";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+                intRowNumberOfRecords = TheFindDesignDepartmentWOVCountDataSet.FindDesignDepartmentWOVCount.Rows.Count;
+                intColumnNumberOfRecords = TheFindDesignDepartmentWOVCountDataSet.FindDesignDepartmentWOVCount.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignDepartmentWOVCountDataSet.FindDesignDepartmentWOVCount.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
+                {
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                    {
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignDepartmentWOVCountDataSet.FindDesignDepartmentWOVCount.Rows[intRowCounter][intColumnCounter].ToString();
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                saveDialog.ShowDialog();
+
+                workbook.SaveAs(saveDialog.FileName);
+                MessageBox.Show("Export Successful");
+
+            }
+            catch (System.Exception ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Design Employee Productivity // Export Department WOV to Excel " + ex.Message);
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
+        }
+        private void ExportWOVToExcel()
+        {
+            int intRowCounter;
+            int intRowNumberOfRecords;
+            int intColumnCounter;
+            int intColumnNumberOfRecords;
+
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+
+                worksheet = workbook.ActiveSheet;
+
+                worksheet.Name = "OpenOrders";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+                intRowNumberOfRecords = TheFindDesignEmployeeWOVCountDataSet.FindDesignEmployeeWOVCount.Rows.Count;
+                intColumnNumberOfRecords = TheFindDesignEmployeeWOVCountDataSet.FindDesignEmployeeWOVCount.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignEmployeeWOVCountDataSet.FindDesignEmployeeWOVCount.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
+                {
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                    {
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignEmployeeWOVCountDataSet.FindDesignEmployeeWOVCount.Rows[intRowCounter][intColumnCounter].ToString();
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                saveDialog.ShowDialog();
+
+                workbook.SaveAs(saveDialog.FileName);
+                MessageBox.Show("Export Successful");
+
+            }
+            catch (System.Exception ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Design Employee Productivity // Export WOV to Excel " + ex.Message);
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
             }
         }
         private void ExportDepartmentToExcel()

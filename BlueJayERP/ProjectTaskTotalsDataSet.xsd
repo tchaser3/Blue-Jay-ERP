@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectTaskTotalsDataSet" targetNamespace="http://tempuri.org/ProjectTaskTotalsDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectTaskTotalsDataSet.xsd" xmlns="http://tempuri.org/ProjectTaskTotalsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectTaskTotalsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProjectTaskTotalsDataSet" msprop:Generator_UserDSName="ProjectTaskTotalsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projecttasktotals" msprop:Generator_TableClassName="projecttasktotalsDataTable" msprop:Generator_TableVarName="tableprojecttasktotals" msprop:Generator_RowChangedName="projecttasktotalsRowChanged" msprop:Generator_TablePropName="projecttasktotals" msprop:Generator_RowDeletingName="projecttasktotalsRowDeleting" msprop:Generator_RowChangingName="projecttasktotalsRowChanging" msprop:Generator_RowEvHandlerName="projecttasktotalsRowChangeEventHandler" msprop:Generator_RowDeletedName="projecttasktotalsRowDeleted" msprop:Generator_RowClassName="projecttasktotalsRow" msprop:Generator_UserTableName="projecttasktotals" msprop:Generator_RowEvArgName="projecttasktotalsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="WorkTaskID" msprop:Generator_ColumnVarNameInTable="columnWorkTaskID" msprop:Generator_ColumnPropNameInRow="WorkTaskID" msprop:Generator_ColumnPropNameInTable="WorkTaskIDColumn" msprop:Generator_UserColumnName="WorkTaskID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="FootagePieces" msprop:Generator_ColumnVarNameInTable="columnFootagePieces" msprop:Generator_ColumnPropNameInRow="FootagePieces" msprop:Generator_ColumnPropNameInTable="FootagePiecesColumn" msprop:Generator_UserColumnName="FootagePieces" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:projecttasktotals" />
+      <xs:field xpath="mstns:WorkTaskID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
