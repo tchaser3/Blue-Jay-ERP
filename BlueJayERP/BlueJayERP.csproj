@@ -1063,6 +1063,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopViolatorDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SignOutITAssets.xaml.cs">
+      <DependentUpon>SignOutITAssets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignOutTool.xaml.cs">
       <DependentUpon>SignOutTool.xaml</DependentUpon>
     </Compile>
@@ -1753,6 +1756,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShopHoursAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignOutITAssets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

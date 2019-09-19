@@ -261,10 +261,9 @@
                 <MenuItem x:Name="mitRetireITAsset" Header="Retire IT Asset" Click="MitRetireITAsset_Click" />
                 <MenuItem x:Name="mitSignOutPhone" Header="Sign Out Phone"></MenuItem>
                 <MenuItem x:Name="mitSignInPhone" Header="Sign In Phone"></MenuItem>
-                <MenuItem x:Name="mitSignOutLaptop" Header="Sign Out Laptop" Click="MitSignOutLaptop_Click"></MenuItem>
-                <MenuItem x:Name="mitSignInLaptop" Header="Sign In Laptop"></MenuItem>
+                <MenuItem x:Name="mitSignOutITAsset" Header="Sign Out IT Asset" Click="MitSignOutITAsset_Click" />
                 <MenuItem x:Name="mitReportITProblem" Header="Report IT Problem" Click="mitReportITProblem_Click"></MenuItem>
-                <MenuItem x:Name="mitReportBug" Header="Report Bug"></MenuItem>
+                <MenuItem x:Name="mitReportBug" Header="Report Bug" Click="MitReportBug_Click"></MenuItem>
                 <MenuItem x:Name="mitEventLogTracker" Header="Event Log"></MenuItem>
                 <MenuItem x:Name="mitITReports" Header="IT Reports">
                     <MenuItem x:Name="mitCurrentITAssets" Header="Current IT Assets" Click="MitCurrentITAssets_Click" />
