@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DesignDepartmentProductivityDataSet" targetNamespace="http://tempuri.org/DesignDepartmentProductivityDataSet.xsd" xmlns:mstns="http://tempuri.org/DesignDepartmentProductivityDataSet.xsd" xmlns="http://tempuri.org/DesignDepartmentProductivityDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DesignDepartmentProductivityDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DesignDepartmentProductivityDataSet" msprop:Generator_UserDSName="DesignDepartmentProductivityDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="designdepartmentproductivity" msprop:Generator_TableClassName="designdepartmentproductivityDataTable" msprop:Generator_TableVarName="tabledesigndepartmentproductivity" msprop:Generator_RowChangedName="designdepartmentproductivityRowChanged" msprop:Generator_TablePropName="designdepartmentproductivity" msprop:Generator_RowDeletingName="designdepartmentproductivityRowDeleting" msprop:Generator_RowChangingName="designdepartmentproductivityRowChanging" msprop:Generator_RowEvHandlerName="designdepartmentproductivityRowChangeEventHandler" msprop:Generator_RowDeletedName="designdepartmentproductivityRowDeleted" msprop:Generator_RowClassName="designdepartmentproductivityRow" msprop:Generator_UserTableName="designdepartmentproductivity" msprop:Generator_RowEvArgName="designdepartmentproductivityRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="HomeOffice" msprop:Generator_ColumnVarNameInTable="columnHomeOffice" msprop:Generator_ColumnPropNameInRow="HomeOffice" msprop:Generator_ColumnPropNameInTable="HomeOfficeColumn" msprop:Generator_UserColumnName="HomeOffice" type="xs:string" />
+              <xs:element name="TotalHours" msprop:Generator_ColumnVarNameInTable="columnTotalHours" msprop:Generator_ColumnPropNameInRow="TotalHours" msprop:Generator_ColumnPropNameInTable="TotalHoursColumn" msprop:Generator_UserColumnName="TotalHours" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:designdepartmentproductivity" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

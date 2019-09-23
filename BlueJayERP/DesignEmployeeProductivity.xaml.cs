@@ -23,6 +23,7 @@ using DesignProductivityDLL;
 using DataValidationDLL;
 using Microsoft.Win32;
 using DesignProjectSurveyorDLL;
+using EmployeeProjectAssignmentDLL;
 
 namespace BlueJayERP
 {
@@ -38,20 +39,26 @@ namespace BlueJayERP
         DesignProductivityClass TheDesignProductivityClass = new DesignProductivityClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DesignProjectsSurveyorClass TheDesignProjectsSurveyorClass = new DesignProjectsSurveyorClass();
+        EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
 
         //setting up the data
-        FindDesignDepartmentProductivityByDateRangeDataSet TheFindDesignDepartmentProductivityByDateRangeDataSet = new FindDesignDepartmentProductivityByDateRangeDataSet();
-        FindDesignEmployeeProductivityByDateRangeDataSet TheFindDesignEmployeeProductivityByDataRangeDataSet = new FindDesignEmployeeProductivityByDateRangeDataSet();
         FindDesignTotalDepartmentProductivityDataSet TheFindDesignTotalDepartmentProductivityDataSet = new FindDesignTotalDepartmentProductivityDataSet();
         FindDesignTotalEmployeeProductivityHoursDataSet TheFindDesignTotalEmployeeProductivityHoursDataSet = new FindDesignTotalEmployeeProductivityHoursDataSet();
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
         FindDesignEmployeeWOVCountDataSet TheFindDesignEmployeeWOVCountDataSet = new FindDesignEmployeeWOVCountDataSet();
         FindDesignDepartmentWOVCountDataSet TheFindDesignDepartmentWOVCountDataSet = new FindDesignDepartmentWOVCountDataSet();
+        FindEmployeeHoursOverDateRangeDataSet TheFindEmployeeHoursOverDateRangeDataSet = new FindEmployeeHoursOverDateRangeDataSet();
+        DesignDepartmentProductivityDataSet TheDesignDepartmentProductivityDataSet = new DesignDepartmentProductivityDataSet();
+        DesignEmployeeProductivityDataSet TheDesignEmployeeProductivityDataSet = new DesignEmployeeProductivityDataSet();
+        FindEmployeeProductionHoursOverPayPeriodDataSet TheFindEmployeeProductionHoursOverPayPeriodDataSet = new FindEmployeeProductionHoursOverPayPeriodDataSet();
+        FindDesignEmployeeTotalHoursDataSet TheFindDesignEmployeeTotalHoursDataSet = new FindDesignEmployeeTotalHoursDataSet();
+        FindEmployeeTaskTotalHoursDataSet TheFindEmployeeTaskTotalHoursDataSet = new FindEmployeeTaskTotalHoursDataSet();
 
         //setting global Variables
         string gstrReportType;
         DateTime gdatStartDate;
         DateTime gdatEndDate;
+        bool gblnDepartment;
 
         public DesignEmployeeProductivity()
         {
@@ -127,7 +134,6 @@ namespace BlueJayERP
             cboSelectReportType.Items.Add("Select Report Type");
             cboSelectReportType.Items.Add("Design Department Productivity");
             cboSelectReportType.Items.Add("Design Employee Productivity");
-            cboSelectReportType.Items.Add("Design Department Total Productivity");
             cboSelectReportType.Items.Add("Employee WOV Report");
             cboSelectReportType.Items.Add("Department WOV Report");
             cboSelectReportType.SelectedIndex = 0;
@@ -159,21 +165,13 @@ namespace BlueJayERP
             }
             else if (cboSelectReportType.SelectedIndex == 3)
             {
-                gstrReportType = "TOTAL";
-                lblEnterLastName.Visibility = Visibility.Hidden;
-                txtEnterLastName.Visibility = Visibility.Hidden;
-                lblSelectEmployee.Visibility = Visibility.Hidden;
-                cboSelectEmployee.Visibility = Visibility.Hidden;
-            }
-            else if (cboSelectReportType.SelectedIndex == 4)
-            {
                 gstrReportType = "WOV";
                 lblEnterLastName.Visibility = Visibility.Visible;
                 txtEnterLastName.Visibility = Visibility.Visible;
                 lblSelectEmployee.Visibility = Visibility.Visible;
                 cboSelectEmployee.Visibility = Visibility.Visible;
             }
-            else if (cboSelectReportType.SelectedIndex == 5)
+            else if (cboSelectReportType.SelectedIndex == 4)
             {
                 gstrReportType = "DEPARTMENTWOV";
                 lblEnterLastName.Visibility = Visibility.Hidden;
@@ -190,9 +188,17 @@ namespace BlueJayERP
             bool blnFatalError = false;
             bool blnThereIsAProblem = false;
             string strErrorMessage = "";
+            int intCounter;
+            int intNumberOfRecords;
+            int intEmployeeID;
+            int intRecordsReturned;
+            decimal decTotalHours = 0;
 
             try
             {
+                TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Rows.Clear();
+                TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Rows.Clear();
+
                 strValueForValidation = txtStartDate.Text;
                 blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
                 if(blnThereIsAProblem == true)
@@ -229,25 +235,94 @@ namespace BlueJayERP
                     return;
                 }
 
-                if(gstrReportType == "DEPARTMENT")
-                {
-                    TheFindDesignDepartmentProductivityByDateRangeDataSet = TheDesignProductivityClass.FindDesignDepartmentProductivityByDateRange(gdatStartDate, gdatEndDate);
-
-                    dgrResults.ItemsSource = TheFindDesignDepartmentProductivityByDateRangeDataSet.FindDesignDepartmentProductivityByDateRange;
-                }
-                else if(gstrReportType == "EMPLOYEE")
-                {
-                    TheFindDesignEmployeeProductivityByDataRangeDataSet = TheDesignProductivityClass.FindDesignEmployeeProductivityByDateRange(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
-
-                    dgrResults.ItemsSource = TheFindDesignEmployeeProductivityByDataRangeDataSet.FindDesignEmployeeProductivityByDateRange;
-                }
-                else if(gstrReportType == "TOTAL")
+                if (gstrReportType == "DEPARTMENT")
                 {
                     TheFindDesignTotalDepartmentProductivityDataSet = TheDesignProductivityClass.FindDesignTotalDepartmentProductivity(gdatStartDate, gdatEndDate);
 
-                    dgrResults.ItemsSource = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity;
+                    intNumberOfRecords = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity.Rows.Count - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            decTotalHours = 0;
+
+                            intEmployeeID = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity[intCounter].EmployeeID;
+
+                            TheFindEmployeeProductionHoursOverPayPeriodDataSet = TheEmployeeProjectAssignmentClass.FindEmployeeProductionHoursOverPayPeriodDataSet(intEmployeeID, gdatStartDate, gdatEndDate);
+
+                            intRecordsReturned = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod.Rows.Count;
+
+                            if (intRecordsReturned > 0)
+                            {
+                                decTotalHours = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod[0].ProductionHours;
+                            }
+
+                            decTotalHours += TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity[intCounter].TotalHours;
+
+                            DesignDepartmentProductivityDataSet.designdepartmentproductivityRow NewProductivityRow = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.NewdesigndepartmentproductivityRow();
+
+                            NewProductivityRow.FirstName = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity[intCounter].FirstName;
+                            NewProductivityRow.LastName = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity[intCounter].LastName;
+                            NewProductivityRow.HomeOffice = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity[intCounter].HomeOffice;
+                            NewProductivityRow.TotalHours = decTotalHours;
+
+                            TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Rows.Add(NewProductivityRow);
+                        }
+                    }
+
+                    dgrResults.ItemsSource = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity;
+                    gblnDepartment = true;
                 }
-                else if(gstrReportType == "WOV")
+                else if (gstrReportType == "EMPLOYEE")
+                {
+                    TheFindDesignEmployeeTotalHoursDataSet = TheDesignProductivityClass.FindDesignEmployeeTotalHours(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
+
+                    intNumberOfRecords = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours.Rows.Count - 1;
+
+                    if(intNumberOfRecords > -1)
+                    {
+                        for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                            {
+                                DesignEmployeeProductivityDataSet.designemployeeproductivityRow NewProductivityRow = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.NewdesignemployeeproductivityRow();
+
+                                NewProductivityRow.AssignedProjectID = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours[intCounter].AssignedProjectID;
+                                NewProductivityRow.ProjectName = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours[intCounter].ProjectName;
+                                NewProductivityRow.TaskID = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours[intCounter].TaskID;
+                                NewProductivityRow.TotalHours = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours[intCounter].TotalHours;
+                                NewProductivityRow.WorkTask = TheFindDesignEmployeeTotalHoursDataSet.FindDesignEmployeeTotalHours[intCounter].WorkTask;
+
+                                TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Rows.Add(NewProductivityRow);
+                            }
+                        }
+                    }
+
+                    TheFindEmployeeTaskTotalHoursDataSet = TheEmployeeProjectAssignmentClass.FindEmployeeTaskTotalHours(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
+
+                    intNumberOfRecords = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours.Rows.Count - 1;
+
+                    if(intNumberOfRecords > -1)
+                    {
+                        for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            DesignEmployeeProductivityDataSet.designemployeeproductivityRow NewProductivityRow = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.NewdesignemployeeproductivityRow();
+
+                            NewProductivityRow.AssignedProjectID = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours[intCounter].AssignedProjectID;
+                            NewProductivityRow.ProjectName = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours[intCounter].ProjectName;
+                            NewProductivityRow.TaskID = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours[intCounter].TaskID;
+                            NewProductivityRow.TotalHours = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours[intCounter].TotalHours;
+                            NewProductivityRow.WorkTask = TheFindEmployeeTaskTotalHoursDataSet.FindEmployeeTaskTotalHours[intCounter].WorkTask;
+
+                            TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Rows.Add(NewProductivityRow);
+                        }
+                    }
+
+                    dgrResults.ItemsSource = TheDesignEmployeeProductivityDataSet.designemployeeproductivity;
+                }
+                
+                else if (gstrReportType == "WOV")
                 {
                     TheFindDesignEmployeeWOVCountDataSet = TheDesignProjectsSurveyorClass.FindDesignEmployeeWOVCount(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
 
@@ -340,10 +415,6 @@ namespace BlueJayERP
             else if (gstrReportType == "EMPLOYEE")
             {
                 ExportEmployeeToExcel();
-            }
-            else if (gstrReportType == "TOTAL")
-            {
-                ExportTotalToExcel();
             }
             else if (gstrReportType == "WOV")
             {
@@ -517,12 +588,12 @@ namespace BlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindDesignDepartmentProductivityByDateRangeDataSet.FindDesignDepartmentProductivityByDateRange.Rows.Count;
-                intColumnNumberOfRecords = TheFindDesignDepartmentProductivityByDateRangeDataSet.FindDesignDepartmentProductivityByDateRange.Columns.Count;
+                intRowNumberOfRecords = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Rows.Count;
+                intColumnNumberOfRecords = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignDepartmentProductivityByDateRangeDataSet.FindDesignDepartmentProductivityByDateRange.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -535,7 +606,7 @@ namespace BlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignDepartmentProductivityByDateRangeDataSet.FindDesignDepartmentProductivityByDateRange.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDesignDepartmentProductivityDataSet.designdepartmentproductivity.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -588,12 +659,12 @@ namespace BlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindDesignEmployeeProductivityByDataRangeDataSet.FindDesignEmployeeProductivityByDateRange.Rows.Count;
-                intColumnNumberOfRecords = TheFindDesignEmployeeProductivityByDataRangeDataSet.FindDesignEmployeeProductivityByDateRange.Columns.Count;
+                intRowNumberOfRecords = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Rows.Count;
+                intColumnNumberOfRecords = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignEmployeeProductivityByDataRangeDataSet.FindDesignEmployeeProductivityByDateRange.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -606,7 +677,7 @@ namespace BlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignEmployeeProductivityByDataRangeDataSet.FindDesignEmployeeProductivityByDateRange.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDesignEmployeeProductivityDataSet.designemployeeproductivity.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -638,76 +709,6 @@ namespace BlueJayERP
                 excel = null;
             }
         }
-        private void ExportTotalToExcel()
-        {
-            int intRowCounter;
-            int intRowNumberOfRecords;
-            int intColumnCounter;
-            int intColumnNumberOfRecords;
-
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
-            try
-            {
-
-                worksheet = workbook.ActiveSheet;
-
-                worksheet.Name = "OpenOrders";
-
-                int cellRowIndex = 1;
-                int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity.Rows.Count;
-                intColumnNumberOfRecords = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity.Columns.Count;
-
-                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
-                {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity.Columns[intColumnCounter].ColumnName;
-
-                    cellColumnIndex++;
-                }
-
-                cellRowIndex++;
-                cellColumnIndex = 1;
-
-                //Loop through each row and read value from each column. 
-                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
-                {
-                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
-                    {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindDesignTotalDepartmentProductivityDataSet.FindDesignTotalDepartmentProductivity.Rows[intRowCounter][intColumnCounter].ToString();
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                saveDialog.FilterIndex = 1;
-
-                saveDialog.ShowDialog();
-
-                workbook.SaveAs(saveDialog.FileName);
-                MessageBox.Show("Export Successful");
-
-            }
-            catch (System.Exception ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Design Employee Productivity // Export Total to Excel " + ex.Message);
-
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                excel.Quit();
-                workbook = null;
-                excel = null;
-            }
-        }
+        
     }
 }

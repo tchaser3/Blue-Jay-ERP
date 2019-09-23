@@ -570,8 +570,18 @@
     <Compile Include="DeactivateEmployeesTools.xaml.cs">
       <DependentUpon>DeactivateEmployeesTools.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesignDepartmentProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DesignEmployeeProductivity.xaml.cs">
       <DependentUpon>DesignEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignEmployeeProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DesignProductivityReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2120,6 +2130,28 @@
     </None>
     <None Include="DailyVehicleInspectionReportDataSet.xss">
       <DependentUpon>DailyVehicleInspectionReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xsc">
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignDepartmentProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xss">
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xsc">
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignEmployeeProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xss">
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
     </None>
     <None Include="DesignProductivityReportDataSet.xsc">
       <DependentUpon>DesignProductivityReportDataSet.xsd</DependentUpon>

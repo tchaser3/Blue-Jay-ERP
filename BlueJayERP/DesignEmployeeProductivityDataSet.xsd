@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DesignEmployeeProductivityDataSet" targetNamespace="http://tempuri.org/DesignEmployeeProductivityDataSet.xsd" xmlns:mstns="http://tempuri.org/DesignEmployeeProductivityDataSet.xsd" xmlns="http://tempuri.org/DesignEmployeeProductivityDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DesignEmployeeProductivityDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DesignEmployeeProductivityDataSet" msprop:Generator_UserDSName="DesignEmployeeProductivityDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="designemployeeproductivity" msprop:Generator_TableClassName="designemployeeproductivityDataTable" msprop:Generator_TableVarName="tabledesignemployeeproductivity" msprop:Generator_TablePropName="designemployeeproductivity" msprop:Generator_RowDeletingName="designemployeeproductivityRowDeleting" msprop:Generator_RowChangingName="designemployeeproductivityRowChanging" msprop:Generator_RowEvHandlerName="designemployeeproductivityRowChangeEventHandler" msprop:Generator_RowDeletedName="designemployeeproductivityRowDeleted" msprop:Generator_UserTableName="designemployeeproductivity" msprop:Generator_RowChangedName="designemployeeproductivityRowChanged" msprop:Generator_RowEvArgName="designemployeeproductivityRowChangeEvent" msprop:Generator_RowClassName="designemployeeproductivityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="AssignedProjectID" msprop:Generator_ColumnVarNameInTable="columnAssignedProjectID" msprop:Generator_ColumnPropNameInRow="AssignedProjectID" msprop:Generator_ColumnPropNameInTable="AssignedProjectIDColumn" msprop:Generator_UserColumnName="AssignedProjectID" type="xs:string" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_UserColumnName="ProjectName" type="xs:string" />
+              <xs:element name="TaskID" msprop:Generator_ColumnVarNameInTable="columnTaskID" msprop:Generator_ColumnPropNameInRow="TaskID" msprop:Generator_ColumnPropNameInTable="TaskIDColumn" msprop:Generator_UserColumnName="TaskID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="TotalHours" msprop:Generator_ColumnVarNameInTable="columnTotalHours" msprop:Generator_ColumnPropNameInRow="TotalHours" msprop:Generator_ColumnPropNameInTable="TotalHoursColumn" msprop:Generator_UserColumnName="TotalHours" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:designemployeeproductivity" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
