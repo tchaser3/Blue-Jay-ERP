@@ -283,6 +283,8 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnAssignedProjectID;
             
+            private global::System.Data.DataColumn columnDateReceived;
+            
             private global::System.Data.DataColumn columnProjectName;
             
             private global::System.Data.DataColumn columnAssignedOffice;
@@ -335,6 +337,14 @@ namespace BlueJayERP {
             public global::System.Data.DataColumn AssignedProjectIDColumn {
                 get {
                     return this.columnAssignedProjectID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DateReceivedColumn {
+                get {
+                    return this.columnDateReceived;
                 }
             }
             
@@ -399,11 +409,12 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public designprojectsRow AdddesignprojectsRow(int ProjectID, string AssignedProjectID, string ProjectName, string AssignedOffice, bool ProcessProject) {
+            public designprojectsRow AdddesignprojectsRow(int ProjectID, string AssignedProjectID, System.DateTime DateReceived, string ProjectName, string AssignedOffice, bool ProcessProject) {
                 designprojectsRow rowdesignprojectsRow = ((designprojectsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ProjectID,
                         AssignedProjectID,
+                        DateReceived,
                         ProjectName,
                         AssignedOffice,
                         ProcessProject};
@@ -438,6 +449,7 @@ namespace BlueJayERP {
             internal void InitVars() {
                 this.columnProjectID = base.Columns["ProjectID"];
                 this.columnAssignedProjectID = base.Columns["AssignedProjectID"];
+                this.columnDateReceived = base.Columns["DateReceived"];
                 this.columnProjectName = base.Columns["ProjectName"];
                 this.columnAssignedOffice = base.Columns["AssignedOffice"];
                 this.columnProcessProject = base.Columns["ProcessProject"];
@@ -450,6 +462,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnProjectID);
                 this.columnAssignedProjectID = new global::System.Data.DataColumn("AssignedProjectID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAssignedProjectID);
+                this.columnDateReceived = new global::System.Data.DataColumn("DateReceived", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateReceived);
                 this.columnProjectName = new global::System.Data.DataColumn("ProjectName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProjectName);
                 this.columnAssignedOffice = new global::System.Data.DataColumn("AssignedOffice", typeof(string), null, global::System.Data.MappingType.Element);
@@ -461,6 +475,7 @@ namespace BlueJayERP {
                 this.columnProjectID.AllowDBNull = false;
                 this.columnProjectID.Unique = true;
                 this.columnAssignedProjectID.AllowDBNull = false;
+                this.columnDateReceived.AllowDBNull = false;
                 this.columnProjectName.AllowDBNull = false;
                 this.columnAssignedOffice.AllowDBNull = false;
                 this.columnProcessProject.AllowDBNull = false;
@@ -623,6 +638,17 @@ namespace BlueJayERP {
                 }
                 set {
                     this[this.tabledesignprojects.AssignedProjectIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime DateReceived {
+                get {
+                    return ((global::System.DateTime)(this[this.tabledesignprojects.DateReceivedColumn]));
+                }
+                set {
+                    this[this.tabledesignprojects.DateReceivedColumn] = value;
                 }
             }
             

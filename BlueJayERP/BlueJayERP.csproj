@@ -248,6 +248,9 @@
     <Reference Include="TrailerProblemDLL">
       <HintPath>..\..\Blue Jay Class Library\TrailerProblemDLL.dll</HintPath>
     </Reference>
+    <Reference Include="TrailerProblemDocumentationDLL">
+      <HintPath>..\..\Blue Jay Class Library\TrailerProblemDocumentationDLL.dll</HintPath>
+    </Reference>
     <Reference Include="TrailerProblemUpdateDLL">
       <HintPath>..\..\Blue Jay Class Library\TrailerProblemUpdateDLL.dll</HintPath>
     </Reference>
@@ -515,6 +518,9 @@
     </Compile>
     <Compile Include="CreateToolCategory.xaml.cs">
       <DependentUpon>CreateToolCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTrailerProblem.xaml.cs">
+      <DependentUpon>CreateTrailerProblem.xaml</DependentUpon>
     </Compile>
     <Compile Include="CrewHoursDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -909,6 +915,9 @@
     <Compile Include="OpenToolProblems.xaml.cs">
       <DependentUpon>OpenToolProblems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OpenTrailerProblemsByTrailerID.xaml.cs">
+      <DependentUpon>OpenTrailerProblemsByTrailerID.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenVehicleProblems.xaml.cs">
       <DependentUpon>OpenVehicleProblems.xaml</DependentUpon>
     </Compile>
@@ -921,6 +930,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OriginatingTasksDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PartNumberLookup.xaml.cs">
+      <DependentUpon>PartNumberLookup.xaml</DependentUpon>
     </Compile>
     <Compile Include="PhoneList.xaml.cs">
       <DependentUpon>PhoneList.xaml</DependentUpon>
@@ -1130,6 +1142,9 @@
     </Compile>
     <Compile Include="UpdateSpecificTasks.xaml.cs">
       <DependentUpon>UpdateSpecificTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTrailerProblem.xaml.cs">
+      <DependentUpon>UpdateTrailerProblem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateVehicleProblem.xaml.cs">
       <DependentUpon>UpdateVehicleProblem.xaml</DependentUpon>
@@ -1386,6 +1401,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateToolCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTrailerProblem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1669,7 +1688,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OpenTrailerProblemsByTrailerID.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OpenVehicleProblems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartNumberLookup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1830,6 +1857,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateSpecificTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateTrailerProblem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

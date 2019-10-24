@@ -172,6 +172,7 @@
             </MenuItem>
             <MenuItem x:Name="mitInventory" Header="Inventory">
                 <MenuItem x:Name="mitCycleCount" Header="Cycle Count" Click="mitCycleCount_Click"></MenuItem>
+                <MenuItem x:Name="mitPartNumberLookup" Header="Part Number Lookup" Click="mitPartNumberLookup_Click" />
                 <MenuItem x:Name="mitTransferInventory" Header="Transfer Inventory" Click="mitTransferInventory_Click"></MenuItem>
                 <MenuItem x:Name="mitInventoryReports" Header="Inventory Reports">
                     <MenuItem x:Name="mitWarehouseInventoryStats" Header="Warehouse Inventory Stats" Click="mitWarehouseInventoryStats_Click"></MenuItem>
@@ -246,6 +247,10 @@
                 <MenuItem x:Name="mitAssignTrailer" Header="Assign Trailer" Click="mitAssignTrailer_Click"></MenuItem>
                 <MenuItem x:Name="mitEditTrailer" Header="Edit Trailer" Click="mitEditTrailer_Click"></MenuItem>
                 <MenuItem x:Name="mitTrailersInYard" Header="Trailers In Yard" Click="mitTrailersInYard_Click"></MenuItem>
+                <MenuItem x:Name="mitTrailerProblems" Header="Trailer Problems">
+                    <MenuItem x:Name="mitCreateTrailerProblem" Header="Create Trailer Problem" Click="MitCreateTrailerProblem_Click" />
+                    <MenuItem x:Name="mitUpdateTrailerProblem" Header="Update Trailer Problem" Click="MitUpdateTrailerProblem_Click" />
+                </MenuItem>
                 <MenuItem x:Name="mitTrailerReports" Header="Trailer Reports">
                     <MenuItem x:Name="mitTrailerRoster" Header="Trailer Roster" Click="mitTrailerRoster_Click"></MenuItem>
                 </MenuItem>

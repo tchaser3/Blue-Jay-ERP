@@ -199,7 +199,7 @@ namespace BlueJayERP
                     TheFindEmployeeProductionHoursOverPayPeriodDataSet = TheEmployeeProjectAssignmentClass.FindEmployeeProductionHoursOverPayPeriodDataSet(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
 
                     intRecordReturned = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod.Rows.Count;
-
+                    
                     if (intRecordReturned == 0)
                     {
                         TheFindDesignTotalEmployeeProductivityHoursDataSet = TheDesignProductivityClass.FindDesignTotalEmployeeProductivityHours(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
@@ -218,6 +218,15 @@ namespace BlueJayERP
                     else
                     {
                         decProductiveHours = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod[0].ProductionHours;
+
+                        TheFindDesignTotalEmployeeProductivityHoursDataSet = TheDesignProductivityClass.FindDesignTotalEmployeeProductivityHours(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
+
+                        intRecordReturned = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours.Rows.Count;
+
+                        if(intRecordReturned > 0)
+                        {
+                            decProductiveHours += TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours[0].TotalHours;
+                        }
                     }
 
                     //loading the dataset

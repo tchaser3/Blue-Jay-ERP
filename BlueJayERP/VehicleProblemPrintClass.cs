@@ -191,7 +191,7 @@ namespace BlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Vehicle Problem Print Class // Create MDU Drop Acceptance Letter " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Vehicle Problem Print Class // Print Vehicle Problem Info " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
 

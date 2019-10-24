@@ -132,7 +132,7 @@ namespace BlueJayERP
                 strTransactionName = strVehicleNumber + " " + strProblem + " ";
 
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-                dlg.FileName = "Document"; // Default file name
+                dlg.FileName = "Document"; // Default file name                
 
                 // Show open file dialog box
                 Nullable<bool> result = dlg.ShowDialog();

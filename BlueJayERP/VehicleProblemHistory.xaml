@@ -18,7 +18,9 @@
         <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
         <Menu HorizontalAlignment="Left" Height="30" HorizontalContentAlignment="Center"  VerticalAlignment="Top" Width="1079" Margin="3,22,0,0" FontSize="14">
             <MenuItem x:Name="mitFile" Header="File" Height="30">
-                <MenuItem x:Name="mitPRint" Header="Print Problem History" Click="mitPRint_Click"></MenuItem>
+                <MenuItem x:Name="mitPRint" Header="Print Specific Problem History" Click="mitPRint_Click"></MenuItem>
+                <MenuItem x:Name="mitPrintProblemList" Header="Print Problem List" Click="mitPrintProblemList_Click" />
+                <MenuItem x:Name="mitExportProblemList" Header="Export Complete List To Excel" Click="mitExportProblemList_Click" />
                 <MenuItem x:Name="mitExit" Header="Exit" Click="mitExit_Click"></MenuItem>
                 <MenuItem x:Name="mitCloseApplication" Header="Close Application" Click="mitCloseApplication_Click"></MenuItem>
             </MenuItem>
@@ -34,7 +36,7 @@
             </MenuItem>
         </Menu>
         <Image HorizontalAlignment="Left" Height="74" Margin="480,64,0,0" VerticalAlignment="Top" Width="130" Stretch="Fill" Source="logo.png"/>
-        <Label x:Name="lblTitle" Content="New Vehicle Problem" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="1072"/>
+        <Label x:Name="lblTitle" Content="Vehicle Problem History" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="1072"/>
         <TextBox x:Name="txtVehicleNumber" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CharacterCasing="Upper" FontSize="16" HorizontalAlignment="Left" Height="44" Margin="548,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="164" TextChanged="txtVehicleNumber_TextChanged"/>
         <Label x:Name="lblVehicleNumber" Content="Enter Vehicle Number" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" Margin="381,194,0,0" VerticalAlignment="Top" Height="44" Width="162"/>
         <DataGrid x:Name="dgrProblems" IsReadOnly="True" HorizontalAlignment="Left" Height="482" Margin="10,300,0,0" VerticalAlignment="Top" Width="522" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrProblems_SelectionChanged"/>

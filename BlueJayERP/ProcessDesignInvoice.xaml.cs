@@ -216,22 +216,6 @@ namespace BlueJayERP
 
                     intProjectIdentifictionID = TheFindWOVInvoicingByTransactionDateDataSet.FindWOVInvoicingByTransactionDate[0].ProjectIdentificationID;
 
-                    if (MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].WOV1 != 0)
-                    {
-                        strWOVDescription = "WOV1";
-                        decTotalQuantity = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].WOV1;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].WOV2 != 0)
-                    {
-                        strWOVDescription = "WOV2";
-                        decTotalQuantity = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].WOV2;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
                     if (MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].PP1 != 0)
                     {
                         strWOVDescription = "PP1";
@@ -244,22 +228,6 @@ namespace BlueJayERP
                     {
                         strWOVDescription = "PP2";
                         decTotalQuantity = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].PP2;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].UF != 0)
-                    {
-                        strWOVDescription = "UF";
-                        decTotalQuantity = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].UF;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].HA != 0)
-                    {
-                        strWOVDescription = "HA";
-                        decTotalQuantity = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].HA;
 
                         TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
                         intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
@@ -433,55 +401,7 @@ namespace BlueJayERP
                         TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
                         intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
                     }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].FE01 != 0)
-                    {
-                        strWOVDescription = "FE01";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].FE01;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].UG != 0)
-                    {
-                        strWOVDescription = "UG";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].UG;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].HA != 0)
-                    {
-                        strWOVDescription = "HA";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].HA;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].MC05 != 0)
-                    {
-                        strWOVDescription = "MC05";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].MC05;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].MC06 != 0)
-                    {
-                        strWOVDescription = "MC06";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].MC06;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;
-                    }
-                    if (MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].NS004 != 0)
-                    {
-                        strWOVDescription = "NS004";
-                        decTotalQuantity = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].NS004;
-
-                        TheFindTechPayItemByCodeDataSet = TheTechPayClass.FindTechPayItemByCode(strWOVDescription);
-                        intWOVTaskID = TheFindTechPayItemByCodeDataSet.FindTechPayItemByCode[0].TechPayID;                        
-                    }
-
+                    
                     blnFatalError = TheWOVInvoicingClass.InsertWOVInvoicingItems(intProjectID, intProjectIdentifictionID, intEmployeeID, intWOVTaskID, Convert.ToInt32(decTotalQuantity));
 
                     if (blnFatalError == true)

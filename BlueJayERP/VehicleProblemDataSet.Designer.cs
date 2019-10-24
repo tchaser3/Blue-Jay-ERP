@@ -287,6 +287,8 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnSolved;
             
+            private global::System.Data.DataColumn columnProblemResolution;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public vehicleproblemsDataTable() {
@@ -354,6 +356,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ProblemResolutionColumn {
+                get {
+                    return this.columnProblemResolution;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +399,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public vehicleproblemsRow AddvehicleproblemsRow(System.DateTime TransactionDate, string Problem, bool Solved) {
+            public vehicleproblemsRow AddvehicleproblemsRow(System.DateTime TransactionDate, string Problem, bool Solved, string ProblemResolution) {
                 vehicleproblemsRow rowvehicleproblemsRow = ((vehicleproblemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         TransactionDate,
                         Problem,
-                        Solved};
+                        Solved,
+                        ProblemResolution};
                 rowvehicleproblemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowvehicleproblemsRow);
                 return rowvehicleproblemsRow;
@@ -429,6 +440,7 @@ namespace BlueJayERP {
                 this.columnTransactionDate = base.Columns["TransactionDate"];
                 this.columnProblem = base.Columns["Problem"];
                 this.columnSolved = base.Columns["Solved"];
+                this.columnProblemResolution = base.Columns["ProblemResolution"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -442,6 +454,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnProblem);
                 this.columnSolved = new global::System.Data.DataColumn("Solved", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSolved);
+                this.columnProblemResolution = new global::System.Data.DataColumn("ProblemResolution", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProblemResolution);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnProblemID}, true));
                 this.columnProblemID.AutoIncrement = true;
@@ -634,6 +648,34 @@ namespace BlueJayERP {
                 set {
                     this[this.tablevehicleproblems.SolvedColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ProblemResolution {
+                get {
+                    try {
+                        return ((string)(this[this.tablevehicleproblems.ProblemResolutionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProblemResolution\' in table \'vehicleproblems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevehicleproblems.ProblemResolutionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProblemResolutionNull() {
+                return this.IsNull(this.tablevehicleproblems.ProblemResolutionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProblemResolutionNull() {
+                this[this.tablevehicleproblems.ProblemResolutionColumn] = global::System.Convert.DBNull;
             }
         }
         

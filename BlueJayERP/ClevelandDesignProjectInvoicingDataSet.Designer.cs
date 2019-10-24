@@ -299,17 +299,11 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnPP2;
             
-            private global::System.Data.DataColumn columnFE01;
+            private global::System.Data.DataColumn columnPermitType;
             
-            private global::System.Data.DataColumn columnUG;
+            private global::System.Data.DataColumn columnPermitCost;
             
-            private global::System.Data.DataColumn columnHA;
-            
-            private global::System.Data.DataColumn columnMC05;
-            
-            private global::System.Data.DataColumn columnMC06;
-            
-            private global::System.Data.DataColumn columnNS004;
+            private global::System.Data.DataColumn columnPermitQuantity;
             
             private global::System.Data.DataColumn columnTotalProjectCharge;
             
@@ -428,49 +422,25 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn FE01Column {
+            public global::System.Data.DataColumn PermitTypeColumn {
                 get {
-                    return this.columnFE01;
+                    return this.columnPermitType;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn UGColumn {
+            public global::System.Data.DataColumn PermitCostColumn {
                 get {
-                    return this.columnUG;
+                    return this.columnPermitCost;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn HAColumn {
+            public global::System.Data.DataColumn PermitQuantityColumn {
                 get {
-                    return this.columnHA;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn MC05Column {
-                get {
-                    return this.columnMC05;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn MC06Column {
-                get {
-                    return this.columnMC06;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn NS004Column {
-                get {
-                    return this.columnNS004;
+                    return this.columnPermitQuantity;
                 }
             }
             
@@ -519,23 +489,7 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public clevelanddesigninvoiceRow AddclevelanddesigninvoiceRow(
-                        System.DateTime Date, 
-                        string BusinessName, 
-                        string BusinessAddress, 
-                        string DockID, 
-                        decimal WOV1, 
-                        decimal WOV2, 
-                        decimal WOV3, 
-                        decimal PP1, 
-                        decimal PP2, 
-                        decimal FE01, 
-                        decimal UG, 
-                        decimal HA, 
-                        decimal MC05, 
-                        decimal MC06, 
-                        decimal NS004, 
-                        decimal TotalProjectCharge) {
+            public clevelanddesigninvoiceRow AddclevelanddesigninvoiceRow(System.DateTime Date, string BusinessName, string BusinessAddress, string DockID, decimal WOV1, decimal WOV2, decimal WOV3, decimal PP1, decimal PP2, string PermitType, decimal PermitCost, int PermitQuantity, decimal TotalProjectCharge) {
                 clevelanddesigninvoiceRow rowclevelanddesigninvoiceRow = ((clevelanddesigninvoiceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -548,12 +502,9 @@ namespace BlueJayERP {
                         WOV3,
                         PP1,
                         PP2,
-                        FE01,
-                        UG,
-                        HA,
-                        MC05,
-                        MC06,
-                        NS004,
+                        PermitType,
+                        PermitCost,
+                        PermitQuantity,
                         TotalProjectCharge};
                 rowclevelanddesigninvoiceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowclevelanddesigninvoiceRow);
@@ -594,12 +545,9 @@ namespace BlueJayERP {
                 this.columnWOV3 = base.Columns["WOV3"];
                 this.columnPP1 = base.Columns["PP1"];
                 this.columnPP2 = base.Columns["PP2"];
-                this.columnFE01 = base.Columns["FE01"];
-                this.columnUG = base.Columns["UG"];
-                this.columnHA = base.Columns["HA"];
-                this.columnMC05 = base.Columns["MC05"];
-                this.columnMC06 = base.Columns["MC06"];
-                this.columnNS004 = base.Columns["NS004"];
+                this.columnPermitType = base.Columns["PermitType"];
+                this.columnPermitCost = base.Columns["PermitCost"];
+                this.columnPermitQuantity = base.Columns["PermitQuantity"];
                 this.columnTotalProjectCharge = base.Columns["TotalProjectCharge"];
             }
             
@@ -626,18 +574,12 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnPP1);
                 this.columnPP2 = new global::System.Data.DataColumn("PP2", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPP2);
-                this.columnFE01 = new global::System.Data.DataColumn("FE01", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFE01);
-                this.columnUG = new global::System.Data.DataColumn("UG", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUG);
-                this.columnHA = new global::System.Data.DataColumn("HA", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHA);
-                this.columnMC05 = new global::System.Data.DataColumn("MC05", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMC05);
-                this.columnMC06 = new global::System.Data.DataColumn("MC06", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMC06);
-                this.columnNS004 = new global::System.Data.DataColumn("NS004", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNS004);
+                this.columnPermitType = new global::System.Data.DataColumn("PermitType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermitType);
+                this.columnPermitCost = new global::System.Data.DataColumn("PermitCost", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermitCost);
+                this.columnPermitQuantity = new global::System.Data.DataColumn("PermitQuantity", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermitQuantity);
                 this.columnTotalProjectCharge = new global::System.Data.DataColumn("TotalProjectCharge", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalProjectCharge);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -656,11 +598,9 @@ namespace BlueJayERP {
                 this.columnWOV3.AllowDBNull = false;
                 this.columnPP1.AllowDBNull = false;
                 this.columnPP2.AllowDBNull = false;
-                this.columnFE01.AllowDBNull = false;
-                this.columnUG.AllowDBNull = false;
-                this.columnHA.AllowDBNull = false;
-                this.columnMC06.AllowDBNull = false;
-                this.columnNS004.AllowDBNull = false;
+                this.columnPermitType.AllowDBNull = false;
+                this.columnPermitCost.AllowDBNull = false;
+                this.columnPermitQuantity.AllowDBNull = false;
                 this.columnTotalProjectCharge.AllowDBNull = false;
             }
             
@@ -914,72 +854,34 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal FE01 {
+            public string PermitType {
                 get {
-                    return ((decimal)(this[this.tableclevelanddesigninvoice.FE01Column]));
+                    return ((string)(this[this.tableclevelanddesigninvoice.PermitTypeColumn]));
                 }
                 set {
-                    this[this.tableclevelanddesigninvoice.FE01Column] = value;
+                    this[this.tableclevelanddesigninvoice.PermitTypeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal UG {
+            public decimal PermitCost {
                 get {
-                    return ((decimal)(this[this.tableclevelanddesigninvoice.UGColumn]));
+                    return ((decimal)(this[this.tableclevelanddesigninvoice.PermitCostColumn]));
                 }
                 set {
-                    this[this.tableclevelanddesigninvoice.UGColumn] = value;
+                    this[this.tableclevelanddesigninvoice.PermitCostColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal HA {
+            public int PermitQuantity {
                 get {
-                    return ((decimal)(this[this.tableclevelanddesigninvoice.HAColumn]));
+                    return ((int)(this[this.tableclevelanddesigninvoice.PermitQuantityColumn]));
                 }
                 set {
-                    this[this.tableclevelanddesigninvoice.HAColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal MC05 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableclevelanddesigninvoice.MC05Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MC05\' in table \'clevelanddesigninvoice\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableclevelanddesigninvoice.MC05Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal MC06 {
-                get {
-                    return ((decimal)(this[this.tableclevelanddesigninvoice.MC06Column]));
-                }
-                set {
-                    this[this.tableclevelanddesigninvoice.MC06Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal NS004 {
-                get {
-                    return ((decimal)(this[this.tableclevelanddesigninvoice.NS004Column]));
-                }
-                set {
-                    this[this.tableclevelanddesigninvoice.NS004Column] = value;
+                    this[this.tableclevelanddesigninvoice.PermitQuantityColumn] = value;
                 }
             }
             
@@ -992,18 +894,6 @@ namespace BlueJayERP {
                 set {
                     this[this.tableclevelanddesigninvoice.TotalProjectChargeColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsMC05Null() {
-                return this.IsNull(this.tableclevelanddesigninvoice.MC05Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetMC05Null() {
-                this[this.tableclevelanddesigninvoice.MC05Column] = global::System.Convert.DBNull;
             }
         }
         

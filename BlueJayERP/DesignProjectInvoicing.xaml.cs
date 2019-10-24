@@ -46,7 +46,7 @@ namespace BlueJayERP
         DesignProjectUpdateClass TheDesignProjectUpdateClass = new DesignProjectUpdateClass();
 
         //setting up the data
-        FindDesignProjectsReadyForInvoicingDataSet TheFindDesignProjectsReadyForInvoicingDataSet = new FindDesignProjectsReadyForInvoicingDataSet();
+        FindDesignProjectsByJobStatusDataSet TheFindDesignProjectsByJobStatusDataSet = new FindDesignProjectsByJobStatusDataSet();
         FindPermitsByProjectIDDataSet TheFindPermitByProjectIDDataSet = new FindPermitsByProjectIDDataSet();
         DesignProjectsNeedingInvoiceDataSet TheDesignProjectsNeedingInvoiceDataSet = new DesignProjectsNeedingInvoiceDataSet();
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsByAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
@@ -136,10 +136,10 @@ namespace BlueJayERP
             try
             {
                 //filling data set
-                TheFindDesignProjectsReadyForInvoicingDataSet = TheWOVInvoicingClass.FindDesignProjectsForInvoicing();
+                TheFindDesignProjectsByJobStatusDataSet = TheDesignProjectsClass.FindDesignProjectsByJobStatus("INVOICED");
 
                 //getting ready for the loop
-                intNumberOfRecords = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing.Rows.Count - 1;
+                intNumberOfRecords = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus.Rows.Count - 1;
                 TheDesignProjectsNeedingInvoiceDataSet.designprojects.Rows.Clear();
                 gintCounter = 0;
                 gintNumberOfRecords = 0;
@@ -149,7 +149,7 @@ namespace BlueJayERP
                     for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                     {
                         blnItemFound = false;
-                        strAssignedProjectID = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].AssignedProjectID;
+                        strAssignedProjectID = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus[intCounter].AssignedProjectID;
 
                         TheFindDesignProjectsByAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strAssignedProjectID);
 
@@ -170,11 +170,12 @@ namespace BlueJayERP
                         {
                             DesignProjectsNeedingInvoiceDataSet.designprojectsRow NewProjectRow = TheDesignProjectsNeedingInvoiceDataSet.designprojects.NewdesignprojectsRow();
 
-                            NewProjectRow.AssignedOffice = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].AssignedOffice;
-                            NewProjectRow.AssignedProjectID = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].AssignedProjectID;
+                            NewProjectRow.AssignedOffice = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus[intCounter].FirstName;
+                            NewProjectRow.AssignedProjectID = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus[intCounter].AssignedProjectID;
                             NewProjectRow.ProjectID = intProjectID;
-                            NewProjectRow.ProjectName = TheFindDesignProjectsReadyForInvoicingDataSet.FindDesignProjectsReadyForInvoicing[intCounter].ProjectName;
+                            NewProjectRow.ProjectName = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus[intCounter].ProjectName;
                             NewProjectRow.ProcessProject = false;
+                            NewProjectRow.DateReceived = TheFindDesignProjectsByJobStatusDataSet.FindDesignProjectsByJobStatus[intCounter].DateReceived;
 
                             TheDesignProjectsNeedingInvoiceDataSet.designprojects.Rows.Add(NewProjectRow);
                             gintNumberOfRecords = gintCounter;
@@ -256,17 +257,6 @@ namespace BlueJayERP
                                 throw new Exception();
                         }
 
-                        if(gblnDisplayInvoice == true)
-                        {
-                            //adding the permit costs
-                            blnFatalError = AddPermitValues(strWarehouse);
-
-                            if (blnFatalError == true)
-                                throw new Exception();
-
-                            ProcessDesignInvoice ProcessDesignInvoice = new ProcessDesignInvoice();
-                            ProcessDesignInvoice.ShowDialog();
-                        }
                     }
                 }
 
@@ -279,69 +269,7 @@ namespace BlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
-        private bool AddPermitValues(string strWarehouse)
-        {
-            bool blnFatalError = false;
-            int intCounter;
-            int intNumberOfRecords;
-            int intRecordsReturned;
-            decimal decTotalCost;
-
-            try
-            {
-                TheFindDesignPermitCostsDataSet = TheDesignPermitsClass.FindDesignPermitCosts(MainWindow.gintProjectID);
-
-                intRecordsReturned = TheFindDesignPermitCostsDataSet.FindDesignPermitCosts.Rows.Count;
-
-                if(intRecordsReturned > 0)
-                {
-                    decTotalCost = TheFindDesignPermitCostsDataSet.FindDesignPermitCosts[0].TotalCost;
-
-                    if(strWarehouse == "CLEVELAND")
-                    {
-                        intNumberOfRecords = MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice.Rows.Count - 1;
-
-                        if(intNumberOfRecords > -1)
-                        {
-                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                            {
-                                if(MainWindow.gstrAssignedProjectID == MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].DockID)
-                                {
-                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].NS004 = decTotalCost;
-                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intCounter].TotalProjectCharge += decTotalCost;
-                                }
-                            }
-                        }
-                    }
-                    if (strWarehouse == "MILWAUKEE")
-                    {
-                        intNumberOfRecords = MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice.Rows.Count - 1;
-
-                        if (intNumberOfRecords > -1)
-                        {
-                            for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                            {
-                                if (MainWindow.gstrAssignedProjectID == MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].DockID)
-                                {
-                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].PermitCost = decTotalCost;
-                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intCounter].ProjectTotal += decTotalCost;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Design Project Invoicing // Add Permit Value " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-
-                blnFatalError = true;
-            }
-
-            return blnFatalError;
-        }
+        
         private bool LoadClevelandInvoice(int intOfficeID, int intBillingID)
         {
             bool blnFatalError = false;
@@ -435,36 +363,7 @@ namespace BlueJayERP
                                                     MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].PP2 += Convert.ToDecimal(intTotalQuantity);
                                                     MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
                                                 }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "FE01")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].FE01 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UG")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].UG += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "HA")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].HA += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC05")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].MC05 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC06")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].MC06 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "NS004")
-                                                {
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].NS004 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice[intReportCounter].TotalProjectCharge += decTotalPrice;
-                                                }
+                                                
                                             }
                                         }
                                     }
@@ -481,7 +380,6 @@ namespace BlueJayERP
                                         datClosingDate = FindClosingDate(MainWindow.gintProjectID);
                                         NewProjectRow.Date = datClosingDate;
                                         NewProjectRow.TotalProjectCharge = decTotalPrice;
-                                        NewProjectRow.NS004 = 0;
 
                                         if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV1")
                                         {
@@ -490,11 +388,6 @@ namespace BlueJayERP
                                             NewProjectRow.WOV3 = 0;
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
                                         }
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV2")
                                         {
@@ -503,11 +396,7 @@ namespace BlueJayERP
                                             NewProjectRow.WOV3 = 0;
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
+                                            
                                         }
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV3")
                                         {
@@ -516,11 +405,7 @@ namespace BlueJayERP
                                             NewProjectRow.WOV3 = Convert.ToDecimal(intTotalQuantity);
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
+                                            
                                         }
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
                                         {
@@ -529,11 +414,7 @@ namespace BlueJayERP
                                             NewProjectRow.WOV3 = 0;
                                             NewProjectRow.PP1 = Convert.ToDecimal(intTotalQuantity);
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
+                                            
                                         }
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP2")
                                         {
@@ -542,77 +423,9 @@ namespace BlueJayERP
                                             NewProjectRow.WOV3 = 0;
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
+                                            
                                         }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "FE01")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.WOV3 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
-                                        }                                        
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UG")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.WOV3 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "HA")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.WOV3 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC05")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.WOV3 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.MC06 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC06")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.WOV3 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.FE01 = 0;
-                                            NewProjectRow.UG = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                            NewProjectRow.MC06 = Convert.ToDecimal(intTotalQuantity); ;
-                                        }
+                                        
                                         
 
                                         MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice.Rows.Add(NewProjectRow);
@@ -706,17 +519,7 @@ namespace BlueJayERP
                                             {
                                                 blnItemFound = true;
 
-                                                if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV1")
-                                                {
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].WOV1 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV2")
-                                                {
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].WOV2 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
+                                                if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
                                                 {
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].PP1 += Convert.ToDecimal(intTotalQuantity);
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
@@ -724,16 +527,6 @@ namespace BlueJayERP
                                                 else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP2")
                                                 {
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].PP2 += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UF")
-                                                {
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].UF += Convert.ToDecimal(intTotalQuantity);
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
-                                                }
-                                                else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "HA")
-                                                {
-                                                    MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].HA += Convert.ToDecimal(intTotalQuantity);
                                                     MainWindow.TheWisconsinDesignProjectInvoicingDataSet.wisconsindesigninvoice[intReportCounter].ProjectTotal += decTotalPrice;
                                                 }
                                                 else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC05")
@@ -760,74 +553,23 @@ namespace BlueJayERP
                                         NewProjectRow.PermitType = "";
                                         NewProjectRow.PermitCost = 0;
 
-                                        if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV1")
+                                        if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
                                         {
-                                            NewProjectRow.WOV1 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "WOV2")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP1")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
                                             NewProjectRow.PP1 = Convert.ToDecimal(intTotalQuantity);
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = 0;
                                             NewProjectRow.MC05 = 0;
                                         }
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "PP2")
                                         {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = 0;
                                             NewProjectRow.MC05 = 0;
                                         }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "UF")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.HA = 0;
-                                            NewProjectRow.MC05 = 0;
-                                        }
-                                        else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "HA")
-                                        {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
-                                            NewProjectRow.PP1 = 0;
-                                            NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = Convert.ToDecimal(intTotalQuantity);
-                                            NewProjectRow.MC05 = 0;
-                                        }
+                                        
                                         else if (TheFindProjectTechPayItemsTotalsByProjectIDDataSet.FindProjectTechPayItemsTotalsByProjectID[intPayCounter].TechPayCode == "MC05")
                                         {
-                                            NewProjectRow.WOV1 = 0;
-                                            NewProjectRow.WOV2 = 0;
                                             NewProjectRow.PP1 = 0;
                                             NewProjectRow.PP2 = 0;
-                                            NewProjectRow.UF = 0;
-                                            NewProjectRow.HA = 0;
                                             NewProjectRow.MC05 = Convert.ToDecimal(intTotalQuantity);
                                         }
 
@@ -914,30 +656,11 @@ namespace BlueJayERP
                     {
                         NewBillingRow.PP2 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
                     }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "FE01")
-                    {
-                        NewBillingRow.FE01 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "UG")
-                    {
-                        NewBillingRow.UG = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "HA")
-                    {
-                        NewBillingRow.HA = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "MC05")
-                    {
-                        NewBillingRow.MC05 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "MC06")
-                    {
-                        NewBillingRow.MC06 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "NS004")
-                    {
-                        NewBillingRow.NS004 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
+
+                    NewBillingRow.PermitCost = 0;
+                    NewBillingRow.PermitQuantity = 0;
+                    NewBillingRow.PermitType = "";
+                    
                 }
 
                 MainWindow.TheClevelandDesignProjectInvoicingDataSet.clevelanddesigninvoice.Rows.Add(NewBillingRow);
@@ -982,29 +705,13 @@ namespace BlueJayERP
 
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
-                    if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "WOV1")
-                    {
-                        NewBillingRow.WOV1 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "WOV2")
-                    {
-                        NewBillingRow.WOV2 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "PP1")
+                    if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "PP1")
                     {
                         NewBillingRow.PP1 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
                     }
                     else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "PP2")
                     {
                         NewBillingRow.PP2 = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "UF")
-                    {
-                        NewBillingRow.UF = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
-                    }
-                    else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "HA")
-                    {
-                        NewBillingRow.HA = TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].Price;
                     }
                     else if (TheFindSortedWOVTasksByOfficeIDDataSet.FindSortedWOVTasksByOfficeID[intCounter].WOVTaskDescription == "MC05")
                     {
