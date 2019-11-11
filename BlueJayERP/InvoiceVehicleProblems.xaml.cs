@@ -47,7 +47,7 @@ namespace BlueJayERP
         //setting up the data
         FindVendorsSortedByVendorNameDataSet TheFindVendorsSortedByVendorNameDataSet = new FindVendorsSortedByVendorNameDataSet();
         FindActiveVehicleMainByVehicleNumberDataSet TheFindActiveVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
-        FindOpenVehicleMainProblemsByVehicleIDDataSet TheFindOpenVehicleMainProblemsByProblemIdDataSet = new FindOpenVehicleMainProblemsByVehicleIDDataSet();
+        FindVehicleMainProblemReadyForInvoicingDataSet TheFindVehicleMainProblemReadyForInvoicingDataSet = new FindVehicleMainProblemReadyForInvoicingDataSet();
         OpenVehicleProblemsDataSet TheOpenVehicleProblemsDataSet = new OpenVehicleProblemsDataSet();
         FindVehicleInvoiceByInvoiceNumberDataSet TheFindVehicleInvoiceByInvoiceNumberDataSet = new FindVehicleInvoiceByInvoiceNumberDataSet();
         FindVehicleMainInShopByVehicleIDDataSet TheFindVehicleMainInShopByVehicleIDDataSet = new FindVehicleMainInShopByVehicleIDDataSet();
@@ -213,9 +213,9 @@ namespace BlueJayERP
 
                     TheOpenVehicleProblemsDataSet.openvehicleproblem.Rows.Clear();
 
-                    TheFindOpenVehicleMainProblemsByProblemIdDataSet = TheVehicleProblemClass.FindOpenVehicleMainProblemsByVehicleID(MainWindow.gintVehicleID);
+                    TheFindVehicleMainProblemReadyForInvoicingDataSet = TheVehicleProblemClass.FindVehicleMainProblemReadyForInvoicing(MainWindow.gintVehicleID);
 
-                    intNumberOfRecords = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID.Rows.Count - 1;
+                    intNumberOfRecords = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing.Rows.Count - 1;
 
                     if (intNumberOfRecords > -1)
                     {
@@ -223,11 +223,11 @@ namespace BlueJayERP
                         {
                             OpenVehicleProblemsDataSet.openvehicleproblemRow NewProblemRow = TheOpenVehicleProblemsDataSet.openvehicleproblem.NewopenvehicleproblemRow();
 
-                            NewProblemRow.Problem = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID[intCounter].Problem;
-                            NewProblemRow.ProblemDate = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID[intCounter].TransactionDAte;
-                            NewProblemRow.ProblemID = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID[intCounter].ProblemID;
-                            NewProblemRow.Status = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID[intCounter].ProblemStatus;
-                            NewProblemRow.Vendor = TheFindOpenVehicleMainProblemsByProblemIdDataSet.FindOpenVehicleMainProblemsByVehicleID[intCounter].VendorName;
+                            NewProblemRow.Problem = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing[intCounter].Problem;
+                            NewProblemRow.ProblemDate = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing[intCounter].TransactionDAte;
+                            NewProblemRow.ProblemID = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing[intCounter].ProblemID;
+                            NewProblemRow.Status = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing[intCounter].ProblemStatus;
+                            NewProblemRow.Vendor = TheFindVehicleMainProblemReadyForInvoicingDataSet.FindVehicleMainProblemReadyForInvoicing[intCounter].VendorName;
                             NewProblemRow.Selected = false;
 
                             TheOpenVehicleProblemsDataSet.openvehicleproblem.Rows.Add(NewProblemRow);

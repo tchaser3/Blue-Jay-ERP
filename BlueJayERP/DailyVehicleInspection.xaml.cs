@@ -28,6 +28,7 @@ using VehicleStatusDLL;
 using VehicleAssignmentDLL;
 using VehicleBulkToolsDLL;
 using VehiclesInShopDLL;
+using VehicleProblemsDLL;
 
 namespace BlueJayERP
 {
@@ -57,6 +58,7 @@ namespace BlueJayERP
         FindDailyVehicleMainInspectionByDateMatchDataSet TheFindDailyVehicleMainInspectionByDateMatchDataSet = new FindDailyVehicleMainInspectionByDateMatchDataSet();
         FindCurrentAssignedVehicleMainByVehicleIDDataSet TheFindCurrentAssignedVehicleMainByVehicleIDDataSet = new FindCurrentAssignedVehicleMainByVehicleIDDataSet();
         FindVehicleMainInShopByVehicleIDDataSet TheFindVehicleMainInShopByVehicleIDDataSet = new FindVehicleMainInShopByVehicleIDDataSet();
+        FindOpenVehicleMainProblemsByVehicleIDDataSet TheFindOpenVehicleMainProblemsByVehicleIDDataSet = new FindOpenVehicleMainProblemsByVehicleIDDataSet();
 
         string gstrVehicleStatus;
 
@@ -294,6 +296,19 @@ namespace BlueJayERP
 
         private void rdoPassed_Checked(object sender, RoutedEventArgs e)
         {
+            int intRecordsReturned;
+
+            TheFindOpenVehicleMainProblemsByVehicleIDDataSet = TheVehicleProblemClass.FindOpenVehicleMainProblemsByVehicleID(MainWindow.gintVehicleID);
+
+            intRecordsReturned = TheFindOpenVehicleMainProblemsByVehicleIDDataSet.FindOpenVehicleMainProblemsByVehicleID.Rows.Count;
+
+            if(intRecordsReturned > 0)
+            {
+                TheMessagesClass.ErrorMessage("There are open vehicle problems, the inspection cannot be processed");
+                rdoPassedServiceRequired.IsChecked = true;
+                return;
+            }
+
             MainWindow.gstrInspectionStatus = "PASSED";
             gstrVehicleStatus = "NO PROBLEM";
         }
