@@ -189,6 +189,9 @@
     <Reference Include="ProductivityDataEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProjectCostingDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectCostingDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectsDLL.dll</HintPath>
     </Reference>
@@ -980,6 +983,9 @@
     <Compile Include="ProductivityReportForTasks.xaml.cs">
       <DependentUpon>ProductivityReportForTasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectCosting.xaml.cs">
+      <DependentUpon>ProjectCosting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectDailyTaskDataSet.cs">
       <DependentUpon>ProjectDailyTaskDataSet.xsd</DependentUpon>
     </Compile>
@@ -998,6 +1004,11 @@
     </Compile>
     <Compile Include="ProjectMaterial.xaml.cs">
       <DependentUpon>ProjectMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMaterialCostingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectMaterialCostingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ProjectMaterialReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1725,6 +1736,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductivityReportForTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectCosting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2590,6 +2605,17 @@
     </None>
     <None Include="ProjectEmployeeHoursDataSet.xss">
       <DependentUpon>ProjectEmployeeHoursDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectMaterialCostingDataSet.xsc">
+      <DependentUpon>ProjectMaterialCostingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectMaterialCostingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectMaterialCostingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectMaterialCostingDataSet.xss">
+      <DependentUpon>ProjectMaterialCostingDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectMaterialReportDataSet.xsc">
       <DependentUpon>ProjectMaterialReportDataSet.xsd</DependentUpon>

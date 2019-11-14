@@ -157,6 +157,7 @@
                 </MenuItem>
                 <MenuItem x:Name="mitProjectReports" Header="Project Reports">
                     <MenuItem x:Name="mitProjectDateSearch" Header="Project Date Search" Click="mitProjectDateSearch_Click"></MenuItem>
+                    <MenuItem x:Name="mitProjectCosting" Header="Project Costing" Click="mitProjectCosting_Click" />
                     <MenuItem x:Name="mitFindProject" Header="Find Project" Click="mitFindProject_Click"></MenuItem>
                     <MenuItem x:Name="mitFindProjectHours" Header="Find Project Production Summary" Click="mitFindProjectHours_Click"></MenuItem>
                     <MenuItem x:Name="mitFindProjectEmployeeHours" Header="Find Project Employee Hours/Productivity" Click="mitFindProjectEmployeeHours_Click"></MenuItem>

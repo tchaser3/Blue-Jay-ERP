@@ -260,6 +260,7 @@ namespace BlueJayERP
         public static CreateTrailerProblem CreateTrailerProblemWindow = new CreateTrailerProblem();
         public static UpdateTrailerProblem UpdateTrailerProblemWindow = new UpdateTrailerProblem();
         public static PartNumberLookup PartNumberLookupWindow = new PartNumberLookup();
+        public static ProjectCosting ProjectCostingWindow = new ProjectCosting();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -469,6 +470,7 @@ namespace BlueJayERP
             CreateTrailerProblemWindow.Visibility = Visibility.Hidden;
             UpdateTrailerProblemWindow.Visibility = Visibility.Hidden;
             PartNumberLookupWindow.Visibility = Visibility.Hidden;
+            ProjectCostingWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -506,7 +508,7 @@ namespace BlueJayERP
                 mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden;
-
+                mitProjectCosting.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "WAREHOUSE")
             {
@@ -524,6 +526,7 @@ namespace BlueJayERP
                 mitDesignInvoicing.Visibility = Visibility.Hidden;
                 mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
+                mitProjectCosting.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "MANAGERS")
             {
@@ -622,6 +625,7 @@ namespace BlueJayERP
                 mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden;
+                mitProjectCosting.Visibility = Visibility.Hidden;
             }
         }
         private void ResetMenu()
@@ -679,6 +683,7 @@ namespace BlueJayERP
             mitViewWorkTaskFootages.Visibility = Visibility.Visible;
             mitSignOutITAsset.Visibility = Visibility.Visible;
             mitTrailerProblems.Visibility = Visibility.Visible;
+            mitProjectCosting.Visibility = Visibility.Visible;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1453,6 +1458,11 @@ namespace BlueJayERP
         private void mitPartNumberLookup_Click(object sender, RoutedEventArgs e)
         {
             PartNumberLookupWindow.Visibility = Visibility.Visible;
+        }
+
+        private void mitProjectCosting_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectCostingWindow.Visibility = Visibility.Visible;
         }
     }
 }
