@@ -390,8 +390,15 @@ namespace BlueJayERP
 
                         if (blnFatalError == true)
                             throw new Exception();
+
+                        blnFatalError = TheVehicleProblemClass.ChangeVehicleProblemStatus(intProblemID, "CLOSED");
+
+                        if (blnFatalError == true)
+                            throw new Exception();
                     }
                 }
+
+               
 
                 TheMessagesClass.InformationMessage("The Problems have been Updated and Closed");
 
