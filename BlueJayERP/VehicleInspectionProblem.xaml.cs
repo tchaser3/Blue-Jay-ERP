@@ -63,6 +63,38 @@ namespace BlueJayERP
             txtManagerNotes.IsEnabled = blnValueBoolean;
             txtInspectionNotes.IsEnabled = blnValueBoolean;
         }
+        private bool CharacterCheck(string strValueForValidation)
+        {
+            bool blnItemFailed = false;
+            char[] chaWordToTest;
+            int intLength;
+            int intCounter;
+            int intPatternCounter = 0;
+            char chaTestingCharacter = '*';
+
+            chaWordToTest = strValueForValidation.ToCharArray();
+            intLength = chaWordToTest.Length - 1;
+
+            for (intCounter = 0; intCounter <= intLength; intCounter++)
+            {
+                if (chaTestingCharacter != chaWordToTest[intCounter])
+                {
+                    chaTestingCharacter = chaWordToTest[intCounter];
+                    intPatternCounter = 0;
+                }
+                else if(chaTestingCharacter == chaWordToTest[intCounter])
+                {
+                    intPatternCounter += 1;
+                    if(intPatternCounter > 3)
+                    {
+                        blnItemFailed = true;
+                    }
+                }
+            }
+
+
+            return blnItemFailed;
+        }
         private void mitSave_Click(object sender, RoutedEventArgs e)
         {
             //this will save the transaction
@@ -73,11 +105,17 @@ namespace BlueJayERP
             //int intLength;
             string strManagerNotes;
             string strFleetNotes;
-            
+            bool blnThereIsaProblem = false;
 
             try
             {
                 MainWindow.gstrVehicleProblem = txtInspectionNotes.Text;
+                blnThereIsaProblem = CharacterCheck(MainWindow.gstrVehicleProblem);
+                if(blnThereIsaProblem == true)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "There Is a Recurring Character that is displaying, Invalid Entry\n";
+                }
                 strManagerNotes = txtManagerNotes.Text;
                 if(strManagerNotes.Length < 20)
                 {
@@ -119,6 +157,15 @@ namespace BlueJayERP
                 {
                     blnFatalError = true;
                     strErrorMessage += "Inspection Notes Were Not Entered\n";
+                }
+                else
+                {
+                    blnThereIsaProblem = CharacterCheck(strInspectionNotes);
+                    if(blnThereIsaProblem == true)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "There is a recurring character in the Inspection Notes\n";
+                    }
                 }
                 
                 if (blnFatalError == true)
@@ -345,11 +392,11 @@ namespace BlueJayERP
 
                             LoadComboBoxBoxes(gintManagerID, gintFleetEmployeeID);
 
-                            txtInspectionNotes.IsReadOnly = true;
-                            txtManagerNotes.IsReadOnly = true;
-                            txtFleetNotes.IsReadOnly = true;
-                            cboSelectEmployee.IsEnabled = false;
-                            cboSelectManager.IsEnabled = false;
+                            //txtInspectionNotes.IsReadOnly = true;
+                            //txtManagerNotes.IsReadOnly = true;
+                            //txtFleetNotes.IsReadOnly = true;
+                            //cboSelectEmployee.IsEnabled = false;
+                            //cboSelectManager.IsEnabled = false;
                         }
                     }
 

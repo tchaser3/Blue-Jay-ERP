@@ -21,6 +21,7 @@ using VehicleInYardDLL;
 using VehicleMainDLL;
 using NewEventLogDLL;
 using DataValidationDLL;
+using DateSearchDLL;
 
 namespace BlueJayERP
 {
@@ -35,9 +36,11 @@ namespace BlueJayERP
         VehicleMainClass TheVehicleMainClass = new VehicleMainClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         //setting up the data
         FindActiveVehicleMainByVehicleNumberDataSet TheFindActiveVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
+        FindVehiclesInYardByVehicleIDAndDateRangeDataSet TheFindVehiclesInYardByVehicleIDAndDateRangeDataSet = new FindVehiclesInYardByVehicleIDAndDateRangeDataSet();
 
         public VehiclesInYard()
         {
@@ -51,12 +54,12 @@ namespace BlueJayERP
 
         private void mitCreateHelpDeskTicket_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://bluejay.on.spiceworks.com/portal/tickets");
+            TheMessagesClass.LaunchHelpDeskTickets();
         }
 
         private void mitHelpSite_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("file://bjc/shares/Documents/WAREHOUSE/WhseTrac%20Manual/index.html");
+            TheMessagesClass.LaunchHelpSite();
         }
 
         private void mitExit_Click(object sender, RoutedEventArgs e)
@@ -93,10 +96,14 @@ namespace BlueJayERP
             int intVehicleID;
             DateTime datTransactionDate;
             bool blnFatalError = false;
+            DateTime datStartDate = DateTime.Now;
+            DateTime datEndDate = DateTime.Now;
 
             try
             {
                 strVehicleNumber = txtEnterVehicleNumber.Text;
+                datStartDate = TheDateSearchClass.RemoveTime(datStartDate);
+                datEndDate = TheDateSearchClass.AddingDays(datStartDate, 1);
 
                 if(strVehicleNumber == "")
                 {
@@ -116,6 +123,17 @@ namespace BlueJayERP
                 else if (intRecordsReturned == 1)
                 {
                     intVehicleID = TheFindActiveVehicleMainByVehicleNumberDataSet.FindActiveVehicleMainByVehicleNumber[0].VehicleID;
+
+                    TheFindVehiclesInYardByVehicleIDAndDateRangeDataSet = TheVehicleInYardClass.FindVehiclesInYardByVehicleIDAndDateRange(intVehicleID, datStartDate, datEndDate);
+
+                    intRecordsReturned = TheFindVehiclesInYardByVehicleIDAndDateRangeDataSet.FindVehiclesInYardByVehicleIDAndDateRange.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        TheMessagesClass.ErrorMessage("Vehicle Has Already Been Placed In The Yard");
+                        return;
+                    }
+
                     datTransactionDate = DateTime.Now;
 
                     blnFatalError = TheVehicleInYardClass.InsertVehicleInYard(datTransactionDate, intVehicleID);
