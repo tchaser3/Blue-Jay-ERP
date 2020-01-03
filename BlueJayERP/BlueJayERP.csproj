@@ -1044,6 +1044,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportedITAssetsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ReportProductivityNotCorrect.xaml.cs">
+      <DependentUpon>ReportProductivityNotCorrect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReportToolProblem.xaml.cs">
       <DependentUpon>ReportToolProblem.xaml</DependentUpon>
     </Compile>
@@ -1760,6 +1763,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReportBodyDamage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportProductivityNotCorrect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

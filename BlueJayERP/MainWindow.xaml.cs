@@ -261,6 +261,7 @@ namespace BlueJayERP
         public static UpdateTrailerProblem UpdateTrailerProblemWindow = new UpdateTrailerProblem();
         public static PartNumberLookup PartNumberLookupWindow = new PartNumberLookup();
         public static ProjectCosting ProjectCostingWindow = new ProjectCosting();
+        public static ReportProductivityNotCorrect ReportProductivityNotCorrectWindow = new ReportProductivityNotCorrect();
 
         FindEmployeeProductivityFootage FindEmployeeProductivityFootageWindow = new FindEmployeeProductivityFootage();
 
@@ -471,6 +472,7 @@ namespace BlueJayERP
             UpdateTrailerProblemWindow.Visibility = Visibility.Hidden;
             PartNumberLookupWindow.Visibility = Visibility.Hidden;
             ProjectCostingWindow.Visibility = Visibility.Hidden;
+            ReportProductivityNotCorrectWindow.Visibility = Visibility.Hidden;
         }
 
         private void mitAddEmployee_Click(object sender, RoutedEventArgs e)
@@ -721,6 +723,7 @@ namespace BlueJayERP
         private void mitAddProjectLabor_Click(object sender, RoutedEventArgs e)
         {
             AddNewProjectLabor.Visibility = Visibility.Visible;
+            ReportProductivityNotCorrectWindow.Visibility = Visibility.Visible;
         }
 
         private void mitFindEmployeeHoursOverDateRange_Click(object sender, RoutedEventArgs e)

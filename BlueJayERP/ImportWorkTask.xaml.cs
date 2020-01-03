@@ -115,7 +115,7 @@ namespace BlueJayERP
                 intNumberOfRecords = range.Rows.Count;
                 intColumnRange = range.Columns.Count;
 
-                for (intCounter = 2; intCounter <= intNumberOfRecords; intCounter++)
+                for (intCounter = 1; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     strWorkTask = Convert.ToString((range.Cells[intCounter, 1] as Excel.Range).Value2);
 
