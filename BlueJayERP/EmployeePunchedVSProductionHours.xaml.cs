@@ -124,7 +124,7 @@ namespace BlueJayERP
             int intRecordReturned;
             bool blnFatalError = false;
             decimal decHoursPunched;
-            decimal decProductiveHours;
+            decimal decProductiveHours = 0;
 
             try
             {
@@ -178,24 +178,22 @@ namespace BlueJayERP
 
                     intRecordReturned = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod.Rows.Count;
 
-                    if(intRecordReturned == 0)
+                    if (intRecordReturned == 0)
                     {
-                        TheFindDesignTotalEmployeeProductivityHoursDataSet = TheDesignProductivityClass.FindDesignTotalEmployeeProductivityHours(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
-
-                        intRecordReturned = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours.Rows.Count;
-
-                        if (intRecordReturned == 0)
-                        {
-                           decProductiveHours = 0;
-                        }
-                        else
-                        {
-                            decProductiveHours = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours[0].TotalHours;
-                        }
+                        decProductiveHours = 0;
                     }
                     else
                     {
                         decProductiveHours = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod[0].ProductionHours;
+                    }
+
+                    TheFindDesignTotalEmployeeProductivityHoursDataSet = TheDesignProductivityClass.FindDesignTotalEmployeeProductivityHours(intEmployeeID, MainWindow.gdatStartDate, MainWindow.gdatEndDate);
+
+                    intRecordReturned = TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours.Rows.Count;
+
+                    if(intRecordReturned > 0)
+                    {
+                        decProductiveHours += TheFindDesignTotalEmployeeProductivityHoursDataSet.FindDesignTotalEmployeeProductivityHours[0].TotalHours;
                     }
 
                     //loading the dataset
