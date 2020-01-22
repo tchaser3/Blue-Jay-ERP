@@ -285,7 +285,7 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnZeroToFive;
             
-            private global::System.Data.DataColumn columnSixToTen;
+            private global::System.Data.DataColumn columnFiveToTen;
             
             private global::System.Data.DataColumn columnAbove10;
             
@@ -350,9 +350,9 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn SixToTenColumn {
+            public global::System.Data.DataColumn FiveToTenColumn {
                 get {
-                    return this.columnSixToTen;
+                    return this.columnFiveToTen;
                 }
             }
             
@@ -409,13 +409,13 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public productionmanagerRow AddproductionmanagerRow(string FirstName, string LastName, int ZeroToFive, int SixToTen, int Above10, decimal PercentInTolerance) {
+            public productionmanagerRow AddproductionmanagerRow(string FirstName, string LastName, int ZeroToFive, int FiveToTen, int Above10, decimal PercentInTolerance) {
                 productionmanagerRow rowproductionmanagerRow = ((productionmanagerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FirstName,
                         LastName,
                         ZeroToFive,
-                        SixToTen,
+                        FiveToTen,
                         Above10,
                         PercentInTolerance};
                 rowproductionmanagerRow.ItemArray = columnValuesArray;
@@ -443,7 +443,7 @@ namespace BlueJayERP {
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
                 this.columnZeroToFive = base.Columns["ZeroToFive"];
-                this.columnSixToTen = base.Columns["SixToTen"];
+                this.columnFiveToTen = base.Columns["FiveToTen"];
                 this.columnAbove10 = base.Columns["Above10"];
                 this.columnPercentInTolerance = base.Columns["PercentInTolerance"];
             }
@@ -457,8 +457,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnLastName);
                 this.columnZeroToFive = new global::System.Data.DataColumn("ZeroToFive", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnZeroToFive);
-                this.columnSixToTen = new global::System.Data.DataColumn("SixToTen", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSixToTen);
+                this.columnFiveToTen = new global::System.Data.DataColumn("FiveToTen", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFiveToTen);
                 this.columnAbove10 = new global::System.Data.DataColumn("Above10", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAbove10);
                 this.columnPercentInTolerance = new global::System.Data.DataColumn("PercentInTolerance", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -643,17 +643,17 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int SixToTen {
+            public int FiveToTen {
                 get {
                     try {
-                        return ((int)(this[this.tableproductionmanager.SixToTenColumn]));
+                        return ((int)(this[this.tableproductionmanager.FiveToTenColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SixToTen\' in table \'productionmanager\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FiveToTen\' in table \'productionmanager\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableproductionmanager.SixToTenColumn] = value;
+                    this[this.tableproductionmanager.FiveToTenColumn] = value;
                 }
             }
             
@@ -681,14 +681,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsSixToTenNull() {
-                return this.IsNull(this.tableproductionmanager.SixToTenColumn);
+            public bool IsFiveToTenNull() {
+                return this.IsNull(this.tableproductionmanager.FiveToTenColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetSixToTenNull() {
-                this[this.tableproductionmanager.SixToTenColumn] = global::System.Convert.DBNull;
+            public void SetFiveToTenNull() {
+                this[this.tableproductionmanager.FiveToTenColumn] = global::System.Convert.DBNull;
             }
         }
         

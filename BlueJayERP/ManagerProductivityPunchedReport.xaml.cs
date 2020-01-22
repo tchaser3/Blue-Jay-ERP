@@ -267,18 +267,18 @@ namespace BlueJayERP
                                 {
                                     blnItemFound = true;
 
-                                    if(decVariance > - 6)
+                                    if((decVariance >= -5 && decVariance <= 5))
                                     {
                                         TheProductionManagerStatsDataSet.productionmanager[intManagerCounter].ZeroToFive++;
                                         gdecTotalEntries++;
                                         gdecTotalAcceptable++;
                                     }
-                                    else if((decVariance < -5) && (decVariance > -11))
+                                    else if(((decVariance < -5) && (decVariance >= -10)) || ((decVariance > 5) && (decVariance <= 10)))
                                     {
-                                        TheProductionManagerStatsDataSet.productionmanager[intManagerCounter].SixToTen++;
+                                        TheProductionManagerStatsDataSet.productionmanager[intManagerCounter].FiveToTen++;
                                         gdecTotalEntries++;
                                     }
-                                    else if(decVariance < - 10)
+                                    else if((decVariance < - 10) || (decVariance > 10))
                                     {
                                         TheProductionManagerStatsDataSet.productionmanager[intManagerCounter].Above10++;
                                         gdecTotalEntries++;
@@ -299,7 +299,7 @@ namespace BlueJayERP
                         if (Convert.ToDouble(decVariance) > -5.01)
                         {
                             NewManagerRow.ZeroToFive = 1;
-                            NewManagerRow.SixToTen = 0;
+                            NewManagerRow.FiveToTen = 0;
                             NewManagerRow.Above10 = 0;
                             gdecTotalEntries++;
                             gdecTotalAcceptable++;
@@ -307,14 +307,14 @@ namespace BlueJayERP
                         else if ((Convert.ToDouble(decVariance) < -5) && (Convert.ToDouble(decVariance) > -10.01))
                         {
                             NewManagerRow.ZeroToFive = 0;
-                            NewManagerRow.SixToTen = 1;
+                            NewManagerRow.FiveToTen = 1;
                             NewManagerRow.Above10 = 0;
                             gdecTotalEntries++;
                         }
                         else if (Convert.ToDouble(decVariance) < -10)
                         {
                             NewManagerRow.ZeroToFive = 0;
-                            NewManagerRow.SixToTen = 0;
+                            NewManagerRow.FiveToTen = 0;
                             NewManagerRow.Above10 = 1;
                             gdecTotalEntries++;
                         }
@@ -330,7 +330,7 @@ namespace BlueJayERP
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     intTotalNumber = TheProductionManagerStatsDataSet.productionmanager[intCounter].ZeroToFive;
-                    intTotalNumber += TheProductionManagerStatsDataSet.productionmanager[intCounter].SixToTen;
+                    intTotalNumber += TheProductionManagerStatsDataSet.productionmanager[intCounter].FiveToTen;
                     intTotalNumber += TheProductionManagerStatsDataSet.productionmanager[intCounter].Above10;
 
                     TheProductionManagerStatsDataSet.productionmanager[intCounter].PercentInTolerance = (Convert.ToDecimal(TheProductionManagerStatsDataSet.productionmanager[intCounter].ZeroToFive) / intTotalNumber) * 100;
@@ -382,7 +382,7 @@ namespace BlueJayERP
                     NewManagerRow.FirstName = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].FirstName;
                     NewManagerRow.LastName = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].LastName;
                     NewManagerRow.PercentInTolerance = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].PercentInTolerance;
-                    NewManagerRow.SixToTen = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].SixToTen;
+                    NewManagerRow.FiveToTen = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].FiveToTen;
                     NewManagerRow.ZeroToFive = TheProductionManagerStatsDataSet.productionmanager[intSelectedIndex].ZeroToFive;
 
                     TheFinalProductionManagerStatsDataSet.productionmanager.Rows.Add(NewManagerRow);
@@ -419,7 +419,7 @@ namespace BlueJayERP
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     ZeroToFive.Points.Add(TheFinalProductionManagerStatsDataSet.productionmanager[intCounter].ZeroToFive);
-                    SixToTen.Points.Add(TheFinalProductionManagerStatsDataSet.productionmanager[intCounter].SixToTen);
+                    SixToTen.Points.Add(TheFinalProductionManagerStatsDataSet.productionmanager[intCounter].FiveToTen);
                     Above10.Points.Add(TheFinalProductionManagerStatsDataSet.productionmanager[intCounter].Above10);
 
                     chart.ChartAreas[0].AxisX.CustomLabels.Add(intCounter + .5, intCounter + 1.5, TheFinalProductionManagerStatsDataSet.productionmanager[intCounter].LastName, 1, LabelMarkStyle.None);
