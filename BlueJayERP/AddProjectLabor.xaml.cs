@@ -158,12 +158,12 @@ namespace BlueJayERP
                         intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
                         decHours = Convert.ToDecimal(txtEnterHours.Text);
 
-                        blnFatalError = TheProductivityDataEntryClass.InsertProductivityDataEntry(intEmployeeID, MainWindow.gintProjectID, datTransactionDate, decHours, 0, 0);
+                        blnFatalError = TheProductivityDataEntryClass.InsertProductivityDataEntry(intEmployeeID, MainWindow.gintProjectID, datTodaysDate, decHours, 0, 0);
 
                         if (blnFatalError == true)
                             throw new Exception();
 
-                        TheFindProductivityDataEntryByDateDataSet = TheProductivityDataEntryClass.FindProductivityDataEntryByDate(datTransactionDate);
+                        TheFindProductivityDataEntryByDateDataSet = TheProductivityDataEntryClass.FindProductivityDataEntryByDate(datTodaysDate);
 
                         gintDataEntryTransactionID = TheFindProductivityDataEntryByDateDataSet.FindProductivtyDataEntryByDate[0].TransactionID;
 
