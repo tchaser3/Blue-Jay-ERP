@@ -279,8 +279,6 @@ namespace BlueJayERP {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class employeesDataTable : global::System.Data.TypedTableBase<employeesRow> {
             
-            private global::System.Data.DataColumn columnEmployeeID;
-            
             private global::System.Data.DataColumn columnFirstName;
             
             private global::System.Data.DataColumn columnLastName;
@@ -324,14 +322,6 @@ namespace BlueJayERP {
             protected employeesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn EmployeeIDColumn {
-                get {
-                    return this.columnEmployeeID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -419,10 +409,9 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public employeesRow AddemployeesRow(int EmployeeID, string FirstName, string LastName, string HomeOffice, string Department, string ManagerFirstName, string ManagerLastName) {
+            public employeesRow AddemployeesRow(string FirstName, string LastName, string HomeOffice, string Department, string ManagerFirstName, string ManagerLastName) {
                 employeesRow rowemployeesRow = ((employeesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        EmployeeID,
                         FirstName,
                         LastName,
                         HomeOffice,
@@ -432,13 +421,6 @@ namespace BlueJayERP {
                 rowemployeesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowemployeesRow);
                 return rowemployeesRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public employeesRow FindByEmployeeID(int EmployeeID) {
-                return ((employeesRow)(this.Rows.Find(new object[] {
-                            EmployeeID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -458,7 +440,6 @@ namespace BlueJayERP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnEmployeeID = base.Columns["EmployeeID"];
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
                 this.columnHomeOffice = base.Columns["HomeOffice"];
@@ -470,8 +451,6 @@ namespace BlueJayERP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployeeID);
                 this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstName);
                 this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -484,10 +463,6 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnManagerFirstName);
                 this.columnManagerLastName = new global::System.Data.DataColumn("ManagerLastName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnManagerLastName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnEmployeeID}, true));
-                this.columnEmployeeID.AllowDBNull = false;
-                this.columnEmployeeID.Unique = true;
                 this.columnFirstName.AllowDBNull = false;
                 this.columnLastName.AllowDBNull = false;
                 this.columnHomeOffice.AllowDBNull = false;
@@ -631,17 +606,6 @@ namespace BlueJayERP {
             internal employeesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableemployees = ((employeesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int EmployeeID {
-                get {
-                    return ((int)(this[this.tableemployees.EmployeeIDColumn]));
-                }
-                set {
-                    this[this.tableemployees.EmployeeIDColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

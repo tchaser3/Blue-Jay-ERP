@@ -49,13 +49,14 @@ namespace BlueJayERP
         
         //setting up the data
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
-        FindProjectHoursDataSet TheFindProjectHoursDataSet = new FindProjectHoursDataSet();
+        FindProjectHoursTotalDataSet TheFindProjectHoursTotalDataSet = new FindProjectHoursTotalDataSet();
         FindProjectWorkTaskDataSet TheFindProjectWorkTaskDataSet = new FindProjectWorkTaskDataSet();
         CompleteProjectInfoDataSet TheCompleteProjectInfoDataSet = new CompleteProjectInfoDataSet();
         FindWorkTaskByWorkTaskDataSet TheFindWorkTaskByWorkTaskDataSet = new FindWorkTaskByWorkTaskDataSet();
         FindSpecificProjectWorkTaskDataSet TheFindSpecificProjectWorkTaskDataSet = new FindSpecificProjectWorkTaskDataSet();       
 
-        decimal gdecTotalHours;       
+        decimal gdecTotalHours;
+        decimal gdecTotalLaborCosts;
 
         public TotalProjectInformation()
         {
@@ -102,6 +103,7 @@ namespace BlueJayERP
             bool blnItemFound;
             int intFootage;
             decimal decHours;
+            decimal decLaborCosts;
 
             try
             {
@@ -110,6 +112,7 @@ namespace BlueJayERP
                 MainWindow.ProjectMaterialWindow.Visibility = Visibility.Hidden;
 
                 gdecTotalHours = 0;
+                gdecTotalLaborCosts = 0;
 
                 TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strProjectID);
 
@@ -123,9 +126,9 @@ namespace BlueJayERP
 
                 MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(MainWindow.gintProjectID);
+                TheFindProjectHoursTotalDataSet = TheEmployeeProjectAssignmentClass.FindProjectHoursTotal(MainWindow.gintProjectID);
 
-                intNumberOfRecords = TheFindProjectHoursDataSet.FindProjectHours.Rows.Count - 1;
+                intNumberOfRecords = TheFindProjectHoursTotalDataSet.FindProjectHourTotals.Rows.Count - 1;
                 intSecondNumberOfRecords = 0;
 
                 if (intNumberOfRecords > -1)
@@ -133,10 +136,12 @@ namespace BlueJayERP
                     for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                     {
                         blnItemFound = false;
-                        decHours = TheFindProjectHoursDataSet.FindProjectHours[intCounter].TotalHours;
+                        decHours = TheFindProjectHoursTotalDataSet.FindProjectHourTotals[intCounter].TotalHours;
+                        decLaborCosts = TheFindProjectHoursTotalDataSet.FindProjectHourTotals[intCounter].TotalEmployeeCost;
                         gdecTotalHours += decHours;
-                        datTransactionDate = TheFindProjectHoursDataSet.FindProjectHours[intCounter].TransactionDate;
-                        strWorkTask = TheFindProjectHoursDataSet.FindProjectHours[intCounter].WorkTask;
+                        gdecTotalLaborCosts += decLaborCosts;
+                        datTransactionDate = TheFindProjectHoursTotalDataSet.FindProjectHourTotals[intCounter].TransactionDate;
+                        strWorkTask = TheFindProjectHoursTotalDataSet.FindProjectHourTotals[intCounter].WorkTask;
 
                         if (intSecondNumberOfRecords > 0)
                         {
@@ -157,11 +162,10 @@ namespace BlueJayERP
                             CompleteProjectInfoDataSet.projectinfoRow NewTaskRow = TheCompleteProjectInfoDataSet.projectinfo.NewprojectinfoRow();
 
                             NewTaskRow.FootagePieces = 0;
-                            NewTaskRow.ProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].AssignedProjectID;
-                            NewTaskRow.ProjectName = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
                             NewTaskRow.TransactionDate = datTransactionDate;
                             NewTaskRow.WorkTask = strWorkTask;
                             NewTaskRow.Hours = decHours;
+                            NewTaskRow.LaborCosts = decLaborCosts;
 
                             TheCompleteProjectInfoDataSet.projectinfo.Rows.Add(NewTaskRow);
                             intSecondNumberOfRecords++;
@@ -199,6 +203,7 @@ namespace BlueJayERP
 
                 dgrResults.ItemsSource = TheCompleteProjectInfoDataSet.projectinfo;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
+                txtLaborCost.Text = Convert.ToString(gdecTotalLaborCosts);
 
                 MainWindow.ProjectMaterialWindow.Visibility = Visibility.Visible;
             }

@@ -287,6 +287,8 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnHours;
             
+            private global::System.Data.DataColumn columnLaborCosts;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public worksummaryDataTable() {
@@ -354,6 +356,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LaborCostsColumn {
+                get {
+                    return this.columnLaborCosts;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +399,14 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public worksummaryRow AddworksummaryRow(string WorkTask, int FootagePieces, decimal Hours) {
+            public worksummaryRow AddworksummaryRow(string WorkTask, int FootagePieces, decimal Hours, decimal LaborCosts) {
                 worksummaryRow rowworksummaryRow = ((worksummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         WorkTask,
                         FootagePieces,
-                        Hours};
+                        Hours,
+                        LaborCosts};
                 rowworksummaryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowworksummaryRow);
                 return rowworksummaryRow;
@@ -429,6 +440,7 @@ namespace BlueJayERP {
                 this.columnWorkTask = base.Columns["WorkTask"];
                 this.columnFootagePieces = base.Columns["FootagePieces"];
                 this.columnHours = base.Columns["Hours"];
+                this.columnLaborCosts = base.Columns["LaborCosts"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -442,6 +454,8 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnFootagePieces);
                 this.columnHours = new global::System.Data.DataColumn("Hours", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHours);
+                this.columnLaborCosts = new global::System.Data.DataColumn("LaborCosts", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLaborCosts);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
                 this.columnTransactionID.AutoIncrement = true;
@@ -452,6 +466,7 @@ namespace BlueJayERP {
                 this.columnWorkTask.AllowDBNull = false;
                 this.columnFootagePieces.AllowDBNull = false;
                 this.columnHours.AllowDBNull = false;
+                this.columnLaborCosts.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -633,6 +648,17 @@ namespace BlueJayERP {
                 }
                 set {
                     this[this.tableworksummary.HoursColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal LaborCosts {
+                get {
+                    return ((decimal)(this[this.tableworksummary.LaborCostsColumn]));
+                }
+                set {
+                    this[this.tableworksummary.LaborCostsColumn] = value;
                 }
             }
         }

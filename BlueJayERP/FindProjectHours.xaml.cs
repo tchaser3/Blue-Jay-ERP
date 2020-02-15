@@ -47,6 +47,7 @@ namespace BlueJayERP
         ProjectWorkSummaryDataSet TheProjectWorkSummaryDataSet = new ProjectWorkSummaryDataSet();
 
         decimal gdecTotalHours;
+        decimal gdecLaborCosts;
         int gintSummaryCounter;
         int gintSummaryUpperLimit;
 
@@ -85,6 +86,7 @@ namespace BlueJayERP
             int intFootage;
             int intSummaryCounter;
             decimal decHours;
+            decimal decLaborCosts;
 
             PleaseWait PleaseWait = new PleaseWait();
             PleaseWait.Show();
@@ -98,6 +100,7 @@ namespace BlueJayERP
                 gintSummaryUpperLimit = 0;
 
                 gdecTotalHours = 0;
+                gdecLaborCosts = 0;
 
                 TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strProjectID);
 
@@ -122,9 +125,11 @@ namespace BlueJayERP
                     {
                         blnItemFound = false;
                         gdecTotalHours += TheFindProjectHoursDataSet.FindProjectHours[intCounter].TotalHours;
+                        gdecLaborCosts += TheFindProjectHoursDataSet.FindProjectHours[intCounter].TotalEmployeeCost;
                         datTransactionDate = TheFindProjectHoursDataSet.FindProjectHours[intCounter].TransactionDate;
                         strWorkTask = TheFindProjectHoursDataSet.FindProjectHours[intCounter].WorkTask;
                         decHours = TheFindProjectHoursDataSet.FindProjectHours[intCounter].TotalHours;
+                        decLaborCosts = TheFindProjectHoursDataSet.FindProjectHours[intCounter].TotalEmployeeCost;
 
                         if(intSecondNumberOfRecords > 0)
                         {
@@ -135,6 +140,7 @@ namespace BlueJayERP
                                     if(datTransactionDate == TheCompleteProjectInfoDataSet.projectinfo[intSecondCounter].TransactionDate)
                                     {
                                         TheCompleteProjectInfoDataSet.projectinfo[intSecondCounter].Hours += decHours;
+                                        TheCompleteProjectInfoDataSet.projectinfo[intSecondCounter].LaborCosts += decLaborCosts;
                                         blnItemFound = true;
                                     }
                                 }
@@ -146,11 +152,10 @@ namespace BlueJayERP
                             CompleteProjectInfoDataSet.projectinfoRow NewTaskRow = TheCompleteProjectInfoDataSet.projectinfo.NewprojectinfoRow();
 
                             NewTaskRow.FootagePieces = 0;
-                            NewTaskRow.ProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].AssignedProjectID;
-                            NewTaskRow.ProjectName = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
                             NewTaskRow.TransactionDate = datTransactionDate;
                             NewTaskRow.WorkTask = strWorkTask;
                             NewTaskRow.Hours = decHours;
+                            NewTaskRow.LaborCosts = decLaborCosts;
 
                             TheCompleteProjectInfoDataSet.projectinfo.Rows.Add(NewTaskRow);
                             intSecondNumberOfRecords++;
@@ -187,8 +192,6 @@ namespace BlueJayERP
                             }
                         }
                     }
-
-                    //TheCompleteProjectInfoDataSet.projectinfo[intCounter].FootagePieces = intFootage;
                 }
 
                 intNumberOfRecords = TheCompleteProjectInfoDataSet.projectinfo.Rows.Count - 1;
@@ -219,6 +222,7 @@ namespace BlueJayERP
                         NewTaskRow.FootagePieces = TheCompleteProjectInfoDataSet.projectinfo[intCounter].FootagePieces;
                         NewTaskRow.WorkTask = strWorkTask;
                         NewTaskRow.Hours = TheCompleteProjectInfoDataSet.projectinfo[intCounter].Hours;
+                        NewTaskRow.LaborCosts = TheCompleteProjectInfoDataSet.projectinfo[intCounter].LaborCosts;
 
                         TheProjectWorkSummaryDataSet.worksummary.Rows.Add(NewTaskRow);
 
@@ -229,6 +233,7 @@ namespace BlueJayERP
 
                 dgrResults.ItemsSource = TheProjectWorkSummaryDataSet.worksummary;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
+                txtLaborCosts.Text = Convert.ToString(gdecLaborCosts);
 
                 PleaseWait.Close();
             }

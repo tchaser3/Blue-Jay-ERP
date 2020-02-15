@@ -283,15 +283,13 @@ namespace BlueJayERP {
             
             private global::System.Data.DataColumn columnTransactionDate;
             
-            private global::System.Data.DataColumn columnProjectID;
-            
-            private global::System.Data.DataColumn columnProjectName;
-            
             private global::System.Data.DataColumn columnWorkTask;
             
             private global::System.Data.DataColumn columnFootagePieces;
             
             private global::System.Data.DataColumn columnHours;
+            
+            private global::System.Data.DataColumn columnLaborCosts;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -344,22 +342,6 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ProjectIDColumn {
-                get {
-                    return this.columnProjectID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ProjectNameColumn {
-                get {
-                    return this.columnProjectName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn WorkTaskColumn {
                 get {
                     return this.columnWorkTask;
@@ -379,6 +361,14 @@ namespace BlueJayERP {
             public global::System.Data.DataColumn HoursColumn {
                 get {
                     return this.columnHours;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LaborCostsColumn {
+                get {
+                    return this.columnLaborCosts;
                 }
             }
             
@@ -419,16 +409,15 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public projectinfoRow AddprojectinfoRow(System.DateTime TransactionDate, string ProjectID, string ProjectName, string WorkTask, int FootagePieces, decimal Hours) {
+            public projectinfoRow AddprojectinfoRow(System.DateTime TransactionDate, string WorkTask, int FootagePieces, decimal Hours, decimal LaborCosts) {
                 projectinfoRow rowprojectinfoRow = ((projectinfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         TransactionDate,
-                        ProjectID,
-                        ProjectName,
                         WorkTask,
                         FootagePieces,
-                        Hours};
+                        Hours,
+                        LaborCosts};
                 rowprojectinfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowprojectinfoRow);
                 return rowprojectinfoRow;
@@ -460,11 +449,10 @@ namespace BlueJayERP {
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
                 this.columnTransactionDate = base.Columns["TransactionDate"];
-                this.columnProjectID = base.Columns["ProjectID"];
-                this.columnProjectName = base.Columns["ProjectName"];
                 this.columnWorkTask = base.Columns["WorkTask"];
                 this.columnFootagePieces = base.Columns["FootagePieces"];
                 this.columnHours = base.Columns["Hours"];
+                this.columnLaborCosts = base.Columns["LaborCosts"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -474,16 +462,14 @@ namespace BlueJayERP {
                 base.Columns.Add(this.columnTransactionID);
                 this.columnTransactionDate = new global::System.Data.DataColumn("TransactionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionDate);
-                this.columnProjectID = new global::System.Data.DataColumn("ProjectID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProjectID);
-                this.columnProjectName = new global::System.Data.DataColumn("ProjectName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProjectName);
                 this.columnWorkTask = new global::System.Data.DataColumn("WorkTask", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWorkTask);
                 this.columnFootagePieces = new global::System.Data.DataColumn("FootagePieces", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFootagePieces);
                 this.columnHours = new global::System.Data.DataColumn("Hours", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHours);
+                this.columnLaborCosts = new global::System.Data.DataColumn("LaborCosts", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLaborCosts);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
                 this.columnTransactionID.AutoIncrement = true;
@@ -492,11 +478,10 @@ namespace BlueJayERP {
                 this.columnTransactionID.AllowDBNull = false;
                 this.columnTransactionID.Unique = true;
                 this.columnTransactionDate.AllowDBNull = false;
-                this.columnProjectID.AllowDBNull = false;
-                this.columnProjectName.AllowDBNull = false;
                 this.columnWorkTask.AllowDBNull = false;
                 this.columnFootagePieces.AllowDBNull = false;
                 this.columnHours.AllowDBNull = false;
+                this.columnLaborCosts.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -661,28 +646,6 @@ namespace BlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ProjectID {
-                get {
-                    return ((string)(this[this.tableprojectinfo.ProjectIDColumn]));
-                }
-                set {
-                    this[this.tableprojectinfo.ProjectIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ProjectName {
-                get {
-                    return ((string)(this[this.tableprojectinfo.ProjectNameColumn]));
-                }
-                set {
-                    this[this.tableprojectinfo.ProjectNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string WorkTask {
                 get {
                     return ((string)(this[this.tableprojectinfo.WorkTaskColumn]));
@@ -711,6 +674,17 @@ namespace BlueJayERP {
                 }
                 set {
                     this[this.tableprojectinfo.HoursColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal LaborCosts {
+                get {
+                    return ((decimal)(this[this.tableprojectinfo.LaborCostsColumn]));
+                }
+                set {
+                    this[this.tableprojectinfo.LaborCostsColumn] = value;
                 }
             }
         }

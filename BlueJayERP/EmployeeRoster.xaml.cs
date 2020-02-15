@@ -119,7 +119,6 @@ namespace BlueJayERP
                     EmployeeRosterDataSet.employeesRow NewEmployeeRow = TheEmployeeRosterDataSet.employees.NewemployeesRow();
 
                     NewEmployeeRow.Department = TheFindActiveEmployeesDataSet.FindActiveEmployees[intCounter].Department;
-                    NewEmployeeRow.EmployeeID = TheFindActiveEmployeesDataSet.FindActiveEmployees[intCounter].EmployeeID;
                     NewEmployeeRow.FirstName = TheFindActiveEmployeesDataSet.FindActiveEmployees[intCounter].FirstName;
                     NewEmployeeRow.HomeOffice = TheFindActiveEmployeesDataSet.FindActiveEmployees[intCounter].HomeOffice;
                     NewEmployeeRow.LastName = TheFindActiveEmployeesDataSet.FindActiveEmployees[intCounter].LastName;
