@@ -238,29 +238,33 @@ namespace BlueJayERP
             try
             {
 
+
                 worksheet = workbook.ActiveSheet;
 
-                worksheet.Name = "ExportedFromDatGrid";
+                worksheet.Name = "OpenOrders";
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheActiveVehicleDataSet.activevehicles.Rows.Count - 1;
-                intColumnNumberOfRecords = TheActiveVehicleDataSet.activevehicles.Columns.Count - 1;
+                intRowNumberOfRecords = TheActiveVehicleDataSet.activevehicles.Rows.Count;
+                intColumnNumberOfRecords = TheActiveVehicleDataSet.activevehicles.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheActiveVehicleDataSet.activevehicles.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
 
                 //Loop through each row and read value from each column. 
-                for (intRowCounter = 0; intRowCounter <= intRowNumberOfRecords; intRowCounter++)
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
                 {
-                    for (intColumnCounter = 0; intColumnCounter <= intColumnNumberOfRecords; intColumnCounter++)
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        if (cellRowIndex == 1)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = TheActiveVehicleDataSet.activevehicles.Columns[intColumnCounter].ColumnName;
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = TheActiveVehicleDataSet.activevehicles.Rows[intRowCounter][intColumnCounter].ToString();
-                        }
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheActiveVehicleDataSet.activevehicles.Rows[intRowCounter][intColumnCounter].ToString();
+
                         cellColumnIndex++;
                     }
                     cellColumnIndex = 1;
@@ -280,7 +284,7 @@ namespace BlueJayERP
             }
             catch (System.Exception ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Vehicle Roster // Export to Excel " + ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Vehicle Roster // Export To Excel " + ex.Message);
 
                 MessageBox.Show(ex.ToString());
             }
