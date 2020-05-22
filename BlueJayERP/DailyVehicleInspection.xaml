@@ -7,7 +7,7 @@
         WindowStyle="None"
         xmlns:local="clr-namespace:BlueJayERP"
         mc:Ignorable="d"
-        Title="DailyVehicleInspection" Height="475" Width="450" Loaded="Window_Loaded">
+        Title="DailyVehicleInspection" Height="525" Width="450" Loaded="Window_Loaded">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -43,9 +43,11 @@
         <Label x:Name="lblSelectEmployee" Content="Select Employee" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,275,0,0" RenderTransformOrigin="0.145,0"/>
         <TextBox x:Name="txtOdometerReading" TabIndex="3" CharacterCasing="Upper" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Height="31" Margin="229,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
         <Label x:Name="lblOdometerReading" Content="Odometer Reading" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="97,323,0,0" RenderTransformOrigin="0.145,0"/>
-        <RadioButton x:Name="rdoPassed" TabIndex="5" Content="Passed" FontSize="14" HorizontalAlignment="Left" Margin="101,423,0,0" VerticalAlignment="Top" Checked="rdoPassed_Checked"/>
-        <RadioButton x:Name="rdoPassedServiceRequired" TabIndex="6" Content="Passed Service Required" FontSize="14" HorizontalAlignment="Left" Margin="177,424,0,0" VerticalAlignment="Top" Checked="rdoPassedServiceRequired_Checked"/>
+        <RadioButton x:Name="rdoPassed" TabIndex="6" Content="Passed" FontSize="14" HorizontalAlignment="Left" Margin="101,455,0,0" VerticalAlignment="Top" Checked="rdoPassed_Checked"/>
+        <RadioButton x:Name="rdoPassedServiceRequired" TabIndex="7" Content="Passed Service Required" FontSize="14" HorizontalAlignment="Left" Margin="177,456,0,0" VerticalAlignment="Top" Checked="rdoPassedServiceRequired_Checked"/>
         <ComboBox x:Name="cboBodyDamageReported" TabIndex="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="229,369,0,0" VerticalAlignment="Top" Width="150" Height="29" SelectionChanged="cboBodyDamageReported_SelectionChanged"/>
         <Label x:Name="lblBodyDamageReported" Content="Body Damage Reported" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,369,0,0" RenderTransformOrigin="0.145,0"/>
+        <ComboBox x:Name="cboGPSInstalled" TabIndex="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" Margin="229,412,0,0" VerticalAlignment="Top" Width="150" Height="29" SelectionChanged="cboGPSInstalled_SelectionChanged" />
+        <Label x:Name="lblGPSInstalled" Content="GPS Installed" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,412,0,0" RenderTransformOrigin="0.145,0" Width="157"/>
     </Grid>
 </Window>

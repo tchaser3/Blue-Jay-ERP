@@ -511,6 +511,7 @@ namespace BlueJayERP
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden;
                 mitProjectCosting.Visibility = Visibility.Hidden;
+                mitVehicleExceptionReport.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "WAREHOUSE")
             {
@@ -528,7 +529,9 @@ namespace BlueJayERP
                 mitDesignInvoicing.Visibility = Visibility.Hidden;
                 mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
-                mitProjectCosting.Visibility = Visibility.Hidden;
+                mitProjectCosting.Visibility = Visibility.Hidden; 
+                mitCycleCount.Visibility = Visibility.Hidden;
+                mitVehicleExceptionReport.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "MANAGERS")
             {
@@ -546,7 +549,8 @@ namespace BlueJayERP
                 mitImportITAssets.Visibility = Visibility.Hidden;
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
-                mitTrailerProblems.Visibility = Visibility.Hidden;
+                mitTrailerProblems.Visibility = Visibility.Hidden; 
+                mitCycleCount.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "OFFICE")
             {
@@ -570,6 +574,7 @@ namespace BlueJayERP
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden;
+                mitVehicleExceptionReport.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "SUPER USER")
             {
@@ -578,6 +583,8 @@ namespace BlueJayERP
                 mitImportITAssets.Visibility = Visibility.Hidden;
                 mitChangeITAssetLocation.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
+                mitCycleCount.Visibility = Visibility.Hidden; 
+                mitVehicleExceptionReport.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "IT")
             {
@@ -627,7 +634,8 @@ namespace BlueJayERP
                 mitViewWorkTaskFootages.Visibility = Visibility.Hidden;
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden;
-                mitProjectCosting.Visibility = Visibility.Hidden;
+                mitProjectCosting.Visibility = Visibility.Hidden; 
+                mitVehicleExceptionReport.Visibility = Visibility.Hidden;
             }
         }
         private void ResetMenu()
@@ -686,6 +694,7 @@ namespace BlueJayERP
             mitSignOutITAsset.Visibility = Visibility.Visible;
             mitTrailerProblems.Visibility = Visibility.Visible;
             mitProjectCosting.Visibility = Visibility.Visible;
+            mitVehicleExceptionReport.Visibility = Visibility.Visible;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

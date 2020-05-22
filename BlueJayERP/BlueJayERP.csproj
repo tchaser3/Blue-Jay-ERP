@@ -134,6 +134,9 @@
     <Reference Include="ExcelExport">
       <HintPath>..\..\Blue Jay Class Library\ExcelExport.dll</HintPath>
     </Reference>
+    <Reference Include="InspectGPSDLL">
+      <HintPath>..\..\Blue Jay Class Library\InspectGPSDLL.dll</HintPath>
+    </Reference>
     <Reference Include="InspectionsDLL">
       <HintPath>..\..\Blue Jay Class Library\InspectionsDLL.dll</HintPath>
     </Reference>

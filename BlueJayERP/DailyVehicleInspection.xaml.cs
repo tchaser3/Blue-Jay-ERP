@@ -29,6 +29,7 @@ using VehicleAssignmentDLL;
 using VehicleBulkToolsDLL;
 using VehiclesInShopDLL;
 using VehicleProblemsDLL;
+using InspectGPSDLL;
 
 namespace BlueJayERP
 {
@@ -51,6 +52,7 @@ namespace BlueJayERP
         VehicleAssignmentClass TheVehicleAssignmentClass = new VehicleAssignmentClass();
         VehicleBulkToolsClass TheVehicleBulkToolsClass = new VehicleBulkToolsClass();
         VehiclesInShopClass TheVehiclesInShopClass = new VehiclesInShopClass();
+        InspectGPSClass TheInspectGPSClass = new InspectGPSClass();
 
         //Setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -61,6 +63,7 @@ namespace BlueJayERP
         FindOpenVehicleMainProblemsByVehicleIDDataSet TheFindOpenVehicleMainProblemsByVehicleIDDataSet = new FindOpenVehicleMainProblemsByVehicleIDDataSet();
 
         string gstrVehicleStatus;
+        bool gblnGPSInstalled;
 
         public DailyVehicleInspection()
         {
@@ -133,7 +136,10 @@ namespace BlueJayERP
                 {
                     MainWindow.gintOdometerReading = Convert.ToInt32(strValueForValidation);
                 }
-
+                if(cboGPSInstalled.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The GPS Installed was not Selected\n";                }
                 if (blnFatalError == true)
                 {
                     TheMessagesClass.ErrorMessage(strErrorMessage);
@@ -169,6 +175,11 @@ namespace BlueJayERP
 
                 MainWindow.gintInspectionID = TheFindDailyVehicleMainInspectionByDateMatchDataSet.FindDailyVehicleMainInspectionByDateMatch[0].TransactionID;
 
+                blnFatalError = TheInspectGPSClass.InsertInspectGPS(MainWindow.gintInspectionID, MainWindow.gstrInspectionType, gblnGPSInstalled);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 TheVehicleStatusClass.UpdateVehicleStatus(MainWindow.gintVehicleID, gstrVehicleStatus, DateTime.Now);
 
                 if (rdoPassedServiceRequired.IsChecked == true)
@@ -185,6 +196,7 @@ namespace BlueJayERP
                 rdoPassed.IsChecked = false;
                 rdoPassedServiceRequired.IsChecked = false;
                 cboBodyDamageReported.SelectedIndex = 0;
+                cboGPSInstalled.SelectedIndex = 0;
 
             }
             catch (Exception Ex)
@@ -372,6 +384,7 @@ namespace BlueJayERP
             txtOdometerReading.IsEnabled = ValueBoolean;
             cboBodyDamageReported.IsEnabled = ValueBoolean;
             cboEmployee.IsEnabled = ValueBoolean;
+            cboGPSInstalled.IsEditable = ValueBoolean;
             rdoPassed.IsEnabled = ValueBoolean;
             rdoPassedServiceRequired.IsEnabled = ValueBoolean;
             mitProcess.IsEnabled = ValueBoolean;
@@ -386,6 +399,11 @@ namespace BlueJayERP
             cboBodyDamageReported.Items.Add("YES");
             cboBodyDamageReported.Items.Add("NO");
             cboBodyDamageReported.SelectedIndex = 0;
+
+            cboGPSInstalled.Items.Add("Select Install");
+            cboGPSInstalled.Items.Add("Yes");
+            cboGPSInstalled.Items.Add("No");
+            cboGPSInstalled.SelectedIndex = 0;
         }
 
         private void mitEmail_Click(object sender, RoutedEventArgs e)
@@ -406,6 +424,14 @@ namespace BlueJayERP
         private void mitAssignTask_Click(object sender, RoutedEventArgs e)
         {
             TheMessagesClass.AddTask();
+        }
+
+        private void cboGPSInstalled_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboGPSInstalled.SelectedIndex == 1)
+                gblnGPSInstalled = true;
+            else if (cboGPSInstalled.SelectedIndex == 2)
+                gblnGPSInstalled = false;
         }
     }
 }
