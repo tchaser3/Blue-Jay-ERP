@@ -966,7 +966,7 @@ namespace BlueJayERP
             intHours = datTodaysDate.Hour;
             intMinutes = datTodaysDate.Minute;
 
-            if((intHours >= 1) && (intHours < 4))
+            if((intHours >= 1) && (intHours < 5))
             {
                 Application.Current.Shutdown();
             }

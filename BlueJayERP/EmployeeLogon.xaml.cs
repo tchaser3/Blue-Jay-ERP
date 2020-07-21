@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using DataValidationDLL;
 using NewEmployeeDLL;
 using NewEventLogDLL;
+using EmployeeDateEntryDLL;
 
 namespace BlueJayERP
 {
@@ -26,6 +27,7 @@ namespace BlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         int gintNoOfMisses;
 
@@ -44,45 +46,60 @@ namespace BlueJayERP
             int intRecordsReturned;
             string strErrorMessage = "";
 
-            //beginning data validation
-            strValueForValidation = pbxEmployeeID.Password;
-            strLastName = txtLastName.Text;
-            blnFatalError = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
-            if (blnFatalError == true)
+            try
             {
-                strErrorMessage = "The Employee ID is not an Integer\n";
+                //beginning data validation
+                strValueForValidation = pbxEmployeeID.Password;
+                strLastName = txtLastName.Text;
+                blnFatalError = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
+                if (blnFatalError == true)
+                {
+                    strErrorMessage = "The Employee ID is not an Integer\n";
+                }
+                else
+                {
+                    intEmployeeID = Convert.ToInt32(strValueForValidation);
+                }
+                if (strLastName == "")
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Last Name Was Not Entered\n";
+                }
+                if (blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }
+
+                //filling the data set
+                MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(intEmployeeID, strLastName);
+
+                intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
+
+                if (intRecordsReturned == 0)
+                {
+                    LogonFailed();
+                }
+                else
+                {
+
+                    blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "USER LOGON");
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    MainWindow.gblnLoggedIn = true;
+                    Close();
+                }
             }
-            else
+            catch (Exception Ex)
             {
-                intEmployeeID = Convert.ToInt32(strValueForValidation);
-            }
-            if (strLastName == "")
-            {
-                blnFatalError = true;
-                strErrorMessage += "The Last Name Was Not Entered\n";
-            }
-            if (blnFatalError == true)
-            {
-                TheMessagesClass.ErrorMessage(strErrorMessage);
-                return;
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Employee Login // Sign In Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
 
-            //filling the data set
-            MainWindow.TheVerifyLogonDataSet = TheEmployeeClass.VerifyLogon(intEmployeeID, strLastName);
-
-            intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
-
-           
-
-            if (intRecordsReturned == 0)
-            {
-                LogonFailed();
-            }
-            else
-            {
-                MainWindow.gblnLoggedIn = true;
-                Close();
-            }
+            
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
