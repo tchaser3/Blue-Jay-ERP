@@ -961,38 +961,47 @@ namespace BlueJayERP
             int intMinutes;
             int intNumberOfRecords;
 
-            DateTime datTodaysDate = DateTime.Now;
-            
-            intHours = datTodaysDate.Hour;
-            intMinutes = datTodaysDate.Minute;
-
-            if((intHours >= 1) && (intHours < 5))
+            try
             {
-                Application.Current.Shutdown();
-            }
-            if(intHours < 6)
-            {
-                TheMessagesClass.ErrorMessage("The Program Will Not Be Available until 6:30 am");
-                Application.Current.Shutdown();
-            }
-            else if ((intHours == 6) && (intMinutes < 30))
-            {
-                TheMessagesClass.ErrorMessage("The Program Will Not Be Available until 6:30 am");
-                Application.Current.Shutdown();
-            }
+                DateTime datTodaysDate = DateTime.Now;
 
-            if(gblnLoggedIn == true)
-            {
-                TheFindAssignedTasksByAssignedEmployeeIDDataSet = TheAssignedTaskClass.FindAssignedTasksByAssignedEmployeeID(TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID);
+                intHours = datTodaysDate.Hour;
+                intMinutes = datTodaysDate.Minute;
 
-                intNumberOfRecords = TheFindAssignedTasksByAssignedEmployeeIDDataSet.FindAssignedTasksByAssignedEmployeeID.Rows.Count;
-
-                if (intNumberOfRecords > gintNumberOfTasks)
+                if ((intHours >= 1) && (intHours < 5))
                 {
-                    gintNumberOfTasks = intNumberOfRecords;
-                    UpdateAssignTasksWindow.Visibility = Visibility.Visible;
+                    Application.Current.Shutdown();
                 }
-            }            
+                if (intHours < 6)
+                {
+                    TheMessagesClass.ErrorMessage("The Program Will Not Be Available until 6:30 am");
+                    Application.Current.Shutdown();
+                }
+                else if ((intHours == 6) && (intMinutes < 30))
+                {
+                    TheMessagesClass.ErrorMessage("The Program Will Not Be Available until 6:30 am");
+                    Application.Current.Shutdown();
+                }
+
+                if (gblnLoggedIn == true)
+                {
+                    TheFindAssignedTasksByAssignedEmployeeIDDataSet = TheAssignedTaskClass.FindAssignedTasksByAssignedEmployeeID(TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID);
+
+                    intNumberOfRecords = TheFindAssignedTasksByAssignedEmployeeIDDataSet.FindAssignedTasksByAssignedEmployeeID.Rows.Count;
+
+                    if (intNumberOfRecords > gintNumberOfTasks)
+                    {
+                        gintNumberOfTasks = intNumberOfRecords;
+                        UpdateAssignTasksWindow.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Main Window // Begin The Process " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
 
         private void mitAddDOTStatus_Click(object sender, RoutedEventArgs e)

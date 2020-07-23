@@ -83,7 +83,7 @@ namespace BlueJayERP
                 else
                 {
 
-                    blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "USER LOGON");
+                    blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "BLUE JAY ERP // USER LOGIN");
 
                     if (blnFatalError == true)
                         throw new Exception();
