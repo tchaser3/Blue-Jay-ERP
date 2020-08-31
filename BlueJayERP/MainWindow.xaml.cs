@@ -557,6 +557,9 @@ namespace BlueJayERP
                 mitAdministration.Visibility = Visibility.Hidden;
                 mitAssets.Visibility = Visibility.Hidden;
                 mitTransferInventory.Visibility = Visibility.Hidden;
+                mitEditProjectLabor.Visibility = Visibility.Hidden;
+                mitEmployees.Visibility = Visibility.Hidden;
+                mitProjectReports.Visibility = Visibility.Hidden;
                 mitShopHoursAnalysis.Visibility = Visibility.Hidden;
                 mitToolSignIn.Visibility = Visibility.Hidden;
                 mitToolSignOut.Visibility = Visibility.Hidden;

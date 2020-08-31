@@ -21,6 +21,7 @@ using NewEventLogDLL;
 using EmployeeProjectAssignmentDLL;
 using DataValidationDLL;
 using ProjectTaskDLL;
+using System.Reflection.Emit;
 
 namespace BlueJayERP
 {
@@ -34,6 +35,7 @@ namespace BlueJayERP
         EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         ProjectTaskClass TheProjectTaskClass = new ProjectTaskClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         FindEmployeeLaborByTransactionIDDataSet TheFindEmployeeLaborByTransactionIDDataSet = new FindEmployeeLaborByTransactionIDDataSet();
         FindProjectWorkTaskDataSet TheFindProjectWorkTaskDataSet = new FindProjectWorkTaskDataSet();
@@ -64,9 +66,20 @@ namespace BlueJayERP
             bool blnThereIsAProblem = false;
             string strErrorMessage = "";
             string strValueForValidation;
+            string strEmployeeFullName;
+            string strFullName;
+            string strHours;
+            string strHeader;
+            string strMessage;
 
             try
             {
+                strFullName = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].FirstName + " ";
+                strFullName += MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].LastName;
+
+                strEmployeeFullName = txtFirstName.Text + " ";
+                strEmployeeFullName += txtLastName.Text;                
+
                 strValueForValidation = txtHours.Text;
                 blnThereIsAProblem = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
                 if(blnThereIsAProblem == true)
@@ -95,6 +108,8 @@ namespace BlueJayERP
                     return;
                 }
 
+                strHours = txtHours.Text;
+
                 blnFatalError = TheEmployeeProjectAssignmentClass.UpdateEmployeeLaborHours(MainWindow.gintTransactionID, decHours);
 
                 if (blnFatalError == true)
@@ -104,6 +119,15 @@ namespace BlueJayERP
 
                 if (blnFatalError == true)
                     throw new Exception();
+
+                strHeader = "There Has Been An Edit To Hours";
+
+                strMessage = "<h1>" + strHeader + "</h1>";
+                strMessage += "<h3>" + strFullName + " Has Changed " + strEmployeeFullName + " To " + strHours + "</h3>";
+
+                TheSendEmailClass.SendEmail("jstary@bluejaycommunications.com", strHeader, strMessage);
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Edit Selected Labor Transactions " + strMessage);
 
                 TheMessagesClass.InformationMessage("The Record Has Been Updated");
 

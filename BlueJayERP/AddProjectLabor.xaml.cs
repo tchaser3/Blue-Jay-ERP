@@ -583,11 +583,11 @@ namespace BlueJayERP
                 MainWindow.gintWorkTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[intSelectedIndex].WorkTaskID;
                 MainWindow.gstrWorkTask = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[intSelectedIndex].WorkTask;
 
-                if(MainWindow.gstrWorkTask.Contains("NON-PROD"))
+                if(MainWindow.gintProjectID == 104330)
                 {
-                    if (MainWindow.gstrAssignedProjectID != "SHOP")
+                    if(MainWindow.gintWorkTaskID != 1230)
                     {
-                        TheMessagesClass.ErrorMessage("Non-Productive Time can only be used with Project Shop");
+                        TheMessagesClass.ErrorMessage("You Must Use BJC1 - NON-PRODUCTIVE TIME");
                         cboSelectTask.SelectedIndex = 0;
                         return;
                     }

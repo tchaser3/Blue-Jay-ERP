@@ -127,6 +127,7 @@ namespace BlueJayERP
                     selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
                     TransactionID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
                     strTransactionID = ((TextBlock)TransactionID.Content).Text;
+                    TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Has Selected A Transaction to Be Editted");
 
                     //find the record
                     MainWindow.gintTransactionID = Convert.ToInt32(strTransactionID);
