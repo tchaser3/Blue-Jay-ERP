@@ -240,7 +240,7 @@ namespace BlueJayERP
 
                 intProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(intProjectID);
+                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(intProjectID, datTransactionDate);
 
                 TheFindProjectStatsDataSet = TheEmployeeProductivityStatsClass.FindProjectStats(intProjectID);
 

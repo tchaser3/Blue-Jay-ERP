@@ -151,7 +151,7 @@ namespace BlueJayERP
                         NewProblemRow.Problem = TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].Problem;
                         NewProblemRow.ProblemID = TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].ProblemID;
                         NewProblemRow.Solved = TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].ProblemSolved;
-                        NewProblemRow.TransactionDate = TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].TransactionDAte;
+                        NewProblemRow.TransactionDate = TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].TransactionDate;
 
                         if(TheFindAllVehicleMainProblemsByVehicleIDDataSet.FindAllVehicleMainProblemsByVehicleID[intCounter].IsProblemResolutionNull() == true)
                         {

@@ -116,7 +116,7 @@ namespace BlueJayERP
                     return;
                 }
 
-                blnFatalError = TheDepartmentClass.InsertDepartment(strDepartment);
+                blnFatalError = TheDepartmentClass.InsertDepartment(strDepartment , true);
 
                 if (blnFatalError == true)
                     throw new Exception();

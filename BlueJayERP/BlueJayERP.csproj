@@ -195,6 +195,9 @@
     <Reference Include="ProjectCostingDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectCostingDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProjectMatrixDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectsDLL.dll</HintPath>
     </Reference>
@@ -2871,6 +2874,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,6 +23,7 @@ using ProjectTaskDLL;
 using WorkTaskDLL;
 using EmployeeProjectAssignmentDLL;
 using Microsoft.Win32;
+using DateSearchDLL;
 
 namespace BlueJayERP
 {
@@ -37,6 +38,7 @@ namespace BlueJayERP
         ProjectTaskClass TheProjectTaskClass = new ProjectTaskClass();
         WorkTaskClass TheWorkTaskClass = new WorkTaskClass();
         EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
         FindProjectHoursDataSet TheFindProjectHoursDataSet = new FindProjectHoursDataSet();
@@ -87,6 +89,7 @@ namespace BlueJayERP
             int intSummaryCounter;
             decimal decHours;
             decimal decLaborCosts;
+            DateTime datStartDate = DateTime.Now;
 
             PleaseWait PleaseWait = new PleaseWait();
             PleaseWait.Show();
@@ -114,7 +117,9 @@ namespace BlueJayERP
 
                 MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(MainWindow.gintProjectID);
+                datStartDate = TheDateSearchClass.SubtractingDays(datStartDate, 1500);
+
+                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(MainWindow.gintProjectID, datStartDate);
 
                 intNumberOfRecords = TheFindProjectHoursDataSet.FindProjectHours.Rows.Count - 1;
                 intSecondNumberOfRecords = 0;

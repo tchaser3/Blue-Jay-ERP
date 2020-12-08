@@ -306,6 +306,7 @@ namespace BlueJayERP
             int intSecondNumberOfRecords;
             bool blnItemFound;
             int intTaskCounter;
+            DateTime datStartDate = DateTime.Now;
 
             PleaseWait PleaseWait = new PleaseWait();
             PleaseWait.Show();
@@ -340,7 +341,9 @@ namespace BlueJayERP
 
                 TheFindProjectTaskHoursByAssignedProjectIDDataSet = TheProjectTaskClass.FindProjectTaskHoursByAssignedProjectID(strProjectID);
 
-                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(MainWindow.gintProjectID);
+                datStartDate = TheDataSearchClass.SubtractingDays(datStartDate, 1200);
+
+                TheFindProjectHoursDataSet = TheEmployeeProjectAssignmentClass.FindProjectHours(MainWindow.gintProjectID, datStartDate);
 
                 intNumberOfRecords = TheFindProjectHoursDataSet.FindProjectHours.Rows.Count - 1;
 

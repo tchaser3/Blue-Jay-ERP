@@ -951,12 +951,23 @@ namespace BlueJayERP
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             gblnReportRan = false;
+            mitAddProject.IsEnabled = false;
+            mitEditProject.IsEnabled = false;
 
             gintNumberOfTasks = 0;
 
             MyTimer.Tick += new EventHandler(BeginTheProcess);
             MyTimer.Interval = new TimeSpan(0, 0, 10);
             MyTimer.Start();
+
+            mitDailyVehicleInspection.IsEnabled = false;
+            mitDailyTrailerInspection.IsEnabled = false;
+            mitAssignVehicle.IsEnabled = false;
+            mitCreateTool.IsEnabled = false;
+            mitEditTool.IsEnabled = false;
+            mitShopHoursAnalysis.IsEnabled = false;
+            mitAddDepartment.IsEnabled = false;
+            mitEmployeeRoster.IsEnabled = false;
         }
         private void BeginTheProcess(object sender, EventArgs e)
         {

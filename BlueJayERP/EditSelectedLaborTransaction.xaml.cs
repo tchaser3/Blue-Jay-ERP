@@ -127,6 +127,8 @@ namespace BlueJayERP
 
                 TheSendEmailClass.SendEmail("jstary@bluejaycommunications.com", strHeader, strMessage);
 
+                TheSendEmailClass.SendEmail("jhoulihan@bluejaycommunications.com", strHeader, strMessage);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "Blue Jay ERP // Edit Selected Labor Transactions " + strMessage);
 
                 TheMessagesClass.InformationMessage("The Record Has Been Updated");

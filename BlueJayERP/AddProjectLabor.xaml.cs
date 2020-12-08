@@ -30,6 +30,7 @@ using WorkTaskStatsDLL;
 using ProductivityDataEntryDLL;
 using DateSearchDLL;
 using EmployeeDateEntryDLL;
+using ProjectMatrixDLL;
 
 namespace BlueJayERP
 {
@@ -52,9 +53,12 @@ namespace BlueJayERP
         ProductivityDataEntryClass TheProductivityDataEntryClass = new ProductivityDataEntryClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
+        ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
 
         //setting up the data
-        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
+        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
+        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
+        FindProjectByProjectIDDataSet TheFindProjectByProjectIDDataSet = new FindProjectByProjectIDDataSet();
         FindEmployeeByLastNameDataSet TheFindEmployeeByLastNameDataSet = new FindEmployeeByLastNameDataSet();
         ProjectWorkCompletedDataSet TheEmployeeWorkCompleteDataSet = new ProjectWorkCompletedDataSet();
         ProjectWorkCompletedDataSet TheProjectWorkCompletedDataSet = new ProjectWorkCompletedDataSet();
@@ -140,36 +144,53 @@ namespace BlueJayERP
                 {
                     strProjectID = txtEnterProjectID.Text;
 
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strProjectID);
+                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strProjectID);
 
-                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
+                    intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
 
-                    if (intRecordsReturned == 0)
+                    if(intRecordsReturned == 0)
                     {
-                        TheMessagesClass.ErrorMessage("Project Not Found, A Valid Project Must Be Entered");
-                        return;
+                        TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strProjectID);
+
+                        intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                        if(intRecordsReturned == 0)
+                        {
+                            TheMessagesClass.ErrorMessage("Project Not Found, A Valid Project Must Be Entered");
+                            return;
+                        }
+                        else
+                        {
+                            MainWindow.gintProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
+                        }
                     }
                     else
                     {
-                        txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
-                        MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
-                        MainWindow.gstrAssignedProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].AssignedProjectID;
-                        gblnProjectFound = true;
-                        intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
-                        decHours = Convert.ToDecimal(txtEnterHours.Text);
-
-                        blnFatalError = TheProductivityDataEntryClass.InsertProductivityDataEntry(intEmployeeID, MainWindow.gintProjectID, datTodaysDate, decHours, 0, 0);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-
-                        TheFindProductivityDataEntryByDateDataSet = TheProductivityDataEntryClass.FindProductivityDataEntryByDate(datTodaysDate);
-
-                        gintDataEntryTransactionID = TheFindProductivityDataEntryByDateDataSet.FindProductivtyDataEntryByDate[0].TransactionID;
-
-                        gintEmployeeCounter = 0;
-                        gintTaskCounter = 0;
+                        MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
                     }
+
+                    TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(MainWindow.gintProjectID);
+
+                    MainWindow.gstrAssignedProjectID = strProjectID;
+                    
+                    txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
+                    
+                    gblnProjectFound = true;
+                    intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+                    decHours = Convert.ToDecimal(txtEnterHours.Text);
+
+                    blnFatalError = TheProductivityDataEntryClass.InsertProductivityDataEntry(intEmployeeID, MainWindow.gintProjectID, datTodaysDate, decHours, 0, 0);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    TheFindProductivityDataEntryByDateDataSet = TheProductivityDataEntryClass.FindProductivityDataEntryByDate(datTodaysDate);
+
+                    gintDataEntryTransactionID = TheFindProductivityDataEntryByDateDataSet.FindProductivtyDataEntryByDate[0].TransactionID;
+
+                    gintEmployeeCounter = 0;
+                    gintTaskCounter = 0;
+                    
                 }
 
                 strLastName = txtEnterLastLame.Text;
@@ -242,24 +263,40 @@ namespace BlueJayERP
             string strProjectID;
             int intRecordsReturned;
 
-            strProjectID = txtEnterProjectID.Text;
-
-            TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strProjectID);
-
-            intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
-
-            if (intRecordsReturned == 0)
+            if (gblnProjectFound == false)
             {
-                TheMessagesClass.ErrorMessage("Project Not Found, A Valid Project Must Be Entered");
-                txtEnterLastLame.Text = "";
-                return;
-            }
-            else
-            {
-                txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
-                MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
-                MainWindow.gstrAssignedProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].AssignedProjectID;
-                gblnProjectFound = true;
+                strProjectID = txtEnterProjectID.Text;
+
+                TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strProjectID);
+
+                intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
+
+                if (intRecordsReturned == 0)
+                {
+                    TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strProjectID);
+
+                    intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                    if (intRecordsReturned == 0)
+                    {
+                        TheMessagesClass.ErrorMessage("Project Not Found, A Valid Project Must Be Entered");
+                        return;
+                    }
+                    else
+                    {
+                        MainWindow.gintProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
+                    }
+                }
+                else
+                {
+                    MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                }
+
+                TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(MainWindow.gintProjectID);
+
+                MainWindow.gstrAssignedProjectID = strProjectID;
+
+                txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
             }
         }
 
