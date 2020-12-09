@@ -59,7 +59,6 @@ namespace BlueJayERP
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
         FindProjectByProjectIDDataSet TheFindProjectByProjectIDDataSet = new FindProjectByProjectIDDataSet();
-        FindEmployeeByLastNameDataSet TheFindEmployeeByLastNameDataSet = new FindEmployeeByLastNameDataSet();
         ProjectWorkCompletedDataSet TheEmployeeWorkCompleteDataSet = new ProjectWorkCompletedDataSet();
         ProjectWorkCompletedDataSet TheProjectWorkCompletedDataSet = new ProjectWorkCompletedDataSet();
         FindWorkTaskByTaskKeywordDataSet TheFindWorkTaskByKeywordDataSet = new FindWorkTaskByTaskKeywordDataSet();
@@ -67,6 +66,7 @@ namespace BlueJayERP
         FindProductivityDataEntryByDateDataSet TheFindProductivityDataEntryByDateDataSet = new FindProductivityDataEntryByDateDataSet();
         FindEmployeeHoursOverDateRangeDataSet TheFindEmployeeHoursOverADateRangeDataSet = new FindEmployeeHoursOverDateRangeDataSet();
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
+        FindEmployeeByLastNameEndDateDataSet TheFindEmployeeByLastNameEndDateDataSet = new FindEmployeeByLastNameEndDateDataSet();
 
         //setting global variables
         bool gblnProjectFound;
@@ -120,10 +120,13 @@ namespace BlueJayERP
             bool blnFatalError = false;
             int intEmployeeID;
             decimal decHours;
+            DateTime datEndDate;
 
 
             try
             {
+                datEndDate = TheDateSearchClass.SubtractingDays(datTodaysDate, 21);
+
                 blnFatalError = TheDataValidationClass.VerifyDateData(txtTransactionDate.Text);
                 if(blnFatalError == true)
                 {
@@ -201,9 +204,9 @@ namespace BlueJayERP
                     cboSelectEmployee.Items.Clear();
                     cboSelectEmployee.Items.Add("Select Employee");
 
-                    TheFindEmployeeByLastNameDataSet = TheEmployeeClass.FindEmployeesByLastNameKeyWord(strLastName);
+                    TheFindEmployeeByLastNameEndDateDataSet = TheEmployeeClass.FindEmployeeByLastNameEndDate(strLastName, datEndDate);
 
-                    intNumberOfRecords = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName.Rows.Count - 1;
+                    intNumberOfRecords = TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate.Rows.Count - 1;
 
                     if(intNumberOfRecords == -1)
                     {
@@ -214,7 +217,7 @@ namespace BlueJayERP
                     {
                         for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                         {
-                            cboSelectEmployee.Items.Add(TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intCounter].FirstName + " " + TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intCounter].LastName);
+                            cboSelectEmployee.Items.Add(TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate[intCounter].FirstName + " " + TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate[intCounter].LastName);
                         }
                     }
 
@@ -312,9 +315,9 @@ namespace BlueJayERP
 
                 if (intSelectedIndex > -1)
                 {
-                    MainWindow.gstrFirstName = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].FirstName;
-                    MainWindow.gstrLastName = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].LastName;
-                    MainWindow.gintEmployeeID = TheFindEmployeeByLastNameDataSet.FindEmployeeByLastName[intSelectedIndex].EmployeeID;
+                    MainWindow.gstrFirstName = TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate[intSelectedIndex].FirstName;
+                    MainWindow.gstrLastName = TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate[intSelectedIndex].LastName;
+                    MainWindow.gintEmployeeID = TheFindEmployeeByLastNameEndDateDataSet.FindEmployeesByLastNameEndDate[intSelectedIndex].EmployeeID;
 
                     TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(MainWindow.gintEmployeeID);
                     
