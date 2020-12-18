@@ -968,6 +968,14 @@ namespace BlueJayERP
             mitShopHoursAnalysis.IsEnabled = false;
             mitAddDepartment.IsEnabled = false;
             mitEmployeeRoster.IsEnabled = false;
+            mitAddProjectLabor.IsEnabled = false;
+            mitAddEmployeeToVehicleEmailList.IsEnabled = false;
+            mitEditEmployee.IsEnabled = false;
+            mitEmployeLaborRate.IsEnabled = false;
+            mitAddEmployee.IsEnabled = false;
+            mitAddEmployeeGroups.IsEnabled = false;
+            mitImportEmployeeHours.IsEnabled = false;
+            mitImportEmployeePunches.IsEnabled = false;
         }
         private void BeginTheProcess(object sender, EventArgs e)
         {
