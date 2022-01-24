@@ -551,6 +551,7 @@ namespace BlueJayERP
                 mitSignOutITAsset.Visibility = Visibility.Hidden;
                 mitTrailerProblems.Visibility = Visibility.Hidden; 
                 mitCycleCount.Visibility = Visibility.Hidden;
+                mitEditProjectLabor.Visibility = Visibility.Hidden;
             }
             else if (TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "OFFICE")
             {
@@ -639,6 +640,7 @@ namespace BlueJayERP
                 mitTrailerProblems.Visibility = Visibility.Hidden;
                 mitProjectCosting.Visibility = Visibility.Hidden; 
                 mitVehicleExceptionReport.Visibility = Visibility.Hidden;
+                mitVehicleInYardReport.Visibility = Visibility.Hidden;
             }
         }
         private void ResetMenu()
@@ -895,7 +897,7 @@ namespace BlueJayERP
 
         private void mitVehiclesInYard_Click(object sender, RoutedEventArgs e)
         {
-            VehiclesInYardWindow.Visibility = Visibility.Visible;
+            //VehiclesInYardWindow.Visibility = Visibility.Visible;
         }
 
         private void mitVehicleRoster_Click(object sender, RoutedEventArgs e)
@@ -976,6 +978,39 @@ namespace BlueJayERP
             mitAddEmployeeGroups.IsEnabled = false;
             mitImportEmployeeHours.IsEnabled = false;
             mitImportEmployeePunches.IsEnabled = false;
+            mitEditWorkTask.IsEnabled = false;
+            mitAddWorkTask.IsEnabled = false;
+            mitManagerProductivityPunched.IsEnabled = false;
+            mitAddWOVBillingCodes.IsEnabled = false;
+            mitEditWOVBillingCodes.IsEnabled = false;
+            mitAddWOVTasks.IsEnabled = false;
+            mitEditWOVTasks.IsEnabled = false;
+            mitAddCellPhone.IsEnabled = false;
+            mitAddPhoneExtension.IsEnabled = false;
+            mitEditCellPhone.IsEnabled = false;
+            mitEditPhoneExtension.IsEnabled = false;
+            mitAssignCellPhone.IsEnabled = false;
+            mitAssignPhoneExtension.IsEnabled = false;
+            mitOpenCellPhoneReport.IsEnabled = false;
+            mitPhoneAdministration.IsEnabled = false;
+            mitPhoneList.IsEnabled = false;
+            mitSignInPhone.IsEnabled = false;
+            mitSignOutPhone.IsEnabled = false;
+            mitSignOutITAsset.IsEnabled = false;
+            mitReportITProblem.IsEnabled = false;
+            mitReportBug.IsEnabled = false;
+            mitEventLogTracker.IsEnabled = false;
+            mitAssets.IsEnabled = false;
+            mitDesignAdministration.IsEnabled = false;
+            mitEmployeeAdministration.IsEnabled = false;
+            mitEmployeePunchedVsProductionHours.IsEnabled = false;
+            mitProductionEmployeeProductivityMeasure.IsEnabled = false;
+            mitDesignEmployeeProductivity.IsEnabled = false;
+            mitHelp.IsEnabled = false;
+            mitFindEmployeeHoursOverDateRange.IsEnabled = false;
+            mitEmployees.IsEnabled = false;
+            mitAdministrationReports.IsEnabled = false;
+            mitVehiclesInYard.IsEnabled = false;
         }
         private void BeginTheProcess(object sender, EventArgs e)
         {

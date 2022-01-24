@@ -371,7 +371,7 @@ namespace BlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
-                TheFindVehicleInvoiceByInvoiceNumberDataSet = TheVehiclePRoblemDocumentationClass.FindVehicleInvoiceByInvoiceNumber(strInvoiceNumber, MainWindow.gintVendorID);
+                TheFindVehicleInvoiceByInvoiceNumberDataSet = TheVehiclePRoblemDocumentationClass.FindVehicleInvoiceByInvoiceNumber(strInvoiceNumber, MainWindow.gintVendorID, MainWindow.gintVehicleID, datTransactionDate);
 
                 intInvoiceID = TheFindVehicleInvoiceByInvoiceNumberDataSet.FindVehicleInvoiceByInvoiceNumber[0].InvoiceID;
 
